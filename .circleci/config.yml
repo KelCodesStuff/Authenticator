@@ -21,6 +21,6 @@ jobs:
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  authenticator-ios-workflow:
+  authenticator-ios-app:
     jobs:
       - authenticator-ios
