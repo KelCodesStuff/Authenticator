@@ -6,13 +6,20 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct authenticator_iosApp: App {
+    init() {
+        FirebaseApp.configure()
+    }
     let persistenceController = PersistenceController.shared
+    
+    
 
     var body: some Scene {
         WindowGroup {
+            
             LoginView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
