@@ -16,29 +16,51 @@ struct GenerateCodeView: View {
     @State var remainingTime: TimeInterval = 30
     
     var body: some View {
-        VStack {
-            Text("One-time password code")
-            Text(code)
-                .font(.largeTitle)
-                .fontWeight(.bold)
-                .padding()
-            
-            Text("New code in: \(Int(remainingTime)) seconds")
-                .font(.footnote)
-                .foregroundColor(.gray)
-                .padding(.top)
-        }
-        .onAppear {
-            // Generate the initial code
-            code = getTOTP()
-            
-            // Set up a timer to regenerate the code every 30 seconds
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                remainingTime -= 1
-                if remainingTime <= 0 {
-                    code = getTOTP()
-                    remainingTime = 30
+        TabView {
+            // Generate code tab
+            NavigationView {
+                VStack {
+                    Text("One-time password code")
+                    Text(code)
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .padding()
+                    
+                    Text("New code in: \(Int(remainingTime)) seconds")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                        .padding(.top)
+                    
+                    Spacer()
                 }
+                .navigationBarTitle(Text("Authenticator"), displayMode: .large)
+                .onAppear {
+                    // Generate the initial code
+                    code = getTOTP()
+                    
+                    // Set up a timer to regenerate the code every 30 seconds
+                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                        remainingTime -= 1
+                        if remainingTime <= 0 {
+                            code = getTOTP()
+                            remainingTime = 30
+                        }
+                    }
+                }
+            }
+            .tabItem {
+                Image(systemName: "lock")
+                Text("Generate Code")
+            }
+            
+            // Settings tab
+            NavigationView {
+                SettingsView()
+                    .navigationBarTitle(Text("Passwords"), displayMode: .large)
+            }
+            .tabItem {
+                Image(systemName: "key")
+                Text("Passwords")
             }
         }
     }
@@ -56,5 +78,11 @@ struct GenerateCodeView: View {
         truncatedHash &= 0x7fffffff // Remove the most significant bit
         truncatedHash %= 1000000 // Truncate to a 6-digit code
         return String(format: "%06d", truncatedHash)
+    }
+}
+
+struct GenerateCodeView_Previews: PreviewProvider {
+    static var previews: some View {
+        GenerateCodeView()
     }
 }
