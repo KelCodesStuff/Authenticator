@@ -22,6 +22,7 @@
 		BA4434E429E232D80099CED8 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4434E329E232D80099CED8 /* AuthViewModel.swift */; };
 		BA4434E629E2348F0099CED8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4434E529E2348F0099CED8 /* AppDelegate.swift */; };
 		BA58856029E2616A0036E171 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA58855F29E2616A0036E171 /* SignUpView.swift */; };
+		BA8656DD29F0CF130094748A /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8656DC29F0CF130094748A /* SettingsView.swift */; };
 		BAC4370329E0FA6F00C95C6D /* authenticator_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4370229E0FA6F00C95C6D /* authenticator_iosApp.swift */; };
 		BAC4370729E0FA7100C95C6D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC4370629E0FA7100C95C6D /* Assets.xcassets */; };
 		BAC4370A29E0FA7100C95C6D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAC4370929E0FA7100C95C6D /* Preview Assets.xcassets */; };
@@ -30,6 +31,9 @@
 		BAC4371A29E0FA7100C95C6D /* authenticator_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4371929E0FA7100C95C6D /* authenticator_iosTests.swift */; };
 		BAC4372429E0FA7100C95C6D /* authenticator_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4372329E0FA7100C95C6D /* authenticator_iosUITests.swift */; };
 		BAC4372629E0FA7100C95C6D /* authenticator_iosUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAC4372529E0FA7100C95C6D /* authenticator_iosUITestsLaunchTests.swift */; };
+		BAD7718A29F0EA1F00F30D3F /* ReleaseNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7718929F0EA1F00F30D3F /* ReleaseNotesView.swift */; };
+		BAD7718C29F0EADE00F30D3F /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7718B29F0EADE00F30D3F /* PrivacyPolicyView.swift */; };
+		BAD7718E29F0EAF100F30D3F /* TermsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAD7718D29F0EAF100F30D3F /* TermsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,7 @@
 		BA4434E329E232D80099CED8 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		BA4434E529E2348F0099CED8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BA58855F29E2616A0036E171 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		BA8656DC29F0CF130094748A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BAC436FF29E0FA6F00C95C6D /* authenticator-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "authenticator-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC4370229E0FA6F00C95C6D /* authenticator_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticator_iosApp.swift; sourceTree = "<group>"; };
 		BAC4370629E0FA7100C95C6D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +73,9 @@
 		BAC4371F29E0FA7100C95C6D /* authenticator-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "authenticator-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAC4372329E0FA7100C95C6D /* authenticator_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticator_iosUITests.swift; sourceTree = "<group>"; };
 		BAC4372529E0FA7100C95C6D /* authenticator_iosUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = authenticator_iosUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BAD7718929F0EA1F00F30D3F /* ReleaseNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReleaseNotesView.swift; sourceTree = "<group>"; };
+		BAD7718B29F0EADE00F30D3F /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
+		BAD7718D29F0EAF100F30D3F /* TermsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +118,10 @@
 				BA4434C829E0FB980099CED8 /* LoginView.swift */,
 				BA58855F29E2616A0036E171 /* SignUpView.swift */,
 				BA4434CA29E0FBA10099CED8 /* GenerateCodeView.swift */,
+				BA8656DC29F0CF130094748A /* SettingsView.swift */,
+				BAD7718929F0EA1F00F30D3F /* ReleaseNotesView.swift */,
+				BAD7718B29F0EADE00F30D3F /* PrivacyPolicyView.swift */,
+				BAD7718D29F0EAF100F30D3F /* TermsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -332,10 +344,14 @@
 				BAC4370C29E0FA7100C95C6D /* Persistence.swift in Sources */,
 				BA4434C929E0FB980099CED8 /* LoginView.swift in Sources */,
 				BA4434E429E232D80099CED8 /* AuthViewModel.swift in Sources */,
+				BA8656DD29F0CF130094748A /* SettingsView.swift in Sources */,
+				BAD7718E29F0EAF100F30D3F /* TermsView.swift in Sources */,
+				BAD7718C29F0EADE00F30D3F /* PrivacyPolicyView.swift in Sources */,
 				BAC4370329E0FA6F00C95C6D /* authenticator_iosApp.swift in Sources */,
 				BA58856029E2616A0036E171 /* SignUpView.swift in Sources */,
 				BA4434E629E2348F0099CED8 /* AppDelegate.swift in Sources */,
 				BA4434CB29E0FBA10099CED8 /* GenerateCodeView.swift in Sources */,
+				BAD7718A29F0EA1F00F30D3F /* ReleaseNotesView.swift in Sources */,
 				BAC4370F29E0FA7100C95C6D /* authenticator_ios.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
