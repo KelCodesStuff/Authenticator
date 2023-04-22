@@ -53,14 +53,24 @@ struct GenerateCodeView: View {
                 Text("Generate Code")
             }
             
-            // Settings tab
+            // Passwords tab
             NavigationView {
-                SettingsView()
+                PasswordsView()
                     .navigationBarTitle(Text("Passwords"), displayMode: .large)
             }
             .tabItem {
                 Image(systemName: "key")
                 Text("Passwords")
+            }
+            
+            // Settings tab
+            NavigationView {
+                SettingsView()
+                    .navigationBarTitle(Text("Settings"), displayMode: .large)
+            }
+            .tabItem {
+                Image(systemName: "gear")
+                Text("Settings")
             }
         }
     }
