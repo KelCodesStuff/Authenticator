@@ -20,75 +20,88 @@ struct LoginView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                HStack {
-                    Spacer()
-                    Button(action: { self.showingSignUp = true }) {
-                        Text("Sign Up")
-                            .font(.system(size: 14))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 4)
-                            .foregroundColor(.white)
-                            .background(Color.blue)
-                            .cornerRadius(8)
+            ZStack {
+                Color.gray
+                    .opacity(0.2)
+                    .ignoresSafeArea()
+                
+                VStack {
+                    HStack {
+                        Text("Authenticator")
+                            .font(.largeTitle)
+                            .padding()
+                        
+                        // Sign up button
+                        Button(action: { self.showingSignUp = true }) {
+                            Text("Sign Up")
+                                .font(.system(size: 15))
+                                .padding(.horizontal, 25)
+                                .padding(.vertical, 10)
+                                .foregroundColor(.white)
+                                .background(Color.blue)
+                                .cornerRadius(10)
+                        }
                     }
+                    .padding()
+                    
+                    // Username text field
+                    TextField("Username", text: $email)
+                        .padding()
+                        .border(Color.gray)
+                        .background(RoundedRectangle(cornerRadius: 2).stroke(Color.black, lineWidth: 1))
+                        .autocapitalization(.none)
+                    
+                    // Password text field
+                    SecureField("Password", text: $password)
+                        .padding()
+                        .border(Color.gray)
+                        .background(RoundedRectangle(cornerRadius: 1).stroke(Color.black, lineWidth: 1))
+                    
+                    // Login button and progress spinner
+                    Button(action: login) {
+                        if isLoading {
+                            ProgressView()
+                                .progressViewStyle(CircularProgressViewStyle())
+                                .foregroundColor(.white)
+                                .frame(width: 50, height: 50)
+                        } else {
+                            Text("Login")
+                                .font(.system(size: 15))
+                                .padding(.horizontal, 25)
+                                .padding(.vertical, 10)
+                                .foregroundColor(.white)
+                                .background(Color.green)
+                                .cornerRadius(10)
+                        }
+                    }
+                    .disabled(isLoading)
+                    .onAppear(perform: { isLoading = false })
+                    
+                    // Display error message in alert
+                    .alert(isPresented: Binding<Bool>(
+                        get: { !errorMessage.isEmpty },
+                        set: { _ in errorMessage = "" }
+                    ), content: {
+                        Alert(
+                            title: Text("Error"),
+                            message: Text(errorMessage),
+                            dismissButton: .default(Text("OK"))
+                        )
+                    })
                 }
                 .padding()
-
-                Text("Authenticator")
-                    .font(.largeTitle)
-                    .padding()
-
-                TextField("Username", text: $email)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 1))
-                    .autocapitalization(.none)
-
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).stroke(Color.black, lineWidth: 1))
-
-                Button(action: login) {
-                    if isLoading {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                            .foregroundColor(.white)
-                            .frame(width: 50, height: 50)
-                    } else {
-                        Text("Login")
-                            .padding(.horizontal, 50)
-                            .padding(.vertical, 10)
-                            .foregroundColor(.white)
-                            .background(Color.green)
-                            .cornerRadius(10)
-                    }
-                }
-                .disabled(isLoading)
-                .onAppear(perform: { isLoading = false })
-                
-                // Display error message in alert
-                .alert(isPresented: Binding<Bool>(
-                    get: { !errorMessage.isEmpty },
-                    set: { _ in errorMessage = "" }
-                ), content: {
-                    Alert(
-                        title: Text("Error"),
-                        message: Text(errorMessage),
-                        dismissButton: .default(Text("OK"))
-                    )
-                })
+                .blur(radius: isLoading ? 3 : 0) // Blur the screen while loading
             }
-            .padding()
-            .blur(radius: isLoading ? 3 : 0) // Blur the screen while loading
-        }
-        .sheet(isPresented: $showingSignUp) {
-            SignUpView()
-        }
-        .fullScreenCover(isPresented: $loggedIn) {
-            GenerateCodeView()
+            .sheet(isPresented: $showingSignUp) {
+                SignUpView()
+            }
+            .fullScreenCover(isPresented: $loggedIn) {
+                GenerateCodeView()
+            }
         }
     }
 
+    // Login function
     func login() {
         isLoading = true // Start the spinner
         
