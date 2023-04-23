@@ -12,17 +12,17 @@ struct PasswordsView: View {
     @State var passwordLength = 8
     @State var includeSpecialCharacters = true
     @State var includeNumbers = true
+    @State var isCopied = false
     
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
                 Text("Password:")
                     .font(.headline)
                     .padding(.bottom, 10)
                 
                 Text(password)
-                    .font(.largeTitle)
+                    .font(.title2)
                     .fontWeight(.bold)
                     .padding()
                     .frame(maxWidth: .infinity)
@@ -34,6 +34,10 @@ struct PasswordsView: View {
                 
                 Button(action: {
                     UIPasteboard.general.string = password
+                    isCopied = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        isCopied = false
+                    }
                 }) {
                     Text("Copy Password")
                         .font(.footnote)
@@ -43,6 +47,15 @@ struct PasswordsView: View {
                 }
                 .padding(.vertical, 10)
 
+                if isCopied {
+                    Text("Password copied to clipboard")
+                        .foregroundColor(.green)
+                        .padding()
+                  //      .background(Color.green)
+                        .cornerRadius(10)
+                        .transition(.opacity)
+                }
+                
                 Spacer()
                 
                 HStack {
@@ -78,8 +91,7 @@ struct PasswordsView: View {
                         .foregroundColor(.blue)
                         .cornerRadius(10)
                 }
-                
-                Spacer()
+                .padding(.bottom, 100)
             }
         }
     }
@@ -97,7 +109,7 @@ struct PasswordsView: View {
     }
 }
 
-struct Password_Previews: PreviewProvider {
+struct PasswordsView_Previews: PreviewProvider {
     static var previews: some View {
         PasswordsView()
     }
