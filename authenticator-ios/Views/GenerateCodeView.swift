@@ -17,40 +17,46 @@ struct GenerateCodeView: View {
     
     var body: some View {
         TabView {
-            // Generate code tab
-            NavigationView {
-                VStack {
-                    Text("One-time password code")
-                    Text(code)
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .padding()
-                    
-                    Text("New code in: \(Int(remainingTime)) seconds")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                        .padding(.top)
-                    
-                    Spacer()
-                }
-                .navigationBarTitle(Text("Authenticator"), displayMode: .large)
-                .onAppear {
-                    // Generate the initial code
-                    code = getTOTP()
-                    
-                    // Set up a timer to regenerate the code every 30 seconds
-                    Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
-                        remainingTime -= 1
-                        if remainingTime <= 0 {
-                            code = getTOTP()
-                            remainingTime = 30
+                // Authenticator tab
+                NavigationView {
+                    ZStack {
+                        Color.gray
+                            .opacity(0.1)
+                            .ignoresSafeArea()
+                    VStack {
+                        Text("New code in: \(Int(remainingTime)) seconds")
+                            .font(.footnote)
+                            .foregroundColor(.gray)
+                        Text(code)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .frame(maxHeight: .infinity)
+                        
+                        // Tab bar color
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: 5)
+                            .background(Color.gray.opacity(0.2))
+                    }
+                    .navigationBarTitle(Text("Authenticator"), displayMode: .large)
+                    .onAppear {
+                        // Generate the initial code
+                        code = getTOTP()
+                        
+                        // Set up a timer to regenerate the code every 30 seconds
+                        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { timer in
+                            remainingTime -= 1
+                            if remainingTime <= 0 {
+                                code = getTOTP()
+                                remainingTime = 30
+                            }
                         }
                     }
                 }
             }
             .tabItem {
                 Image(systemName: "lock")
-                Text("Generate Code")
+                Text("Authenticator")
             }
             
             // Passwords tab
@@ -73,8 +79,10 @@ struct GenerateCodeView: View {
                 Text("Settings")
             }
         }
+        .accentColor(.green) // set the accent color for the navigation links
     }
     
+    // Generate OTP function
     func getTOTP() -> String {
         let keyData = Data(base64Encoded: secret, options: .ignoreUnknownCharacters)!
         let timeInterval = Int64(Date().timeIntervalSince1970 / 30) // 30-second time interval
