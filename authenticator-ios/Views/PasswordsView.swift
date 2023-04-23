@@ -16,86 +16,100 @@ struct PasswordsView: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Password:")
-                    .font(.headline)
-                    .padding(.bottom, 10)
+            ZStack {
+                Color.gray
+                    .opacity(0.1)
+                    .ignoresSafeArea()
                 
-                Text(password)
-                    .font(.title2)
-                    .fontWeight(.bold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .border(Color.gray)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(4)
-                    .padding(.horizontal)
-                    
-                
-                Button(action: {
-                    UIPasteboard.general.string = password
-                    isCopied = true
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        isCopied = false
-                    }
-                }) {
-                    Text("Copy Password")
-                        .font(.footnote)
-                        .padding()
-                        .foregroundColor(.blue)
-                        .cornerRadius(10)
-                }
-                .padding(.vertical, 10)
-
-                if isCopied {
-                    Text("Password copied to clipboard")
-                        .foregroundColor(.green)
-                        .padding()
-                  //      .background(Color.green)
-                        .cornerRadius(10)
-                        .transition(.opacity)
-                }
-                
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    Text("Password Length: \(passwordLength)")
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 16)
-                        
-                    Spacer()
-                    Stepper(
-                        value: $passwordLength,
-                        in: 8...32,
-                        label: {
-                            EmptyView()
+                VStack {
+                    // Copy password button
+                    Button(action: {
+                        UIPasteboard.general.string = password
+                        isCopied = true
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                            isCopied = false
                         }
-                    )
-                }
-                
-                Toggle("Include Special Characters", isOn: $includeSpecialCharacters)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 25)
-                
-                Toggle("Include Numbers", isOn: $includeNumbers)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 25)
-                
-                Button(action: {
-                    password = generatePassword()
-                }) {
-                    Text("New Password")
-                        .font(.footnote)
+                    }) {
+                        Text("Copy Password")
+                            .font(.footnote)
+                            .padding()
+                            .foregroundColor(.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.vertical, 10)
+                    
+                    // Password field
+                    Text(password)
+                        .font(.title2)
+                        .fontWeight(.bold)
                         .padding()
-                        .foregroundColor(.blue)
-                        .cornerRadius(10)
+                        .frame(maxWidth: .infinity)
+                        .border(Color.gray)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(4)
+                        .padding(.horizontal)
+                    
+                    if isCopied {
+                        Text("Password copied")
+                            .font(.footnote)
+                            .foregroundColor(.green)
+                            .padding()
+                            .cornerRadius(10)
+                            .transition(.opacity)
+                    }
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        // Password length stepper
+                        Text("Password Length: \(passwordLength)")
+                            .padding(.vertical, 8)
+                            .padding(.horizontal, 16)
+                        
+                        Spacer()
+                        Stepper(
+                            value: $passwordLength,
+                            in: 8...32,
+                            label: {
+                                EmptyView()
+                            }
+                        )
+                    }
+                    
+                    // Special characters toggle
+                    Toggle("Include Special Characters", isOn: $includeSpecialCharacters)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 25)
+                    
+                    // Numbers toggle
+                    Toggle("Include Numbers", isOn: $includeNumbers)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 25)
+                    
+                    Button(action: {
+                        password = generatePassword()
+                    }) {
+                        Text("New Password")
+                            .font(.footnote)
+                            .padding()
+                            .foregroundColor(.blue)
+                            .cornerRadius(10)
+                    }
+                    .padding(.bottom, 100)
+                    
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(height: 5)
+                        .background(Color.gray.opacity(0.2))
                 }
-                .padding(.bottom, 100)
+                
             }
+            
         }
     }
     
+    // Generate password function
     func generatePassword() -> String {
         var letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         if includeSpecialCharacters {
@@ -105,7 +119,6 @@ struct PasswordsView: View {
             letters += "0123456789"
         }
         return String((0..<passwordLength).compactMap { _ in letters.randomElement() })
-
     }
 }
 
