@@ -12,21 +12,34 @@ struct SettingsView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                NavigationLink(destination: ReleaseNotesView()) {
-                    Text("Version 0.0.1")
-                }
-                Toggle(isOn: $faceIdEnabled) {
-                    Text("Face ID")
-                }
-                NavigationLink(destination: PrivacyPolicyView()) {
-                    Text("Privacy Policy")
-                }
-                NavigationLink(destination: TermsView()) {
-                    Text("Terms of Use")
+            ZStack {
+                Color.gray
+                    .opacity(0.1)
+                    .ignoresSafeArea()
+                VStack {
+                    
+                    List {
+                        NavigationLink(destination: ReleaseNotesView()) {
+                            Text("Version 0.0.1")
+                        }
+                        Toggle(isOn: $faceIdEnabled) {
+                            Text("Face ID")
+                        }
+                        NavigationLink(destination: PrivacyPolicyView()) {
+                            Text("Privacy Policy")
+                        }
+                        NavigationLink(destination: TermsView()) {
+                            Text("Terms of Use")
+                        }
+                    }
+                    .listStyle(GroupedListStyle())
+                    
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(height: 5)
+                        .background(Color.gray.opacity(0.2))
                 }
             }
-            .listStyle(GroupedListStyle())
         }
     }
 }
