@@ -147,11 +147,10 @@
 				37AD030F266C8A920086DD10 /* AppDelegate.swift */,
 				37AD0311266C8A920086DD10 /* SceneDelegate.swift */,
 				37AD0313266C8A920086DD10 /* ContentView.swift */,
+				BAFA99E529F8C697001EF8A6 /* Model */,
+				37AD0352266C8CCA0086DD10 /* View */,
+				37AD0347266C8CCA0086DD10 /* Controller */,
 				37AD0359266C8CCA0086DD10 /* Adding */,
-				37AD0356266C8CCA0086DD10 /* More */,
-				37AD0347266C8CCA0086DD10 /* Token */,
-				37AD0352266C8CCA0086DD10 /* TokenViews */,
-				37AD0344266C8CCA0086DD10 /* ViewComponents */,
 				37AD035E266C8CCA0086DD10 /* Extensions */,
 				37AD031D266C8A930086DD10 /* LaunchScreen.storyboard */,
 				37AD0315266C8A920086DD10 /* Authenticator.xcdatamodeld */,
@@ -192,50 +191,34 @@
 			path = AuthenticatorUITests;
 			sourceTree = "<group>";
 		};
-		37AD0344266C8CCA0086DD10 /* ViewComponents */ = {
+		37AD0347266C8CCA0086DD10 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				37AD0345266C8CCA0086DD10 /* MenuCopyButton.swift */,
-				37D98D8D276AE53E00DF37EF /* View+copiedBanner.swift */,
 				37AD0346266C8CCA0086DD10 /* ActivityView.swift */,
+				37D98D8D276AE53E00DF37EF /* View+copiedBanner.swift */,
 			);
-			path = ViewComponents;
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		37AD0347266C8CCA0086DD10 /* Token */ = {
+		37AD0352266C8CCA0086DD10 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37AD0348266C8CCA0086DD10 /* Token.swift */,
-				37AD0349266C8CCA0086DD10 /* OTPGenerator.swift */,
 				BADEFF8229F787C300BF27AF /* PasswordsView.swift */,
-			);
-			path = Token;
-			sourceTree = "<group>";
-		};
-		37AD0352266C8CCA0086DD10 /* TokenViews */ = {
-			isa = PBXGroup;
-			children = (
-				37AD0353266C8CCA0086DD10 /* EditAccountView.swift */,
 				37AD0354266C8CCA0086DD10 /* CodeCardView.swift */,
+				37AD0353266C8CCA0086DD10 /* EditAccountView.swift */,
+				37AD035A266C8CCA0086DD10 /* ScannerView.swift */,
+				37AD035B266C8CCA0086DD10 /* ManualEntryView.swift */,
 				37AD0355266C8CCA0086DD10 /* TokenDetailView.swift */,
-			);
-			path = TokenViews;
-			sourceTree = "<group>";
-		};
-		37AD0356266C8CCA0086DD10 /* More */ = {
-			isa = PBXGroup;
-			children = (
 				37AD0357266C8CCA0086DD10 /* ExportView.swift */,
 				37AD0358266C8CCA0086DD10 /* AboutView.swift */,
 			);
-			path = More;
+			path = View;
 			sourceTree = "<group>";
 		};
 		37AD0359266C8CCA0086DD10 /* Adding */ = {
 			isa = PBXGroup;
 			children = (
-				37AD035A266C8CCA0086DD10 /* ScannerView.swift */,
-				37AD035B266C8CCA0086DD10 /* ManualEntryView.swift */,
 				37AD035D266C8CCA0086DD10 /* PhotoPicker.swift */,
 			);
 			path = Adding;
@@ -249,6 +232,15 @@
 				37AD0361266C8CCA0086DD10 /* StringExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BAFA99E529F8C697001EF8A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37AD0348266C8CCA0086DD10 /* Token.swift */,
+				37AD0349266C8CCA0086DD10 /* OTPGenerator.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
