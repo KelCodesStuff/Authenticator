@@ -1,3 +1,10 @@
+//
+//  URLExtensions.swift
+//  Authenticator
+//
+//  Created by Kel Reid on 06/29/23
+//
+
 import UIKit
 import UniformTypeIdentifiers
 
