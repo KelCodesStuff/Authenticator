@@ -1,1 +1,1 @@
-# authenticator-ios
+# Authenticator
