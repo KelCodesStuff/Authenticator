@@ -1,3 +1,10 @@
+//
+//  ActivityView.swift
+//  Authenticator
+//
+//  Created by Kel Reid on 06/29/23
+//
+
 import SwiftUI
 
 struct ActivityView: UIViewControllerRepresentable {

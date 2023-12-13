@@ -1,3 +1,10 @@
+//
+//  SceneDelegate.swift
+//  Authenticator
+//
+//  Created by Kel Reid on 06/29/23
+//
+
 import SwiftUI
 import os.log
 
@@ -59,5 +66,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 }
 
 
-let logger: Logger = Logger(subsystem: "io.ososo.Authenticator", category: "debug")
+let logger: Logger = Logger(subsystem: "io.kelreid.Authenticator", category: "debug")
 
