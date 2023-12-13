@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "microsoft.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -9,7 +10,6 @@
       "scale" : "2x"
     },
     {
-      "filename" : "microsoft.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
