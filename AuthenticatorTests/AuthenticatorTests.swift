@@ -1,8 +1,8 @@
 //
 //  AuthenticatorTests.swift
-//  AuthenticatorTests
+//  Authenticator
 //
-//  Created by Bing Jeung on 6/6/21.
+//  Created by Kel Reid on 06/29/23
 //
 
 import XCTest
