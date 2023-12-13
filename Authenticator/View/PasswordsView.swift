@@ -1,8 +1,8 @@
 //
 //  PasswordsView.swift
-//  authenticator-ios
+//  Authenticator
 //
-//  Created by Kelvin Reid on 4/22/23.
+//  Created by Kel Reid on 06/29/23
 //
 
 import SwiftUI
@@ -17,43 +17,40 @@ struct PasswordsView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                VStack {
-                    // Copy password button
-                    Button(action: {
-                        UIPasteboard.general.string = password
-                        isCopied = true
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                            isCopied = false
-                        }
-                    }) {
-                        Text("Copy Password")
-                            .font(.footnote)
-                            .padding()
-                            .foregroundColor(.blue)
-                            .cornerRadius(10)
-                    }
-                    .padding(.vertical, 10)
-                    
-                    // Password field
+                VStack(spacing: 20) {
                     Text(password)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(.largeTitle.monospacedDigit())
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .border(Color.gray)
+//                        .border(Color.gray)
                         .multilineTextAlignment(.leading)
                         .lineLimit(4)
                         .padding(.horizontal)
+                        .onTapGesture {
+                            UIPasteboard.general.string = password
+                            isCopied = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                isCopied = false
+                            }
+                        }
                     
-                    if isCopied {
-                        Text("Password copied")
-                            .font(.footnote)
+                        .overlay(
+                            Text("Generate a Password")
+                            .font(.callout)
+                            .foregroundColor(.gray)
+                            .opacity(password.isEmpty ? 0.6 : 0)
+                        )
+/*
+                        if isCopied {
+                            Text("Password Copied")
                             .foregroundColor(.green)
                             .padding()
                             .cornerRadius(10)
                             .transition(.opacity)
-                    }
-                    
+                            .font(.footnote)
+                            .animation(.easeInOut)
+                        }
+*/
                     Spacer()
                     
                     HStack {
@@ -62,6 +59,7 @@ struct PasswordsView: View {
                         Text("Password Length: \(passwordLength)")
                             .padding(.vertical, 8)
                             .padding(.horizontal, 16)
+                            .font(.footnote)
                         
                         Spacer()
                         Stepper(
@@ -77,20 +75,22 @@ struct PasswordsView: View {
                     Toggle("Include Special Characters", isOn: $includeSpecialCharacters)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 25)
+                        .font(.footnote)
                     
                     // Numbers toggle
                     Toggle("Include Numbers", isOn: $includeNumbers)
                         .padding(.vertical, 8)
                         .padding(.horizontal, 25)
+                        .font(.footnote)
                     
                     Button(action: {
                         password = generatePassword()
                     }) {
-                        Text("New Password")
-                            .font(.footnote)
-                            .padding()
-                            .foregroundColor(.blue)
-                            .cornerRadius(10)
+                        Image(systemName: "arrow.triangle.2.circlepath.circle")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .padding()
+                                .foregroundColor(.green)
                     }
                     .padding(.bottom, 100)
                     

@@ -1,3 +1,10 @@
+//
+//  ContentView.swift
+//  Authenticator
+//
+//  Created by Kel Reid on 06/29/23
+//
+
 import SwiftUI
 import CoreData
 
@@ -26,61 +33,26 @@ struct ContentView: View {
                 UITextField.appearance().clearButtonMode = .always
         }
     
-
         var body: some View {
             TabView {
-                // Authenticator tab
+                // MARK: - Authenticator tab
                 NavigationView {
-                    ZStack {
-//                        Color.gray
-//                            .opacity(0.1)
-//                            .ignoresSafeArea()
-                        VStack {
-                            List(selection: $selectedTokens) {
-                                ForEach(0..<fetchedTokens.count, id: \.self) { index in
-                                    let item = fetchedTokens[index]
-                                    Section {
-                                        CodeCardView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
-                                            .contextMenu {
-                                                Button(action: {
-                                                    UIPasteboard.general.string = codes[index]
-                                                }) {
-                                                    Label("Copy Code", systemImage: "doc.on.doc")
-                                                }
-                                                Button(action: {
-                                                    tokenIndex = index
-                                                    presentingSheet = .cardDetailView
-                                                    isSheetPresented = true
-                                                }) {
-                                                    Label("View Detail", systemImage: "text.justifyleft")
-                                                }
-                                                Button(action: {
-                                                    tokenIndex = index
-                                                    presentingSheet = .cardEditing
-                                                    isSheetPresented = true
-                                                }) {
-                                                    Label("Edit Account", systemImage: "square.and.pencil")
-                                                }
-                                                Button(action: {
-                                                    tokenIndex = index
-                                                    selectedTokens.removeAll()
-                                                    indexSetOnDelete.removeAll()
-                                                    isDeletionAlertPresented = true
-                                                }) {
-                                                    Label("Delete", systemImage: "trash")
-                                                }
-                                            }
-                                    }
+                    VStack {
+                        List(selection: $selectedTokens) {
+                            ForEach(0..<fetchedTokens.count, id: \.self) { index in
+                                let item = fetchedTokens[index]
+                                Section {
+                                    AuthCodeView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining)
                                 }
-                                .onMove(perform: move(from:to:))
-                                .onDelete(perform: deleteItems)
                             }
-                            // Tab bar color
-                            Rectangle()
-                                .fill(Color.clear)
-                                .frame(height: 5)
-                                .background(Color.gray.opacity(0.3))
+                            .onDelete(perform: deleteItems)
                         }
+                        // Tab bar color
+                        Rectangle()
+                            .fill(Color.clear)
+                            .frame(height: 5)
+                            .background(Color.gray.opacity(0.3))
+                    }
                     .animation(.default, value: animationTrigger)
                     .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
                         generateCodes()
@@ -109,137 +81,40 @@ struct ContentView: View {
                     .alert(isPresented: $isDeletionAlertPresented) {
                         deletionAlert
                     }
+                    
+                    // MARK: - Nav bar
                     .navigationTitle("Authenticator")
                     .toolbarBackground(.gray .opacity(0.3), for: .navigationBar)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbar {
                         ToolbarItem(placement: .navigationBarLeading) {
-                            if editMode == .active {
-                                Button(action: {
-                                    editMode = .inactive
-                                    selectedTokens.removeAll()
-                                    indexSetOnDelete.removeAll()
-                                }) {
-                                    Text("Done")
-                                }
-                            } else {
-                                Menu {
-                                    Button(action: {
-                                        selectedTokens.removeAll()
-                                        indexSetOnDelete.removeAll()
-                                        editMode = .active
-                                    }) {
-                                        Label("Edit", systemImage: "list.bullet")
-                                    }
-                                    Button(action: {
-                                        presentingSheet = .moreExport
-                                        isSheetPresented = true
-                                    }) {
-                                        Label("Export", systemImage: "square.and.arrow.up")
-                                    }
-                                    Button(action: {
-                                        presentingSheet = .moreAbout
-                                        isSheetPresented = true
-                                    }) {
-                                        Label("About", systemImage: "info.circle")
-                                    }
-                                } label: {
-                                    Image(systemName: "ellipsis.circle")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 26)
-                                        .padding(.trailing, 8)
-                                        .contentShape(Rectangle())
-                                }
+                            Button(action: {
+                                presentingSheet = .showSettings
+                                isSheetPresented = true
+                            }) {
+                                Image(systemName: "gear")
                             }
                         }
-                        ToolbarItemGroup(placement: .navigationBarTrailing) {
-                            if editMode == .active {
-                                Button(action: {
-                                    if !selectedTokens.isEmpty {
-                                        isDeletionAlertPresented = true
-                                    }
-                                }) {
-                                    Image(systemName: "trash")
-                                }
-                            } else {
-#if !targetEnvironment(macCatalyst)
-                                Button(action: {
-                                    presentingSheet = .addByScanning
-                                    isSheetPresented = true
-                                }) {
-                                    Image(systemName: "qrcode.viewfinder")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 24)
-                                        .padding(.horizontal, 2)
-                                        .contentShape(Rectangle())
-                                }
-#endif
-                                Menu {
-#if !targetEnvironment(macCatalyst)
-                                    Button(action: {
-                                        presentingSheet = .addByScanning
-                                        isSheetPresented = true
-                                    }) {
-                                        Label("Scan QR Code", systemImage: "qrcode.viewfinder")
-                                    }
-#endif
-                                    Button(action: {
-                                        presentingSheet = .addByQRCodeImage
-                                        isSheetPresented = true
-                                    }) {
-                                        Label("Import from Photos", systemImage: "photo")
-                                    }
-                                    Button {
-                                        isFileImporterPresented = true
-                                    } label: {
-#if targetEnvironment(macCatalyst)
-                                        Label("Import from Finder", systemImage: "text.below.photo")
-#else
-                                        Label("Import from Files", systemImage: "doc.badge.plus")
-#endif
-                                    }
-                                    Button(action: {
-                                        presentingSheet = .addByManually
-                                        isSheetPresented = true
-                                    }) {
-                                        Label("Enter Manually", systemImage: "text.cursor")
-                                    }
-                                } label: {
-                                    Image(systemName: "plus")
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 25)
-                                        .padding(.leading, 8)
-                                        .contentShape(Rectangle())
-                                }
+                        ToolbarItem(placement: .navigationBarTrailing) {
+                            Button(action: {
+                                presentingSheet = .addByScanning
+                                isSheetPresented = true
+                            }) {
+                                Image(systemName: "qrcode")
                             }
                         }
+                        
                     }
                     .sheet(isPresented: $isSheetPresented) {
                         switch presentingSheet {
-                        case .moreExport:
-                            ExportView(isPresented: $isSheetPresented, tokens: tokensToExport)
-                        case .moreAbout:
-                            AboutView(isPresented: $isSheetPresented)
+                        case .showSettings:
+                            SettingsView(isPresented: $isSheetPresented)
                         case .addByScanning:
                             Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
-                        case .addByQRCodeImage:
-                            PhotoPicker(completion: handlePickedImage(uri:))
-                        case .addByManually:
-                            ManualEntryView(isPresented: $isSheetPresented, completion: addItem(_:))
                         case .cardDetailView:
                             TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
-                        case .cardEditing:
-                            EditAccountView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]), tokenIndex: tokenIndex) { index, issuer, account in
-                                handleAccountEditing(index: index, issuer: issuer, account: account)
-                            }
                         }
                     }
-                }
-                    
-                    .environment(\.editMode, $editMode)
                 }
                 
                 .tabItem {
@@ -247,7 +122,6 @@ struct ContentView: View {
                     Text("Authenticator")
                 }
                 
-                // Passwords tab
                 NavigationView {
                     PasswordsView()
                         .navigationBarTitle(Text("Passwords"), displayMode: .large)
@@ -265,7 +139,6 @@ struct ContentView: View {
 
 
         // MARK: - Modification
-
         private func addItem(_ token: Token) {
                 let newTokenData = TokenData(context: viewContext)
                 newTokenData.id = token.id
@@ -300,16 +173,19 @@ struct ContentView: View {
                         logger.debug("Unresolved error \(nsError), \(nsError.userInfo)")
                 }
         }
+
         private func deleteItems(offsets: IndexSet) {
                 selectedTokens.removeAll()
                 indexSetOnDelete = offsets
                 isDeletionAlertPresented = true
         }
+
         private func cancelDeletion() {
                 indexSetOnDelete.removeAll()
                 selectedTokens.removeAll()
                 isDeletionAlertPresented = false
         }
+
         private func performDeletion() {
                 if !selectedTokens.isEmpty {
                         _ = selectedTokens.map { oneSelection in
@@ -332,15 +208,14 @@ struct ContentView: View {
                 generateCodes()
         }
         private var deletionAlert: Alert {
-                return Alert(title: Text("Delete Account?"),
-                             message: Text("Account Deletion Warning"),
+                return Alert(title: Text("Are you sure you want to delete?"),
+                             message: Text("You could lose access to your account"),
                              primaryButton: .cancel(cancelDeletion),
                              secondaryButton: .destructive(Text("Delete"), action: performDeletion))
         }
 
 
         // MARK: - Account Adding
-
         private func handleScanning(result: Result<String, ScannerView.ScanError>) {
                 isSheetPresented = false
                 switch result {
@@ -353,12 +228,6 @@ struct ContentView: View {
                         logger.debug("\(error.localizedDescription)")
                 }
         }
-        private func handlePickedImage(uri: String) {
-                let qrCodeUri: String = uri.trimmed()
-                guard !qrCodeUri.isEmpty else { return }
-                guard let newToken: Token = Token(uri: qrCodeUri) else { return }
-                addItem(newToken)
-        }
         private func handlePickedFile(url: URL) {
                 guard let content: String = url.readText() else { return }
                 let lines: [String] = content.components(separatedBy: .newlines)
@@ -370,8 +239,7 @@ struct ContentView: View {
         }
 
 
-        // MARK: - Methods
-
+        // MARK: - Functions
         private func token(of tokenData: TokenData) -> Token {
                 guard let id: String = tokenData.id,
                       let uri: String = tokenData.uri,
@@ -425,17 +293,13 @@ struct ContentView: View {
         }
 }
 
-private var presentingSheet: SheetSet = .moreAbout
+private var presentingSheet: SheetSet = .showSettings
 private var tokenIndex: Int = 0
 
 private enum SheetSet {
-        case moreExport
-        case moreAbout
+        case showSettings
         case addByScanning
-        case addByQRCodeImage
-        case addByManually
         case cardDetailView
-        case cardEditing
 }
 
 struct ContentView_Previews: PreviewProvider {
