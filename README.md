@@ -1,6 +1,6 @@
 Authenticator
 ======
-[![CircleCI](https://circleci.com/gh/KelCodesStuff/Authenticator.svg?style=shield&circle-token=11d3bff3c5b6ca9a3c645fd8a6f08b07e5065f64)](https://app.circleci.com/pipelines/github/KelCodesStuff/Prevent-iOS)
+[![CircleCI](https://circleci.com/gh/KelCodesStuff/Authenticator.svg?style=shield&circle-token=11d3bff3c5b6ca9a3c645fd8a6f08b07e5065f64)](https://app.circleci.com/pipelines/github/KelCodesStuff/Authenticator)
 
 
 <img src="https://img.shields.io/badge/Swift-5.8-orange.svg"/>
