@@ -32,10 +32,6 @@ Authenticator can sync with iCloud to encryps your data to make sure only you ha
 - iOS 16+
 - iPadOS 16+
 
-## License
-
-Authenticator is available under the MIT license. See the LICENSE.md file for more info.
-
 ## Acknowledgements
 
 Authenticator uses the following third-party libraries:
