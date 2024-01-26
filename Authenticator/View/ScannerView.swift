@@ -122,8 +122,12 @@ struct ScannerView: UIViewControllerRepresentable {
             
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            if !captureSession.isRunning {
+
+            // Perform AVCaptureSession setup on a background thread
+            DispatchQueue.global(qos: .background).async { [self] in
+                if !self.captureSession.isRunning {
                     captureSession.startRunning()
+                }
             }
         }
             
