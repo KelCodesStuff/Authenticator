@@ -34,7 +34,12 @@
 		37AD0377266C8E0E0086DD10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 37AD0376266C8E0E0086DD10 /* Assets.xcassets */; };
 		37AD037A266C90610086DD10 /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = 37AD0379266C90610086DD10 /* SwiftOTP */; };
 		37D98D8E276AE53E00DF37EF /* View+copiedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D98D8D276AE53E00DF37EF /* View+copiedBanner.swift */; };
+		BA51D17F2B645A3D002DAFAC /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BA51D17E2B645A3D002DAFAC /* KeychainAccess */; };
+		BA9A23E82B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BA9A23E92B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
+		BA9A23EF2B642C5700F9A92A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A23EE2B642C5700F9A92A /* Account.swift */; };
 		BADEFF8329F787C300BF27AF /* PasswordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADEFF8229F787C300BF27AF /* PasswordsView.swift */; };
+		C31D8F1CFF0241E8B08DBB29 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 67554FE9A7F14273BC1F7AF7 /* Sentry */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +93,10 @@
 		37AD0376266C8E0E0086DD10 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		37AD037B266C93D40086DD10 /* Authenticator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
 		37D98D8D276AE53E00DF37EF /* View+copiedBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+copiedBanner.swift"; sourceTree = "<group>"; };
+		BA9A23EE2B642C5700F9A92A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		BACD7A9A2B643F07003708DD /* Authenticator iCloud.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Authenticator iCloud.xcdatamodel"; sourceTree = "<group>"; };
+		BACD7A9B2B643F2E003708DD /* Authenticator iCloud 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Authenticator iCloud 2.xcdatamodel"; sourceTree = "<group>"; };
+		BACD7A9C2B644029003708DD /* iCloud.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iCloud.xcdatamodel; sourceTree = "<group>"; };
 		BADEFF8229F787C300BF27AF /* PasswordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +106,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				37AD037A266C90610086DD10 /* SwiftOTP in Frameworks */,
+				C31D8F1CFF0241E8B08DBB29 /* Sentry in Frameworks */,
+				BA51D17F2B645A3D002DAFAC /* KeychainAccess in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9A23E82B62DD4C00F9A92A /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA9A23E92B62DD4C00F9A92A /* (null) in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,12 +208,12 @@
 			isa = PBXGroup;
 			children = (
 				37AD0313266C8A920086DD10 /* ContentView.swift */,
+				BADEFF8229F787C300BF27AF /* PasswordsView.swift */,
+				37AD0358266C8CCA0086DD10 /* SettingsView.swift */,
 				37AD0354266C8CCA0086DD10 /* AuthCodeView.swift */,
 				37AD0353266C8CCA0086DD10 /* EditAccountView.swift */,
 				37AD035A266C8CCA0086DD10 /* ScannerView.swift */,
 				37AD0355266C8CCA0086DD10 /* TokenDetailView.swift */,
-				BADEFF8229F787C300BF27AF /* PasswordsView.swift */,
-				37AD0358266C8CCA0086DD10 /* SettingsView.swift */,
 				37AD0357266C8CCA0086DD10 /* ExportView.swift */,
 			);
 			path = View;
@@ -233,6 +246,7 @@
 			children = (
 				37AD0348266C8CCA0086DD10 /* Token.swift */,
 				37AD0349266C8CCA0086DD10 /* OTPGenerator.swift */,
+				BA9A23EE2B642C5700F9A92A /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -247,6 +261,7 @@
 				37AD0308266C8A920086DD10 /* Sources */,
 				37AD0309266C8A920086DD10 /* Frameworks */,
 				37AD030A266C8A920086DD10 /* Resources */,
+				50BCB614E42940C1A2CC4ADF /* Upload Debug Symbols to Sentry */,
 			);
 			buildRules = (
 			);
@@ -255,6 +270,8 @@
 			name = Authenticator;
 			packageProductDependencies = (
 				37AD0379266C90610086DD10 /* SwiftOTP */,
+				67554FE9A7F14273BC1F7AF7 /* Sentry */,
+				BA51D17E2B645A3D002DAFAC /* KeychainAccess */,
 			);
 			productName = Authenticator;
 			productReference = 37AD030C266C8A920086DD10 /* Authenticator.app */;
@@ -305,6 +322,7 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1430;
+				ORGANIZATIONNAME = "Studio757 LLC";
 				TargetAttributes = {
 					37AD030B266C8A920086DD10 = {
 						CreatedOnToolsVersion = 12.5;
@@ -338,6 +356,8 @@
 			mainGroup = 37AD0303266C8A920086DD10;
 			packageReferences = (
 				37AD0378266C90610086DD10 /* XCRemoteSwiftPackageReference "SwiftOTP" */,
+				20A46FC2EB8E4EBEBBE6CB64 /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				BA51D17D2B645A3D002DAFAC /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 37AD030D266C8A920086DD10 /* Products */;
 			projectDirPath = "";
@@ -380,6 +400,24 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		50BCB614E42940C1A2CC4ADF /* Upload Debug Symbols to Sentry */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			);
+			name = "Upload Debug Symbols to Sentry";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# This script is responsable to upload debug symbols and source context for Sentry.\nif which sentry-cli >/dev/null; then\nexport SENTRY_ORG=studio757\nexport SENTRY_PROJECT=authenticator\nERROR=$(sentry-cli debug-files upload --include-sources \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\nif [ ! $? -eq 0 ]; then\necho \"warning: sentry-cli - $ERROR\"\nfi\nelse\necho \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli/releases\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		37AD0308266C8A920086DD10 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -390,6 +428,7 @@
 				37AD036C266C8CCA0086DD10 /* TokenDetailView.swift in Sources */,
 				37D98D8E276AE53E00DF37EF /* View+copiedBanner.swift in Sources */,
 				37AD0317266C8A920086DD10 /* Authenticator.xcdatamodeld in Sources */,
+				BA9A23EF2B642C5700F9A92A /* Account.swift in Sources */,
 				37AD036E266C8CCA0086DD10 /* SettingsView.swift in Sources */,
 				37AD0373266C8CCA0086DD10 /* DateExtensions.swift in Sources */,
 				37AD036F266C8CCA0086DD10 /* ScannerView.swift in Sources */,
@@ -580,19 +619,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Authenticator/Preview Content\"";
-				DEVELOPMENT_TEAM = CT2P7VWHVS;
+				DEVELOPMENT_TEAM = WC92Z884R6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Authenticator/Supporting Files/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Expel Authenticator";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kreid.Authenticator;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -614,19 +654,20 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 35;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Authenticator/Preview Content\"";
-				DEVELOPMENT_TEAM = CT2P7VWHVS;
+				DEVELOPMENT_TEAM = WC92Z884R6;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Authenticator/Supporting Files/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Expel Authenticator";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 0.2.5;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kreid.Authenticator;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
@@ -772,12 +813,28 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		20A46FC2EB8E4EBEBBE6CB64 /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/getsentry/sentry-cocoa/";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
 		37AD0378266C90610086DD10 /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/lachlanbell/SwiftOTP.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.0.0;
+			};
+		};
+		BA51D17D2B645A3D002DAFAC /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -788,12 +845,25 @@
 			package = 37AD0378266C90610086DD10 /* XCRemoteSwiftPackageReference "SwiftOTP" */;
 			productName = SwiftOTP;
 		};
+		67554FE9A7F14273BC1F7AF7 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20A46FC2EB8E4EBEBBE6CB64 /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
+			productName = Sentry;
+		};
+		BA51D17E2B645A3D002DAFAC /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BA51D17D2B645A3D002DAFAC /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
+		};
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		37AD0315266C8A920086DD10 /* Authenticator.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BACD7A9C2B644029003708DD /* iCloud.xcdatamodel */,
+				BACD7A9B2B643F2E003708DD /* Authenticator iCloud 2.xcdatamodel */,
+				BACD7A9A2B643F07003708DD /* Authenticator iCloud.xcdatamodel */,
 				37AD0316266C8A920086DD10 /* Authenticator.xcdatamodel */,
 			);
 			currentVersion = 37AD0316266C8A920086DD10 /* Authenticator.xcdatamodel */;
