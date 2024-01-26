@@ -13,6 +13,7 @@ struct PasswordsView: View {
     @State var includeSpecialCharacters = true
     @State var includeNumbers = true
     @State var isCopied = false
+    @State private var isSheetPresented: Bool = false
     
     var body: some View {
         NavigationView {
@@ -22,7 +23,6 @@ struct PasswordsView: View {
                         .font(.largeTitle.monospacedDigit())
                         .padding()
                         .frame(maxWidth: .infinity)
-//                        .border(Color.gray)
                         .multilineTextAlignment(.leading)
                         .lineLimit(4)
                         .padding(.horizontal)
@@ -40,17 +40,6 @@ struct PasswordsView: View {
                             .foregroundColor(.gray)
                             .opacity(password.isEmpty ? 0.6 : 0)
                         )
-/*
-                        if isCopied {
-                            Text("Password Copied")
-                            .foregroundColor(.green)
-                            .padding()
-                            .cornerRadius(10)
-                            .transition(.opacity)
-                            .font(.footnote)
-                            .animation(.easeInOut)
-                        }
-*/
                     Spacer()
                     
                     HStack {
@@ -100,6 +89,28 @@ struct PasswordsView: View {
                         .frame(height: 5)
                         .background(Color.gray.opacity(0.3))
                 }
+                // MARK: - Nav bar
+                .navigationBarTitle("Passwords", displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        presentingSheet = .showSettings
+                        isSheetPresented = true
+                    }) {
+                        Image(systemName: "gear")
+                        },
+                    trailing: Button(action: {
+                        // Add action for the second button
+                        // For example, you can perform some action when the second button is tapped
+                    }) {
+                        Image(systemName: "plus")
+                        }
+                )
+            }
+            .sheet(isPresented: $isSheetPresented) {
+                switch presentingSheet {
+                case .showSettings:
+                    SettingsView(isPresented: $isSheetPresented)
+                }
             }
         }
     }
@@ -115,6 +126,13 @@ struct PasswordsView: View {
         }
         return String((0..<passwordLength).compactMap { _ in letters.randomElement() })
     }
+}
+
+private var presentingSheet: SheetSet = .showSettings
+private var tokenIndex: Int = 0
+
+private enum SheetSet {
+        case showSettings
 }
 
 struct PasswordsView_Previews: PreviewProvider {
