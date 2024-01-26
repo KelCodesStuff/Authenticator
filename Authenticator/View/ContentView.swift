@@ -83,7 +83,7 @@ struct ContentView: View {
                     }
                     
                     // MARK: - Nav bar
-                    .navigationTitle("Authenticator")
+                    .navigationBarTitle("Authenticator", displayMode: .inline)
                     .toolbarBackground(.gray .opacity(0.3), for: .navigationBar)
                     .toolbarBackground(.visible, for: .navigationBar)
                     .toolbar {
@@ -122,6 +122,7 @@ struct ContentView: View {
                     Text("Authenticator")
                 }
                 
+                // MARK: - Passwords tab
                 NavigationView {
                     PasswordsView()
                         .navigationBarTitle(Text("Passwords"), displayMode: .large)
