@@ -6,18 +6,30 @@
 //
 
 import UIKit
+import Sentry
 import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        SentrySDK.start { options in
+            options.dsn = "https://196034a60eb9c41750057225f5032566@o4506628563927040.ingest.sentry.io/4506633247326208"
+            options.debug = true // Enabled debug when first installing is always helpful
+            options.enableTracing = true 
+
+            // Uncomment the following lines to add more data to your events
+            // options.attachScreenshot = true // This adds a screenshot to the error events
+            // options.attachViewHierarchy = true // This adds the view hierarchy to the error events
+        }
+        // Remove the next line after confirming that your Sentry integration is working.
+        SentrySDK.capture(message: "This app uses Sentry! :)")
+
                 // Override point for customization after application launch.
             return true
         }
 
         // MARK: UISceneSession Lifecycle
-
         func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
                 // Called when a new scene session is being created.
                 // Use this method to select a configuration to create the new scene with.
@@ -31,15 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // MARK: - Core Data stack
-
-        lazy var persistentContainer: NSPersistentContainer = {
+        lazy var persistentContainer: NSPersistentCloudKitContainer = {
                 /*
                  The persistent container for the application. This implementation
                  creates and returns a container, having loaded the store for the
                  application to it. This property is optional since there are legitimate
                  error conditions that could cause the creation of the store to fail.
                  */
-                let container = NSPersistentContainer(name: "Authenticator")
+                let container = NSPersistentCloudKitContainer(name: "Authenticator")
                 container.loadPersistentStores(completionHandler: { (storeDescription, error) in
                         if let error = error as NSError? {
                                 /*
@@ -57,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }()
 
         // MARK: - Core Data Saving support
-
         func saveContext () {
                 let context = persistentContainer.viewContext
                 if context.hasChanges {
