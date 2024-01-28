@@ -10,16 +10,26 @@ import SwiftUI
 
 struct AddPasswordView: View {
     @Binding var credentials: [Credential]
-    @State private var service = ""
+    var credentialToEdit: Credential?
+    var isNewCredential: Bool
+    
+    @State private var website = ""
     @State private var username = ""
     @State private var password = ""
-    var isNewCredential: Bool
+    
+    var editingCredential: Credential?
+    
+    init(credentials: Binding<[Credential]>, credentialToEdit: Credential? = nil) {
+            self._credentials = credentials
+            self.credentialToEdit = credentialToEdit
+            self.isNewCredential = credentialToEdit == nil
+        }
 
     var body: some View {
         NavigationView {
             Form {
                 Section(header: Text("")) {
-                    TextField("Website", text: $service)
+                    TextField("Website", text: $website)
                 }
                 Section(header: Text("")) {
                     TextField("Username", text: $username)
@@ -30,19 +40,32 @@ struct AddPasswordView: View {
             }
             .navigationBarTitle(isNewCredential ? "Add Password" : "Edit Password", displayMode: .inline)
             .navigationBarItems(trailing: Button("Save") {
-                let newCredential = Credential(service: service, username: username, password: password)
-                if isNewCredential {
-                    credentials.append(newCredential)
+                guard !website.isEmpty, !username.isEmpty, !password.isEmpty else { return }
+                if let editingCredential = credentialToEdit {
+                    
+                    // Find and update existing credential
+                    if let index = credentials.firstIndex(where: { $0.id == editingCredential.id }) {
+                        credentials[index].website = website
+                        credentials[index].username = username
+                        credentials[index].password = password
+                    }
                 } else {
-                    // Handle updating an existing credential
+                    // Add new credential
+                    let newCredential = Credential(website: website, username: username, password: password)
+                    credentials.append(newCredential)
                 }
                 KeychainManager.shared.saveCredentials(credentials)
-                service = ""
+                website = ""
                 username = ""
                 password = ""
             })
         }
+        .onAppear {
+            if let credential = credentialToEdit {
+                website = credential.website
+                username = credential.username
+                password = credential.password
+            }
+        }
     }
 }
-
-
