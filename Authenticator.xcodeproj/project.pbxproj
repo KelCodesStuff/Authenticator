@@ -38,11 +38,11 @@
 		BA4A2D642B656DC60074EF02 /* PasswordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4A2D632B656DC60074EF02 /* PasswordsView.swift */; };
 		BA4A2D662B656E340074EF02 /* PasswordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4A2D652B656E340074EF02 /* PasswordCardView.swift */; };
 		BA4A2D682B656E960074EF02 /* AddPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4A2D672B656E960074EF02 /* AddPasswordView.swift */; };
+		BA4A2D762B66248E0074EF02 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4A2D752B66248E0074EF02 /* Account.swift */; };
 		BA51D17F2B645A3D002DAFAC /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = BA51D17E2B645A3D002DAFAC /* KeychainAccess */; };
 		BA696B852B6473F000787D02 /* Authenticator.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA696B832B6473F000787D02 /* Authenticator.xcdatamodeld */; };
 		BA9A23E82B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		BA9A23E92B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
-		BA9A23EF2B642C5700F9A92A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A23EE2B642C5700F9A92A /* Account.swift */; };
 		BADEFF8329F787C300BF27AF /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */; };
 		C31D8F1CFF0241E8B08DBB29 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 67554FE9A7F14273BC1F7AF7 /* Sentry */; };
 /* End PBXBuildFile section */
@@ -101,8 +101,8 @@
 		BA4A2D632B656DC60074EF02 /* PasswordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsView.swift; sourceTree = "<group>"; };
 		BA4A2D652B656E340074EF02 /* PasswordCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordCardView.swift; sourceTree = "<group>"; };
 		BA4A2D672B656E960074EF02 /* AddPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordView.swift; sourceTree = "<group>"; };
+		BA4A2D752B66248E0074EF02 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BA696B842B6473F000787D02 /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
-		BA9A23EE2B642C5700F9A92A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -247,8 +247,8 @@
 		BA4A2D6C2B65F58A0074EF02 /* Passwords */ = {
 			isa = PBXGroup;
 			children = (
-				BA4A2D672B656E960074EF02 /* AddPasswordView.swift */,
 				BA4A2D632B656DC60074EF02 /* PasswordsView.swift */,
+				BA4A2D672B656E960074EF02 /* AddPasswordView.swift */,
 				BA4A2D652B656E340074EF02 /* PasswordCardView.swift */,
 				BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */,
 			);
@@ -288,8 +288,8 @@
 			children = (
 				37AD0348266C8CCA0086DD10 /* Token.swift */,
 				37AD0349266C8CCA0086DD10 /* OTPGenerator.swift */,
-				BA9A23EE2B642C5700F9A92A /* Account.swift */,
 				BA4A2D5C2B656C640074EF02 /* Credential.swift */,
+				BA4A2D752B66248E0074EF02 /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -448,6 +448,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		50BCB614E42940C1A2CC4ADF /* Upload Debug Symbols to Sentry */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
@@ -473,10 +474,10 @@
 				BA4A2D5D2B656C640074EF02 /* Credential.swift in Sources */,
 				37AD0366266C8CCA0086DD10 /* Token.swift in Sources */,
 				37AD036C266C8CCA0086DD10 /* TokenDetailView.swift in Sources */,
+				BA4A2D762B66248E0074EF02 /* Account.swift in Sources */,
 				37D98D8E276AE53E00DF37EF /* View+copiedBanner.swift in Sources */,
 				BA4A2D642B656DC60074EF02 /* PasswordsView.swift in Sources */,
 				BA696B852B6473F000787D02 /* Authenticator.xcdatamodeld in Sources */,
-				BA9A23EF2B642C5700F9A92A /* Account.swift in Sources */,
 				37AD036E266C8CCA0086DD10 /* SettingsView.swift in Sources */,
 				37AD0373266C8CCA0086DD10 /* DateExtensions.swift in Sources */,
 				37AD036F266C8CCA0086DD10 /* ScannerView.swift in Sources */,
