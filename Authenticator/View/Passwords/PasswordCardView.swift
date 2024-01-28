@@ -15,7 +15,7 @@ struct PasswordCardView: View {
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(credential.service).font(.headline)
+                Text(credential.website).font(.headline)
                 Text(credential.username).font(.subheadline)
             }
             Spacer()
