@@ -10,7 +10,8 @@ import Foundation
 
 struct Credential: Identifiable, Codable {
     var id = UUID()
-    var service: String
+    var website: String
     var username: String
     var password: String
+    var isEditing: Bool = false
 }
