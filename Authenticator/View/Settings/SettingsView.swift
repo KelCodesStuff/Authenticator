@@ -35,7 +35,6 @@ struct SettingsView: View {
     @Binding var isPresented: Bool
     @StateObject private var documentPickerDelegate = DocumentPickerDelegate()
     @State private var isICloudBackupEnabled = false
-    @State private var account = Account(username: "", password: "")
 
 
     var body: some View {
