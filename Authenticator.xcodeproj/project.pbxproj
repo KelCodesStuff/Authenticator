@@ -43,7 +43,7 @@
 		BA9A23E82B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		BA9A23E92B62DD4C00F9A92A /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		BA9A23EF2B642C5700F9A92A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9A23EE2B642C5700F9A92A /* Account.swift */; };
-		BADEFF8329F787C300BF27AF /* PasswordsView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADEFF8229F787C300BF27AF /* PasswordsView1.swift */; };
+		BADEFF8329F787C300BF27AF /* PasswordGeneratorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */; };
 		C31D8F1CFF0241E8B08DBB29 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 67554FE9A7F14273BC1F7AF7 /* Sentry */; };
 /* End PBXBuildFile section */
 
@@ -103,7 +103,7 @@
 		BA4A2D672B656E960074EF02 /* AddPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPasswordView.swift; sourceTree = "<group>"; };
 		BA696B842B6473F000787D02 /* Authenticator.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Authenticator.xcdatamodel; sourceTree = "<group>"; };
 		BA9A23EE2B642C5700F9A92A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		BADEFF8229F787C300BF27AF /* PasswordsView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordsView1.swift; sourceTree = "<group>"; };
+		BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordGeneratorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,7 +250,7 @@
 				BA4A2D672B656E960074EF02 /* AddPasswordView.swift */,
 				BA4A2D632B656DC60074EF02 /* PasswordsView.swift */,
 				BA4A2D652B656E340074EF02 /* PasswordCardView.swift */,
-				BADEFF8229F787C300BF27AF /* PasswordsView1.swift */,
+				BADEFF8229F787C300BF27AF /* PasswordGeneratorView.swift */,
 			);
 			path = Passwords;
 			sourceTree = "<group>";
@@ -481,7 +481,7 @@
 				37AD0373266C8CCA0086DD10 /* DateExtensions.swift in Sources */,
 				37AD036F266C8CCA0086DD10 /* ScannerView.swift in Sources */,
 				37AD0312266C8A920086DD10 /* SceneDelegate.swift in Sources */,
-				BADEFF8329F787C300BF27AF /* PasswordsView1.swift in Sources */,
+				BADEFF8329F787C300BF27AF /* PasswordGeneratorView.swift in Sources */,
 				37AD0314266C8A920086DD10 /* ContentView.swift in Sources */,
 				37AD0364266C8CCA0086DD10 /* MenuCopyButton.swift in Sources */,
 				37AD0375266C8CCA0086DD10 /* StringExtensions.swift in Sources */,
