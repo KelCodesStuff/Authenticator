@@ -6,8 +6,6 @@
 
 [![TestFlight](https://img.shields.io/badge/Join%20The%20TestFlight-blue)](https://testflight.apple.com/join/PDUIq4bp)
 
-[![App Store](https://img.shields.io/badge/App%20Store-blue)](https://apps.apple.com/us/app/authenticator/)
-
 ![Platforms](https://img.shields.io/badge/Platform%20Compatibility-iOS%2016+%20|%20iPadOS%2016+-red?logo=apple&?color=red)
 
 ##
