@@ -20,14 +20,20 @@ struct ContentView: View {
     @State private var timeRemaining: Int = 30 - (Int(Date().timeIntervalSince1970) % 30)
     @State private var codes: [String] = Array(repeating: String.zeros, count: 50)
     @State private var animationTrigger: Bool = false
-
     @State private var isSheetPresented: Bool = false
     @State private var isFileImporterPresented: Bool = false
-
     @State private var editMode: EditMode = .inactive
     @State private var selectedTokens = Set<TokenData>()
     @State private var indexSetOnDelete: IndexSet = IndexSet()
     @State private var isDeletionAlertPresented: Bool = false
+    @State private var isUnlocked = false
+    
+    // State variables for error handling
+    @State private var showErrorAlert = false
+    @State private var errorMessage = ""
+    
+    // State variable for deletion confirmation
+    @State private var showDeleteConfirmation = false
     
 
         init() {
@@ -111,11 +117,56 @@ struct ContentView: View {
                     Image(systemName: "key")
                     Text("Passwords")
                 }
+                
             }
+            .onAppear(perform: authenticateUser)
             .accentColor(.green) // set the accent color for the navigation links
+            
+            // Error alert
+            .alert(isPresented: $showErrorAlert) {
+                Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+            }
+            
+            .alert(isPresented: $showDeleteConfirmation) {
+                Alert(
+                    title: Text("Are you sure you want to delete?"),
+                    message: Text("This action can't be undone and you could lose access to your account."),
+                    primaryButton: .destructive(Text("Delete"), action: performDeletion),
+                    secondaryButton: .cancel(cancelDeletion)
+                )
+            }
         }
     
     // MARK: - Functions
+    func authenticateUser() {
+        let context = LAContext()
+        var error: NSError?
+
+        // Check if biometric authentication is available
+        if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+            
+            // It's available, so use it
+            let reason = "Identify yourself!"
+            context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                
+                // Run the code on the main thread
+                DispatchQueue.main.async {
+                    if success {
+                        // Authentication was successful
+                        self.isUnlocked = true
+                    } else {
+                        // Handle fallback or show error
+                        self.showError(error: authenticationError ?? NSError())
+                    }
+                }
+            }
+        } else {
+            // No biometrics or fallback available
+            self.showError(error: error ?? NSError())
+        }
+    }
+    
+    // Settings button
     private var settingsButton: some View {
         Button(action: {
             presentingSheet = .showSettings
@@ -125,6 +176,7 @@ struct ContentView: View {
         }
     }
     
+    // Settings button
     private var scanButton: some View {
         Button(action: {
             presentingSheet = .addByScanning
@@ -134,6 +186,7 @@ struct ContentView: View {
         }
     }
     
+    // Add code
     private func addItem(_ token: Token) {
         let newTokenData = TokenData(context: viewContext)
             newTokenData.id = token.id
@@ -146,12 +199,12 @@ struct ContentView: View {
             do {
                     try viewContext.save()
             } catch {
-                    let nsError = error as NSError
-                    logger.debug("\(nsError)")
+                showError(error: error)
             }
             generateCodes()
     }
     
+    // Scan function
     private func handleScanning(result: Result<String, ScannerView.ScanError>) {
             isSheetPresented = false
             switch result {
@@ -165,20 +218,25 @@ struct ContentView: View {
             }
     }
 
+    // File picker
     private func handlePickedFile(url: URL) {
-            guard let content: String = url.readText() else { return }
-            let lines: [String] = content.components(separatedBy: .newlines)
-            _ = lines.map {
-                    if let newToken: Token = Token(uri: $0.trimmed()) {
-                            addItem(newToken)
-                    }
+        guard let content: String = url.readText() else { return }
+        let lines: [String] = content.components(separatedBy: .newlines)
+        _ = lines.map {
+            if let newToken: Token = Token(uri: $0.trimmed()) {
+                addItem(newToken)
             }
+        }
+        let tokensToImport = lines.compactMap { Token(uri: $0.trimmed()) }
+        // Show a preview UI with tokensToImport allowing users to select which tokens to add
+        // Proceed with adding tokens based on user selection
     }
     
+    // Delete functions
     private func deleteItems(offsets: IndexSet) {
         selectedTokens.removeAll()
         indexSetOnDelete = offsets
-        isDeletionAlertPresented = true
+        showDeleteConfirmation = true
     }
 
     private func cancelDeletion() {
@@ -202,8 +260,7 @@ struct ContentView: View {
         do {
             try viewContext.save()
         } catch {
-            let nsError = error as NSError
-            logger.debug("Unresolved error \(nsError), \(nsError.userInfo)")
+            showError(error: error)
         }
         
         indexSetOnDelete.removeAll()
@@ -272,6 +329,7 @@ struct ContentView: View {
         return code
     }
     
+    // Account editing
     private func handleAccountEditing(index: Int, issuer: String, account: String) {
         let item: TokenData = fetchedTokens[index]
         if item.displayIssuer != issuer {
@@ -284,10 +342,15 @@ struct ContentView: View {
         do {
             try viewContext.save()
         } catch {
-            let nsError = error as NSError
-            logger.debug("Unresolved error \(nsError), \(nsError.userInfo)")
+            showError(error: error)
         }
         isSheetPresented = false
+    }
+    
+    // Function to handle error alerts
+    private func showError(error: Error) {
+        errorMessage = error.localizedDescription
+        showErrorAlert = true
     }
     
     private var tokensToExport: [Token] {
