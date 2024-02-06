@@ -69,15 +69,23 @@ struct SettingsView: View {
                             }
                 }
                 Section(header: Text("Information"), footer: Text("")) {
-                    KeyValueRow("Version", value: Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")
+                    if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+                       let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                        KeyValueRow("Version", value: "\(version) (\(build))")
+                    } else {
+                        KeyValueRow("Version", value: "")
+                    }
+                    
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/privacy-policy")!) {
                         Label("Privacy Policy", systemImage: "hand.raised")
                             .foregroundColor(Color.green)
                     }
+                    
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/terms-of-service")!) {
                         Label("Terms of Service", systemImage: "note.text")
                             .foregroundColor(Color.green)
                     }
+                    
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/end-user-license-agreement")!) {
                         Label("EULA", systemImage: "hand.thumbsup")
                             .foregroundColor(Color.green)
