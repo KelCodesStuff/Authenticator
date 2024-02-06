@@ -1,5 +1,5 @@
 //
-//  PasswordsView.swift
+//  PasswordGeneratorView.swift
 //  Authenticator
 //
 //  Created by Kel Reid on 06/29/23
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PasswordsView: View {
+struct PasswordGeneratorView: View {
     @State var password = ""
     @State var passwordLength = 8
     @State var includeSpecialCharacters = true

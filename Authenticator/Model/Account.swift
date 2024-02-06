@@ -2,7 +2,7 @@
 //  Account.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 1/26/24.
+//  Created by Kelvin Reid on 1/28/24.
 //  Copyright © 2024 Studio757 LLC. All rights reserved.
 //
 
