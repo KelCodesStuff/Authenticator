@@ -10,8 +10,6 @@ import MobileCoreServices
 import UniformTypeIdentifiers
 import CloudKit
 
-
-
 let container = CKContainer.default()
 let privateDatabase = container.privateCloudDatabase
 
@@ -40,32 +38,11 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Actions"), footer: Text("")) {
-                    Button(action: {
-                        // Handle the import action from files
-                        self.importAction()
-                    }) {
-                        Label("Import", systemImage: "square.and.arrow.down")
-                            .foregroundColor(Color.green)
-                    }
-                    Button(action: {
-                        // Handle the export action to files
-                        self.exportAction()
-                    }) {
-                        Label("Export", systemImage: "square.and.arrow.up")
-                            .foregroundColor(Color.green)
-                    }
-                }
                 Section(header: Text("Backup"), footer: Text("")) {
                     Toggle("iCloud Backup", isOn: $isICloudBackupEnabled)
                             .toggleStyle(SwitchToggleStyle(tint: Color.green))
                             .onChange(of: isICloudBackupEnabled) { newValue in
-                                // Handle the state change, for example, triggering iCloud backup
-                                if newValue {
-//                                    self.iCloudBackupEnabled(account: )
-                                } else {
-//                                    self.iCloudBackupDisabled(account: )
-                                }
+                                self.handleICloudBackupToggle(newValue)
                             }
                 }
                 Section(header: Text("Information"), footer: Text("")) {
@@ -98,6 +75,9 @@ struct SettingsView: View {
             }
             .accentColor(Color.green))
         }
+        .onAppear {
+            self.checkICloudBackupStatus()
+        }
     }
 
     // Helper view for key-value pairs
@@ -109,34 +89,40 @@ struct SettingsView: View {
         }
     }
     
-    // Function to enable iCloud backup
-    func iCloudBackupEnabled(account: Account) {
-        // Implement the logic to start iCloud backup if needed
-        // This might involve cancelling ongoing operations or removing backup-related data
-        print("Starting iCloud backup...")
+    // New function to handle iCloud backup toggle
+    private func handleICloudBackupToggle(_ isEnabled: Bool) {
+        if isEnabled {
+            // Check iCloud availability and prompt if necessary
+            CKContainer.default().accountStatus { (status, error) in
+                DispatchQueue.main.async {
+                    switch status {
+                    case .available:
+                        print("iCloud is available, proceed with enabling backup.")
+                        // Proceed to enable backup functionality
+                    default:
+                        self.promptForICloudSettings()
+                    }
+                }
+            }
+        } else {
+            // Handle disabling iCloud backup
+            print("User has disabled iCloud backup.")
+        }
+    }
+        
+    private func checkICloudBackupStatus() {
+        // Similar check as in handleICloudBackupToggle to initially set the toggle state
     }
 
-    // Function to disable iCloud backup
-    func iCloudBackupDisabled(account: Account) {
-        // Implement the logic to stop iCloud backup if needed
-        // This might involve cancelling ongoing operations or removing backup-related data
-        print("Stopping iCloud backup...")
+    // Function to prompt user to enable iCloud in Settings
+    private func promptForICloudSettings() {
+//        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
+//        if UIApplication.shared.canOpenURL(url) {
+//            UIApplication.shared.open(url, options: [:], completion: (() -> Void)? = nil)
+//        }
     }
-    
-    // Function to handle the import action
-    private func importAction() {
-        let documentPicker = UIDocumentPickerViewController(documentTypes: [String(kUTTypeCommaSeparatedText)], in: .import)
-        documentPicker.delegate = documentPickerDelegate
-        UIApplication.shared.windows.first?.rootViewController?.presentedViewController?.present(documentPicker, animated: true, completion: nil)
-    }
-
-    // Function to handle the export
-    private func exportAction() {
-        // Implement the logic for exporting data to a file
-        // You can present a file picker or perform the necessary actions here
-    }
-    
 }
+
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
