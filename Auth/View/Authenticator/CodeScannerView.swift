@@ -1,5 +1,5 @@
 //
-//  ScannerView.swift
+//  CodeScannerView.swift
 //  Authenticator
 //
 //  Created by Kel Reid on 06/29/23
@@ -8,16 +8,16 @@
 import SwiftUI
 import AVFoundation
 
-struct ScannerView: UIViewControllerRepresentable {
+struct CodeScannerView: UIViewControllerRepresentable {
     enum ScanError: Error {
         case badInput, badOutput
     }
     
     class ScannerCoordinator: NSObject, AVCaptureMetadataOutputObjectsDelegate {
-        var parent: ScannerView
+        var parent: CodeScannerView
         var codeFound = false
 
-        init(parent: ScannerView) {
+        init(parent: CodeScannerView) {
             self.parent = parent
         }
                 
@@ -161,11 +161,11 @@ struct ScannerView: UIViewControllerRepresentable {
 struct Scanner: View {
     @Binding var isPresented: Bool
     let codeTypes: [AVMetadataObject.ObjectType]
-    let completion: (Result<String, ScannerView.ScanError>) -> Void
+    let completion: (Result<String, CodeScannerView.ScanError>) -> Void
     
     var body: some View {
         NavigationView {
-            ScannerView(codeTypes: codeTypes, completion: completion)
+            CodeScannerView(codeTypes: codeTypes, completion: completion)
                 .navigationTitle("Scanning")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

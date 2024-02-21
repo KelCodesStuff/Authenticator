@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import LocalAuthentication
+import KeychainSwift
 
 struct PasswordsView: View {
     @State private var credentials: [Credential] = KeychainManager.shared.loadCredentials()
@@ -20,12 +20,8 @@ struct PasswordsView: View {
             List {
                 ForEach(credentials) { credential in
                     PasswordCardView(credential: credential)
-                        .onTapGesture {
-                            editingCredential = credential
-                            showingDetail = true
-                        }
+
                 }
-                .onDelete(perform: delete)
             }
             .navigationBarTitle("Passwords", displayMode: .inline)
             .navigationBarItems(leading: settingsButton, trailing: addButton)
@@ -33,7 +29,7 @@ struct PasswordsView: View {
             .sheet(isPresented: $showingDetail, onDismiss: {
                             editingCredential = nil // Reset the editing credential when the sheet is dismissed
                         }) {
-                            AddPasswordView(credentials: $credentials, credentialToEdit: editingCredential)
+                            AddPasswordView(credentials: $credentials)
                         }
             .sheet(isPresented: $isSheetPresented) {
                 switch presentingSheet {
@@ -60,11 +56,6 @@ struct PasswordsView: View {
         }) {
             Image(systemName: "plus")
         }
-    }
-
-    func delete(at offsets: IndexSet) {
-        credentials.remove(atOffsets: offsets)
-        KeychainManager.shared.saveCredentials(credentials)
     }
 }
 

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct AuthCodeView: View {
     let token: Token
+    
     @Binding var totp: String
     @Binding var timeRemaining: Int
+    
+    var onDelete: () -> Void // Closure to handle deletion
 
     @State private var isBannerPresented: Bool = false
+    @State private var isEditViewPresented: Bool = false
 
     private let diameter: CGFloat = 32
 
@@ -22,6 +26,17 @@ struct AuthCodeView: View {
                 issuerImage.resizable().scaledToFit().frame(width: diameter, height: diameter)
                 Text(verbatim: token.displayIssuer).font(.headline)
                 Spacer()
+                
+                Button(action: {
+                    isEditViewPresented = true
+                }) {
+                    Image(systemName: "ellipsis.circle")
+                }
+                .sheet(isPresented: $isEditViewPresented) {
+                    AuthCodeEditView(token: token, onDelete: {
+                        onDelete() // This calls the deletion logic passed from the parent view
+                    })
+                }
             }
             VStack(spacing: 4) {
                 HStack {
