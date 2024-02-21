@@ -17,9 +17,9 @@
 		BA8642032B73E9BE00285F4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8642022B73E9BE00285F4D /* Preview Assets.xcassets */; };
 		BA8642052B73E9BE00285F4D /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642042B73E9BE00285F4D /* Persistence.swift */; };
 		BA8642082B73E9BE00285F4D /* Auth.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BA8642062B73E9BE00285F4D /* Auth.xcdatamodeld */; };
-		BA8642122B73E9BF00285F4D /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642112B73E9BF00285F4D /* AuthTests.swift */; };
-		BA86421C2B73E9BF00285F4D /* AuthUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86421B2B73E9BF00285F4D /* AuthUITests.swift */; };
-		BA86421E2B73E9BF00285F4D /* AuthUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86421D2B73E9BF00285F4D /* AuthUITestsLaunchTests.swift */; };
+		BA8642122B73E9BF00285F4D /* AuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642112B73E9BF00285F4D /* AuthenticatorTests.swift */; };
+		BA86421C2B73E9BF00285F4D /* AuthenticatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86421B2B73E9BF00285F4D /* AuthenticatorUITests.swift */; };
+		BA86421E2B73E9BF00285F4D /* AuthenticatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86421D2B73E9BF00285F4D /* AuthenticatorUITestsLaunchTests.swift */; };
 		BA8642322B73EDBA00285F4D /* InputPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86422F2B73EDBA00285F4D /* InputPasscodeView.swift */; };
 		BA8642332B73EDBA00285F4D /* LockScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642302B73EDBA00285F4D /* LockScreenView.swift */; };
 		BA8642342B73EDBA00285F4D /* SetPasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642312B73EDBA00285F4D /* SetPasscodeView.swift */; };
@@ -84,10 +84,10 @@
 		BA8642042B73E9BE00285F4D /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		BA8642072B73E9BE00285F4D /* Auth.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Auth.xcdatamodel; sourceTree = "<group>"; };
 		BA86420D2B73E9BF00285F4D /* AuthenticatorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA8642112B73E9BF00285F4D /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
+		BA8642112B73E9BF00285F4D /* AuthenticatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorTests.swift; sourceTree = "<group>"; };
 		BA8642172B73E9BF00285F4D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA86421B2B73E9BF00285F4D /* AuthUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUITests.swift; sourceTree = "<group>"; };
-		BA86421D2B73E9BF00285F4D /* AuthUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		BA86421B2B73E9BF00285F4D /* AuthenticatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorUITests.swift; sourceTree = "<group>"; };
+		BA86421D2B73E9BF00285F4D /* AuthenticatorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		BA86422F2B73EDBA00285F4D /* InputPasscodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputPasscodeView.swift; sourceTree = "<group>"; };
 		BA8642302B73EDBA00285F4D /* LockScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LockScreenView.swift; sourceTree = "<group>"; };
 		BA8642312B73EDBA00285F4D /* SetPasscodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeView.swift; sourceTree = "<group>"; };
@@ -160,8 +160,8 @@
 			children = (
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
 				BA8641FA2B73E9BC00285F4D /* Auth */,
-				BA8642102B73E9BF00285F4D /* AuthTests */,
-				BA86421A2B73E9BF00285F4D /* AuthUITests */,
+				BA8642102B73E9BF00285F4D /* AuthenticatorTests */,
+				BA86421A2B73E9BF00285F4D /* AuthenticatorUITests */,
 				BA8641F92B73E9BC00285F4D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -198,21 +198,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		BA8642102B73E9BF00285F4D /* AuthTests */ = {
+		BA8642102B73E9BF00285F4D /* AuthenticatorTests */ = {
 			isa = PBXGroup;
 			children = (
-				BA8642112B73E9BF00285F4D /* AuthTests.swift */,
+				BA8642112B73E9BF00285F4D /* AuthenticatorTests.swift */,
 			);
-			path = AuthTests;
+			path = AuthenticatorTests;
 			sourceTree = "<group>";
 		};
-		BA86421A2B73E9BF00285F4D /* AuthUITests */ = {
+		BA86421A2B73E9BF00285F4D /* AuthenticatorUITests */ = {
 			isa = PBXGroup;
 			children = (
-				BA86421B2B73E9BF00285F4D /* AuthUITests.swift */,
-				BA86421D2B73E9BF00285F4D /* AuthUITestsLaunchTests.swift */,
+				BA86421B2B73E9BF00285F4D /* AuthenticatorUITests.swift */,
+				BA86421D2B73E9BF00285F4D /* AuthenticatorUITestsLaunchTests.swift */,
 			);
-			path = AuthUITests;
+			path = AuthenticatorUITests;
 			sourceTree = "<group>";
 		};
 		BA86422A2B73EA3000285F4D /* Model */ = {
@@ -423,7 +423,6 @@
 			mainGroup = BA8641EF2B73E9BC00285F4D;
 			packageReferences = (
 				BA8642662B73EF1600285F4D /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				BA8642692B73EF2B00285F4D /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				BA86426C2B73EF4800285F4D /* XCRemoteSwiftPackageReference "SwiftOTP" */,
 				BA86426F2B73EF5A00285F4D /* XCRemoteSwiftPackageReference "swift-crypto" */,
 				351841BAB2E14EFDBDFF76CE /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
@@ -529,7 +528,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA8642122B73E9BF00285F4D /* AuthTests.swift in Sources */,
+				BA8642122B73E9BF00285F4D /* AuthenticatorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -537,8 +536,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA86421E2B73E9BF00285F4D /* AuthUITestsLaunchTests.swift in Sources */,
-				BA86421C2B73E9BF00285F4D /* AuthUITests.swift in Sources */,
+				BA86421E2B73E9BF00285F4D /* AuthenticatorUITestsLaunchTests.swift in Sources */,
+				BA86421C2B73E9BF00285F4D /* AuthenticatorUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,7 +609,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -667,7 +666,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -702,7 +701,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -747,7 +746,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -776,10 +775,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WC92Z884R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.AuthenticatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -796,10 +799,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WC92Z884R6;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.AuthenticatorTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -815,9 +822,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WC92Z884R6;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.AuthenticatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -833,9 +845,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WC92Z884R6;
 				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.AuthenticatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -899,14 +916,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 21.0.0;
-			};
-		};
-		BA8642692B73EF2B00285F4D /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess.git";
-			requirement = {
-				branch = master;
-				kind = branch;
 			};
 		};
 		BA86426C2B73EF4800285F4D /* XCRemoteSwiftPackageReference "SwiftOTP" */ = {

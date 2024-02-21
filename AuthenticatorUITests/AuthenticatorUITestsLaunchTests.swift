@@ -1,5 +1,5 @@
 //
-//  AuthUITestsLaunchTests.swift
+//  AuthenticatorUITestsLaunchTests.swift
 //  AuthUITests
 //
 //  Created by Kelvin Reid on 2/7/24.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class AuthUITestsLaunchTests: XCTestCase {
+final class AuthenticatorUITestsLaunchTests: XCTestCase {
 
     override class var runsForEachTargetApplicationUIConfiguration: Bool {
         true

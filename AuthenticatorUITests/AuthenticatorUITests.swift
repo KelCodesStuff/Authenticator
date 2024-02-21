@@ -1,5 +1,5 @@
 //
-//  AuthUITests.swift
+//  AuthenticatorUITests.swift
 //  AuthUITests
 //
 //  Created by Kelvin Reid on 2/7/24.
@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class AuthUITests: XCTestCase {
+final class AuthenticatorUITests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
