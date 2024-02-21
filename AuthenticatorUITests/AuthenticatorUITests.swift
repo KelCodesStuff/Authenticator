@@ -1,8 +1,9 @@
 //
 //  AuthenticatorUITests.swift
-//  AuthUITests
+//  AuthenticatorUITests
 //
-//  Created by Kelvin Reid on 2/7/24.
+//  Created by Kelvin Reid on 2/21/24.
+//  Copyright © 2024 Studio757 LLC. All rights reserved.
 //
 
 import XCTest

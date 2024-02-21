@@ -5,9 +5,39 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA8641F72B73E9BC00285F4D"
+               BuildableName = "Authenticator.app"
+               BlueprintName = "Authenticator"
+               ReferencedContainer = "container:Authenticator.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA1B19C12B86A7740044E434"
+               BuildableName = "AuthenticatorTests.xctest"
+               BlueprintName = "AuthenticatorTests"
+               ReferencedContainer = "container:Authenticator.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
@@ -18,7 +48,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA8642162B73E9BF00285F4D"
+               BlueprintIdentifier = "BA1B19B22B86A75D0044E434"
                BuildableName = "AuthenticatorUITests.xctest"
                BlueprintName = "AuthenticatorUITests"
                ReferencedContainer = "container:Authenticator.xcodeproj">
@@ -36,6 +66,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA8641F72B73E9BC00285F4D"
+            BuildableName = "Authenticator.app"
+            BlueprintName = "Authenticator"
+            ReferencedContainer = "container:Authenticator.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -43,6 +83,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA8641F72B73E9BC00285F4D"
+            BuildableName = "Authenticator.app"
+            BlueprintName = "Authenticator"
+            ReferencedContainer = "container:Authenticator.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

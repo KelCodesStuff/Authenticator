@@ -1,29 +1,15 @@
 //
 //  AuthenticatorTests.swift
-//  AuthTests
+//  AuthenticatorTests
 //
-//  Created by Kelvin Reid on 2/7/24.
+//  Created by Kelvin Reid on 2/21/24.
+//  Copyright © 2024 Studio757 LLC. All rights reserved.
 //
 
 import XCTest
-@testable import Authenticator
 
 final class AuthenticatorTests: XCTestCase {
-    var keychainManager: KeychainManager!
-    
-    override func setUp() {
-        super.setUp()
-        keychainManager = KeychainManager.shared
-        // Setup code here. This method is called before the invocation of each test method in the class.
-    }
-        
-    override func tearDown() {
-        // Tear down code here. This method is called after the invocation of each test method in the class.
-        keychainManager = nil
-        super.tearDown()
-    }
 
-    // MARK: - New Tests
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
     }
@@ -42,8 +28,9 @@ final class AuthenticatorTests: XCTestCase {
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        self.measure {
+        measure {
             // Put the code you want to measure the time of here.
         }
     }
+
 }
