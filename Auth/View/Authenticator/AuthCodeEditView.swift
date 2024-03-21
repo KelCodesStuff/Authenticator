@@ -48,20 +48,20 @@ struct AuthCodeEditView: View {
                 }
                 
                 Section {
-                    Button("Delete Token") {
+                    Button("Delete One-Time Password") {
                         showingDeleteAlert = true
                     }
                     .foregroundColor(.red)
                 }
             }
             // Nav bar
-            .navigationBarTitle("Token Settings", displayMode: .inline)
+            .navigationBarTitle("One-Time Password", displayMode: .inline)
             
             // Delete alert
             .alert(isPresented: $showingDeleteAlert) {
                 Alert(
-                    title: Text("Delete Token"),
-                    message: Text("Are you sure you want to delete this token? This action cannot be undone."),
+                    title: Text("Delete One-Time Password"),
+                    message: Text("Are you sure you want to delete this account? You will not be able to use this device to verify your identity."),
                     primaryButton: .destructive(Text("Delete")) {
                         onDelete()
                         presentationMode.wrappedValue.dismiss() // Dismiss the view
