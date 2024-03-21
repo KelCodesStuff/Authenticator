@@ -32,6 +32,14 @@ struct AddPasswordView: View {
             Form {
                 Section(header: Text("Website")) {
                     TextField("Website", text: $website)
+                        .onChange(of: website) { newValue in
+                            let lowercaseValue = newValue.lowercased()
+                            if !lowercaseValue.hasPrefix("http://") && !lowercaseValue.hasPrefix("https://") {
+                                website = "https://" + lowercaseValue
+                            } else {
+                                website = lowercaseValue
+                            }
+                        }
                 }
                 Section(header: Text("Username")) {
                     TextField("Username", text: $username)
