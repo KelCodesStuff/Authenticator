@@ -15,7 +15,8 @@ class KeychainManager {
     static let shared = KeychainManager()
     
     private let keychain = KeychainSwift()
-    private let credentialsKey = "credentials"
+    private let credentialsKey = "credentials" // Key for passcode
+    private let passwordsKey = "passwords" // New key for credentials (passwords)
 
     // Function to save passcode
     func savePasscode(_ passcode: String) {
@@ -76,29 +77,30 @@ class KeychainManager {
         }
     }
         
-        // Function to hash passcode using PBKDF2
-        func hashPasscode(_ passcode: String, salt: String) -> String? {
-            guard let passcodeData = passcode.data(using: .utf8),
-                  let saltData = Data(base64Encoded: salt) else {
-                return nil
-            }
-            
-            let keyLength = 32 // 32 bytes = 256 bits
-            let rounds = 5000 // Adjust based on performance
-            
-            do {
-                let derivedKey = try PKCS5.PBKDF2(password: passcodeData.bytes,
-                                                  salt: saltData.bytes,
-                                                  iterations: rounds,
-                                                  keyLength: keyLength,
-                                                  variant: .sha256).calculate()
-                
-                return derivedKey.toHexString()
-            } catch {
-                print("Error deriving key: \(error)")
-                return nil
-            }
+    // Function to hash passcode using PBKDF2
+    func hashPasscode(_ passcode: String, salt: String) -> String? {
+        guard let passcodeData = passcode.data(using: .utf8),
+              let saltData = Data(base64Encoded: salt) else {
+            return nil
         }
+        
+        let keyLength = 32 // 32 bytes = 256 bits
+        let rounds = 5000 // Adjust based on performance
+        
+        do {
+            // Updated to use sha2 variant instead of deprecated sha256
+            let derivedKey = try PKCS5.PBKDF2(password: passcodeData.bytes,
+                                              salt: saltData.bytes,
+                                              iterations: rounds,
+                                              keyLength: keyLength,
+                                              variant: .sha2(.sha256)).calculate()
+            
+            return derivedKey.toHexString()
+        } catch {
+            print("Error deriving key: \(error)")
+            return nil
+        }
+    }
     
     // Function to salt passcode
     func generateSalt() -> String {
@@ -106,18 +108,17 @@ class KeychainManager {
         return salt.base64EncodedString()
     }
     
+    // Function to save password manager cards
     func saveCredentials(_ credentials: [Credential]) {
         if let data = try? JSONEncoder().encode(credentials) {
-            keychain.set(data, forKey: credentialsKey)
+            keychain.set(data, forKey: passwordsKey)
         }
     }
 
-    func loadCredentials() -> [Credential] {
-        if let data = keychain.getData(credentialsKey),
-           let credentials = try? JSONDecoder().decode([Credential].self, from: data) {
-            return credentials
-        }
-        return []
+    // Function to retreive password manager cards, assuming it's needed
+    func retrieveCredentials() -> [Credential]? {
+        guard let data = keychain.getData(passwordsKey) else { return nil }
+        return try? JSONDecoder().decode([Credential].self, from: data)
     }
 }
 
@@ -127,5 +128,9 @@ func testHashFunction() {
     let testSalt = keychainManager.generateSalt()
     let hashedPasscode = keychainManager.hashPasscode(testPasscode, salt: testSalt)
     
-    print("Test Passcode: \(testPasscode), Test Salt: \(testSalt), Hashed: \(hashedPasscode)")
+    if let hashed = hashedPasscode {
+        print("Test Passcode: \(testPasscode), Test Salt: \(testSalt), Hashed: \(hashed)")
+    } else {
+        print("Failed to hash passcode")
+    }
 }
