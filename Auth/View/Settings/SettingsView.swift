@@ -41,7 +41,7 @@ struct SettingsView: View {
                 Section(header: Text("Backup"), footer: Text("")) {
                     Toggle("iCloud Backup", isOn: $isICloudBackupEnabled)
                             .toggleStyle(SwitchToggleStyle(tint: Color.green))
-                            .onChange(of: isICloudBackupEnabled) { newValue in
+                            .onChange(of: isICloudBackupEnabled) { newValue, _ in
                                 self.handleICloudBackupToggle(newValue)
                             }
                 }
@@ -85,7 +85,7 @@ struct SettingsView: View {
         HStack {
             Text(key)
             Spacer()
-            Text(value ?? "N/A")
+            Text(value )
         }
     }
     
