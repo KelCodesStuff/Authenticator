@@ -31,6 +31,7 @@ struct AuthCodeView: View {
                     isEditViewPresented = true
                 }) {
                     Image(systemName: "ellipsis.circle")
+                        .imageScale(.large)
                 }
                 .sheet(isPresented: $isEditViewPresented) {
                     AuthCodeEditView(token: token, onDelete: {
