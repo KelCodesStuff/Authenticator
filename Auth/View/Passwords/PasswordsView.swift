@@ -10,7 +10,7 @@ import SwiftUI
 import KeychainSwift
 
 struct PasswordsView: View {
-    @State private var credentials: [Credential] = KeychainManager.shared.loadCredentials()
+    @State private var credentials: [Credential] = KeychainManager.shared.retrieveCredentials() ?? []
     @State private var showingDetail = false
     @State private var isSheetPresented: Bool = false
     @State private var editingCredential: Credential?
