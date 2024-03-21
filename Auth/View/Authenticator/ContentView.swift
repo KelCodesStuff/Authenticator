@@ -145,7 +145,7 @@ struct ContentView: View {
     }
     
     // Scan function
-    private func handleScanning(result: Result<String, CodeScannerView.ScanError>) {
+    private func handleScanning(result: Result<String, AuthCodeScannerView.ScanError>) {
             isSheetPresented = false
             switch result {
             case .success(let code):
@@ -153,7 +153,7 @@ struct ContentView: View {
                     guard !uri.isEmpty else { return }
                     guard let newToken: Token = Token(uri: uri) else { return }
                     addItem(newToken)
-            case .failure(let error): break
+            case .failure(_): break
 //                    logger.debug("\(error.localizedDescription)")
             }
     }
