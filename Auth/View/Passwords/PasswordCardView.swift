@@ -26,13 +26,11 @@ struct PasswordCardView: View {
                 Spacer()
                 
                 Button(action: { isEditViewPresented = true }) {
-                    Image(systemName: "pencil")
-                        .frame(width: diameter, height: diameter)
-//                        .foregroundColor(.blue)
-//                        .background(Circle().fill(Color.gray.opacity(0.2)))
+                    Image(systemName: "ellipsis.circle")
+                        .imageScale(.large)
                 }
                 .sheet(isPresented: $isEditViewPresented) {
-                    EditPasswordView(credential: $credential)
+                    PasswordEditView(credential: $credential)
                 }
             }
             
