@@ -2,25 +2,48 @@
 # See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/configuration-reference/#jobs
+# Define a job to build and test an iOS app using macOS executor.
 jobs:
-  authenticator:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/configuration-reference/#steps
+  build-and-test-ios:
+    # Use macOS executor with an appropriate Xcode version.
+    macos:
+      xcode: "14.0.0"  # Specify the Xcode version your project requires.
+    
+    # Define the steps for building and testing the app.
     steps:
-      - checkout
-      - run:
-          name: "Build authenticator app"
-          command: "echo Build Authenticator App"
+      - checkout  # Check out the project from the repository.
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
+      # Install dependencies (e.g., CocoaPods, Carthage).
+      - run:
+          name: "Install Dependencies"
+          command: |
+            # Install CocoaPods, you can adjust this step if you're using Carthage or SPM.
+
+      # Build the iOS app using Xcode.
+      - run:
+          name: "Build iOS App"
+          command: |
+            xcodebuild \
+              -workspace YourApp.xcworkspace \  # Replace with your workspace file.
+              -scheme YourAppScheme \  # Replace with your scheme.
+              -sdk iphonesimulator \  # Specify the iOS simulator SDK.
+              -configuration Debug \  # Use Debug configuration for development.
+              clean build  # Clean and build the app.
+
+      # Run unit tests on the iOS simulator.
+      - run:
+          name: "Run Unit Tests"
+          command: |
+            xcodebuild \
+              -workspace YourApp.xcworkspace \  # Replace with your workspace file.
+              -scheme YourAppScheme \  # Replace with your scheme.
+              -sdk iphonesimulator \  # Specify the iOS simulator SDK.
+              -configuration Debug \  # Use Debug configuration for development.
+              -destination 'platform=iOS Simulator,name=iPhone 14' \  # Specify the simulator type.
+              clean test  # Clean and run tests.
+
+# Define the workflow that orchestrates the build and test jobs.
 workflows:
-  authenticator-app:
+  build-and-test:
     jobs:
-      - authenticator
+      - build-and-test-ios  # Execute the iOS build and test job.
