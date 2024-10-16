@@ -1,49 +1,48 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to build and test an iOS app using macOS executor.
+# Define a job for building and testing an iOS app using macOS executor.
 jobs:
   build-and-test-ios:
-    # Use macOS executor with an appropriate Xcode version.
     macos:
-      xcode: "14.0.0"  # Specify the Xcode version your project requires.
-    
-    # Define the steps for building and testing the app.
+      # Specify the Xcode version needed for your project
+      xcode: "14.0.0"
+      
+    # Steps to execute in the job
     steps:
-      - checkout  # Check out the project from the repository.
-
-      # Install dependencies (e.g., CocoaPods, Carthage).
+      - checkout
+      
       - run:
-          name: "Install Dependencies"
+          # Use Swift Package Manager (SPM) to resolve dependencies
+          name: "Resolve Dependencies using SPM"
           command: |
-            # Install CocoaPods, you can adjust this step if you're using Carthage or SPM.
+            xcodebuild -resolvePackageDependencies
 
-      # Build the iOS app using Xcode.
       - run:
+          # Build the iOS app using xcodebuild
           name: "Build iOS App"
           command: |
             xcodebuild \
-              -workspace YourApp.xcworkspace \  # Replace with your workspace file.
-              -scheme YourAppScheme \  # Replace with your scheme.
-              -sdk iphonesimulator \  # Specify the iOS simulator SDK.
-              -configuration Debug \  # Use Debug configuration for development.
-              clean build  # Clean and build the app.
-
-      # Run unit tests on the iOS simulator.
+              -workspace YourApp.xcworkspace \ # Replace with your workspace
+              -scheme YourAppScheme \          # Replace with your app scheme
+              -sdk iphonesimulator \
+              -configuration Debug \
+              clean build
+      
       - run:
+          # Run unit tests for the iOS app
           name: "Run Unit Tests"
           command: |
             xcodebuild \
-              -workspace YourApp.xcworkspace \  # Replace with your workspace file.
-              -scheme YourAppScheme \  # Replace with your scheme.
-              -sdk iphonesimulator \  # Specify the iOS simulator SDK.
-              -configuration Debug \  # Use Debug configuration for development.
-              -destination 'platform=iOS Simulator,name=iPhone 14' \  # Specify the simulator type.
-              clean test  # Clean and run tests.
+              -workspace YourApp.xcworkspace \ # Replace with your workspace
+              -scheme YourAppScheme \          # Replace with your app scheme
+              -sdk iphonesimulator \
+              -configuration Debug \
+              -destination 'platform=iOS Simulator,name=iPhone 14' \ # Specify simulator
+              clean test
 
-# Define the workflow that orchestrates the build and test jobs.
+# Define a workflow to orchestrate the job
 workflows:
   build-and-test:
     jobs:
-      - build-and-test-ios  # Execute the iOS build and test job.
+      - build-and-test-ios
