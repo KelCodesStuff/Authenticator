@@ -12,6 +12,7 @@
 		BA5F7B4C2B8592B500C343E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */; };
 		BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04F92D862F0E00F882BE /* BiometricManager.swift */; };
 		BA7B04FC2D8631CB00F882BE /* BiometricVerificationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */; };
+		BA7B054B2D867D1C00F882BE /* Smoke Tests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = BA7B054A2D867D1C00F882BE /* Smoke Tests.xctestplan */; };
 		BA8641FC2B73E9BC00285F4D /* AuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8641FB2B73E9BC00285F4D /* AuthApp.swift */; };
 		BA8642002B73E9BE00285F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8641FF2B73E9BE00285F4D /* Assets.xcassets */; };
 		BA8642032B73E9BE00285F4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8642022B73E9BE00285F4D /* Preview Assets.xcassets */; };
@@ -47,14 +48,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		BA7B05182D8664EC00F882BE /* PBXContainerItemProxy */ = {
+		BA7B05362D866E2600F882BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA8641F02B73E9BC00285F4D /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BA8641F72B73E9BC00285F4D;
 			remoteInfo = Authenticator;
 		};
-		BA7B05252D86650800F882BE /* PBXContainerItemProxy */ = {
+		BA7B05452D867CB200F882BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BA8641F02B73E9BC00285F4D /* Project object */;
 			proxyType = 1;
@@ -70,10 +71,9 @@
 		BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA7B04F92D862F0E00F882BE /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
 		BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricVerificationSheet.swift; sourceTree = "<group>"; };
-		BA7B05122D8664EC00F882BE /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA7B05212D86650800F882BE /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA7B052A2D86651A00F882BE /* AuthenticatorUITests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AuthenticatorUITests; sourceTree = "<group>"; };
-		BA7B052B2D8665E900F882BE /* AuthenticatorUnitTests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = AuthenticatorUnitTests; sourceTree = "<group>"; };
+		BA7B05322D866E2600F882BE /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7B053F2D867CB200F882BE /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA7B054A2D867D1C00F882BE /* Smoke Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Smoke Tests.xctestplan"; sourceTree = "<group>"; };
 		BA8641F82B73E9BC00285F4D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8641FB2B73E9BC00285F4D /* AuthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApp.swift; sourceTree = "<group>"; };
 		BA8641FF2B73E9BE00285F4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -106,27 +106,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		BA7B05132D8664EC00F882BE /* AuthenticatorUITests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = AuthenticatorUITests;
-			sourceTree = "<group>";
-		};
-		BA7B05222D86650800F882BE /* AuthenticatorUnitTests */ = {
+		BA7B05332D866E2600F882BE /* AuthenticatorUnitTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AuthenticatorUnitTests;
+			sourceTree = "<group>";
+		};
+		BA7B05402D867CB200F882BE /* AuthenticatorUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AuthenticatorUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BA7B050F2D8664EC00F882BE /* Frameworks */ = {
+		BA7B052F2D866E2600F882BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA7B051E2D86650800F882BE /* Frameworks */ = {
+		BA7B053C2D867CB200F882BE /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -151,13 +151,12 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
-				BA7B052B2D8665E900F882BE /* AuthenticatorUnitTests */,
-				BA7B052A2D86651A00F882BE /* AuthenticatorUITests */,
+				BA7B054A2D867D1C00F882BE /* Smoke Tests.xctestplan */,
 				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
 				BA8641FA2B73E9BC00285F4D /* Auth */,
-				BA7B05132D8664EC00F882BE /* AuthenticatorUITests */,
-				BA7B05222D86650800F882BE /* AuthenticatorUnitTests */,
+				BA7B05332D866E2600F882BE /* AuthenticatorUnitTests */,
+				BA7B05402D867CB200F882BE /* AuthenticatorUITests */,
 				BA8641F92B73E9BC00285F4D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,8 +165,8 @@
 			isa = PBXGroup;
 			children = (
 				BA8641F82B73E9BC00285F4D /* Authenticator.app */,
-				BA7B05122D8664EC00F882BE /* AuthenticatorUITests.xctest */,
-				BA7B05212D86650800F882BE /* AuthenticatorUnitTests.xctest */,
+				BA7B05322D866E2600F882BE /* AuthenticatorUnitTests.xctest */,
+				BA7B053F2D867CB200F882BE /* AuthenticatorUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -294,51 +293,51 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BA7B05112D8664EC00F882BE /* AuthenticatorUITests */ = {
+		BA7B05312D866E2600F882BE /* AuthenticatorUnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BA7B051A2D8664EC00F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUITests" */;
+			buildConfigurationList = BA7B05382D866E2600F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUnitTests" */;
 			buildPhases = (
-				BA7B050E2D8664EC00F882BE /* Sources */,
-				BA7B050F2D8664EC00F882BE /* Frameworks */,
-				BA7B05102D8664EC00F882BE /* Resources */,
+				BA7B052E2D866E2600F882BE /* Sources */,
+				BA7B052F2D866E2600F882BE /* Frameworks */,
+				BA7B05302D866E2600F882BE /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BA7B05192D8664EC00F882BE /* PBXTargetDependency */,
+				BA7B05372D866E2600F882BE /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				BA7B05132D8664EC00F882BE /* AuthenticatorUITests */,
-			);
-			name = AuthenticatorUITests;
-			packageProductDependencies = (
-			);
-			productName = AuthenticatorUITests;
-			productReference = BA7B05122D8664EC00F882BE /* AuthenticatorUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
-		BA7B05202D86650800F882BE /* AuthenticatorUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BA7B05272D86650800F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUnitTests" */;
-			buildPhases = (
-				BA7B051D2D86650800F882BE /* Sources */,
-				BA7B051E2D86650800F882BE /* Frameworks */,
-				BA7B051F2D86650800F882BE /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				BA7B05262D86650800F882BE /* PBXTargetDependency */,
-			);
-			fileSystemSynchronizedGroups = (
-				BA7B05222D86650800F882BE /* AuthenticatorUnitTests */,
+				BA7B05332D866E2600F882BE /* AuthenticatorUnitTests */,
 			);
 			name = AuthenticatorUnitTests;
 			packageProductDependencies = (
 			);
 			productName = AuthenticatorUnitTests;
-			productReference = BA7B05212D86650800F882BE /* AuthenticatorUnitTests.xctest */;
+			productReference = BA7B05322D866E2600F882BE /* AuthenticatorUnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BA7B053E2D867CB200F882BE /* AuthenticatorUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BA7B05472D867CB200F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUITests" */;
+			buildPhases = (
+				BA7B053B2D867CB200F882BE /* Sources */,
+				BA7B053C2D867CB200F882BE /* Frameworks */,
+				BA7B053D2D867CB200F882BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BA7B05462D867CB200F882BE /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				BA7B05402D867CB200F882BE /* AuthenticatorUITests */,
+			);
+			name = AuthenticatorUITests;
+			packageProductDependencies = (
+			);
+			productName = AuthenticatorUITests;
+			productReference = BA7B053F2D867CB200F882BE /* AuthenticatorUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 		BA8641F72B73E9BC00285F4D /* Authenticator */ = {
 			isa = PBXNativeTarget;
@@ -376,11 +375,11 @@
 				LastUpgradeCheck = 1520;
 				ORGANIZATIONNAME = "OneVR LLC";
 				TargetAttributes = {
-					BA7B05112D8664EC00F882BE = {
+					BA7B05312D866E2600F882BE = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = BA8641F72B73E9BC00285F4D;
 					};
-					BA7B05202D86650800F882BE = {
+					BA7B053E2D867CB200F882BE = {
 						CreatedOnToolsVersion = 16.2;
 						TestTargetID = BA8641F72B73E9BC00285F4D;
 					};
@@ -410,24 +409,25 @@
 			projectRoot = "";
 			targets = (
 				BA8641F72B73E9BC00285F4D /* Authenticator */,
-				BA7B05112D8664EC00F882BE /* AuthenticatorUITests */,
-				BA7B05202D86650800F882BE /* AuthenticatorUnitTests */,
+				BA7B05312D866E2600F882BE /* AuthenticatorUnitTests */,
+				BA7B053E2D867CB200F882BE /* AuthenticatorUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BA7B05102D8664EC00F882BE /* Resources */ = {
+		BA7B05302D866E2600F882BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA7B051F2D86650800F882BE /* Resources */ = {
+		BA7B053D2D867CB200F882BE /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA7B054B2D867D1C00F882BE /* Smoke Tests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,14 +464,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BA7B050E2D8664EC00F882BE /* Sources */ = {
+		BA7B052E2D866E2600F882BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		BA7B051D2D86650800F882BE /* Sources */ = {
+		BA7B053B2D867CB200F882BE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -516,90 +516,90 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		BA7B05192D8664EC00F882BE /* PBXTargetDependency */ = {
+		BA7B05372D866E2600F882BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BA8641F72B73E9BC00285F4D /* Authenticator */;
-			targetProxy = BA7B05182D8664EC00F882BE /* PBXContainerItemProxy */;
+			targetProxy = BA7B05362D866E2600F882BE /* PBXContainerItemProxy */;
 		};
-		BA7B05262D86650800F882BE /* PBXTargetDependency */ = {
+		BA7B05462D867CB200F882BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BA8641F72B73E9BC00285F4D /* Authenticator */;
-			targetProxy = BA7B05252D86650800F882BE /* PBXContainerItemProxy */;
+			targetProxy = BA7B05452D867CB200F882BE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		BA7B051B2D8664EC00F882BE /* Debug */ = {
+		BA7B05392D866E2600F882BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Authenticator;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Authenticator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Authenticator";
 			};
 			name = Debug;
 		};
-		BA7B051C2D8664EC00F882BE /* Release */ = {
+		BA7B053A2D866E2600F882BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Authenticator;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Authenticator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Authenticator";
 			};
 			name = Release;
 		};
-		BA7B05282D86650800F882BE /* Debug */ = {
+		BA7B05482D867CB200F882BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Authenticator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Authenticator";
+				TEST_TARGET_NAME = Authenticator;
 			};
 			name = Debug;
 		};
-		BA7B05292D86650800F882BE /* Release */ = {
+		BA7B05492D867CB200F882BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUnitTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kelreid.AuthenticatorUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Authenticator.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Authenticator";
+				TEST_TARGET_NAME = Authenticator;
 			};
 			name = Release;
 		};
@@ -811,20 +811,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BA7B051A2D8664EC00F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUITests" */ = {
+		BA7B05382D866E2600F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BA7B051B2D8664EC00F882BE /* Debug */,
-				BA7B051C2D8664EC00F882BE /* Release */,
+				BA7B05392D866E2600F882BE /* Debug */,
+				BA7B053A2D866E2600F882BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BA7B05272D86650800F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUnitTests" */ = {
+		BA7B05472D867CB200F882BE /* Build configuration list for PBXNativeTarget "AuthenticatorUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BA7B05282D86650800F882BE /* Debug */,
-				BA7B05292D86650800F882BE /* Release */,
+				BA7B05482D867CB200F882BE /* Debug */,
+				BA7B05492D867CB200F882BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
