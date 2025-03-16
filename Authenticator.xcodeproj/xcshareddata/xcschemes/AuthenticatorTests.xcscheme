@@ -35,6 +35,17 @@
                ReferencedContainer = "container:Authenticator.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BA7B05202D86650800F882BE"
+               BuildableName = "AuthenticatorUnitTests.xctest"
+               BlueprintName = "AuthenticatorUnitTests"
+               ReferencedContainer = "container:Authenticator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
