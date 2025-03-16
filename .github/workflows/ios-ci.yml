@@ -10,7 +10,7 @@ on:
 env:
   PROJECT_NAME: Authenticator.xcodeproj  # Project name
   SCHEME_NAME: Authenticator          # Scheme name (likely the same)
-  DESTINATION: 'platform=iOS Simulator,name=iPhone 14,OS=latest'
+  DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
 
 jobs:
   build-and-test:
