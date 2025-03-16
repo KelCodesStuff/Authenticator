@@ -13,6 +13,7 @@ import KeychainSwift
 struct SetPasscodeView: View {
     @Binding var passcode: String
     @Binding var isPasscodeSet: Bool
+    @ObservedObject var biometricManager: BiometricManager
     
     @State private var confirmationPasscode = ""
     @State private var showPasscodeMismatchError = false
@@ -23,7 +24,7 @@ struct SetPasscodeView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 // Instructions for setting passcode
-                Text("Choose an eight digit passcode that will be used to encrypt and decrypt your data. PBKDF2 is used to hash your passcode.")
+                Text("Choose an eight digit passcode that will be used to encrypt and decrypt your data.")
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding([.leading, .bottom], 20)
@@ -56,12 +57,18 @@ struct SetPasscodeView: View {
                         checkForPasscodeMismatch()
                     }
                 
+                if biometricManager.isBiometricsAvailable() {
+                    Toggle("Enable \(biometricManager.getBiometricType())", isOn: $biometricManager.isEnabled)
+                        .padding()
+                        .tint(.green)
+                }
+                
                 Text("NOTICE:")
                     .font(.subheadline)
                     .foregroundColor(.red)
                     .fontWeight(.bold)
                     .padding([.leading, .top], 20)
-                Text("You must remember this passcode. All of your data is end-to-end encrypted, meaning we do not have access to your data or your passcode and will not be able to restore your account.")
+                Text("You must remember this passcode. We do not have access to your data and will not be able to restore your account.")
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.leading)

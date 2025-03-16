@@ -1,4 +1,5 @@
 {
+  "originHash" : "402fd4007a497a1df6d9bb37da5faa2643416755f02b3040fd5ebb72f1b26818",
   "pins" : [
     {
       "identity" : "cryptoswift",
@@ -23,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/getsentry/sentry-cocoa/",
       "state" : {
-        "revision" : "b847a202a517a90763e8fd0656d8028aeee7b78d",
-        "version" : "8.20.0"
+        "revision" : "56bfb7e723c76614be4c0861ee820ccbaed14c6d",
+        "version" : "8.41.0"
       }
     },
     {
@@ -46,5 +47,5 @@
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

@@ -3,17 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		463AE8618D044ABCB7A3E4F4 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 7DB9EFCB5E6F49A484878F9E /* Sentry */; };
 		BA1979422B741F7F00C0EDF6 /* AuthCodeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */; };
-		BA1979452B742FAF00C0EDF6 /* PasswordEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1979442B742FAF00C0EDF6 /* PasswordEditView.swift */; };
 		BA1B19B62B86A75D0044E434 /* AuthenticatorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B19B52B86A75D0044E434 /* AuthenticatorUITests.swift */; };
 		BA1B19B82B86A75D0044E434 /* AuthenticatorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B19B72B86A75D0044E434 /* AuthenticatorUITestsLaunchTests.swift */; };
 		BA1B19C52B86A7740044E434 /* AuthenticatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1B19C42B86A7740044E434 /* AuthenticatorTests.swift */; };
 		BA5F7B4C2B8592B500C343E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */; };
+		BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04F92D862F0E00F882BE /* BiometricManager.swift */; };
+		BA7B04FC2D8631CB00F882BE /* BiometricVerificationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */; };
 		BA8641FC2B73E9BC00285F4D /* AuthApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8641FB2B73E9BC00285F4D /* AuthApp.swift */; };
 		BA8642002B73E9BE00285F4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8641FF2B73E9BE00285F4D /* Assets.xcassets */; };
 		BA8642032B73E9BE00285F4D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8642022B73E9BE00285F4D /* Preview Assets.xcassets */; };
@@ -29,9 +30,6 @@
 		BA8642442B73EDE300285F4D /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86423F2B73EDE300285F4D /* BiometricAuth.swift */; };
 		BA8642452B73EDE300285F4D /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642402B73EDE300285F4D /* ActivityView.swift */; };
 		BA8642462B73EDE300285F4D /* View+copiedBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642412B73EDE300285F4D /* View+copiedBanner.swift */; };
-		BA8642502B73EE4600285F4D /* PasswordAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86424C2B73EE4600285F4D /* PasswordAddView.swift */; };
-		BA8642512B73EE4600285F4D /* PasswordCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86424D2B73EE4600285F4D /* PasswordCardView.swift */; };
-		BA8642522B73EE4600285F4D /* PasswordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86424E2B73EE4600285F4D /* PasswordsView.swift */; };
 		BA8642552B73EE5300285F4D /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642532B73EE5300285F4D /* ExportView.swift */; };
 		BA8642562B73EE5300285F4D /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642542B73EE5300285F4D /* SettingsView.swift */; };
 		BA8642582B73EE6700285F4D /* ImportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642572B73EE6700285F4D /* ImportView.swift */; };
@@ -70,7 +68,6 @@
 
 /* Begin PBXFileReference section */
 		BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeEditView.swift; sourceTree = "<group>"; };
-		BA1979442B742FAF00C0EDF6 /* PasswordEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordEditView.swift; sourceTree = "<group>"; };
 		BA1B19A32B868B840044E434 /* Authenticator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
 		BA1B19B32B86A75D0044E434 /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA1B19B52B86A75D0044E434 /* AuthenticatorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorUITests.swift; sourceTree = "<group>"; };
@@ -79,6 +76,8 @@
 		BA1B19C42B86A7740044E434 /* AuthenticatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticatorTests.swift; sourceTree = "<group>"; };
 		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
 		BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BA7B04F92D862F0E00F882BE /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
+		BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricVerificationSheet.swift; sourceTree = "<group>"; };
 		BA8641F82B73E9BC00285F4D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA8641FB2B73E9BC00285F4D /* AuthApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthApp.swift; sourceTree = "<group>"; };
 		BA8641FF2B73E9BE00285F4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -95,9 +94,6 @@
 		BA86423F2B73EDE300285F4D /* BiometricAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
 		BA8642402B73EDE300285F4D /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		BA8642412B73EDE300285F4D /* View+copiedBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+copiedBanner.swift"; sourceTree = "<group>"; };
-		BA86424C2B73EE4600285F4D /* PasswordAddView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordAddView.swift; sourceTree = "<group>"; };
-		BA86424D2B73EE4600285F4D /* PasswordCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordCardView.swift; sourceTree = "<group>"; };
-		BA86424E2B73EE4600285F4D /* PasswordsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordsView.swift; sourceTree = "<group>"; };
 		BA8642532B73EE5300285F4D /* ExportView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
 		BA8642542B73EE5300285F4D /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		BA8642572B73EE6700285F4D /* ImportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportView.swift; sourceTree = "<group>"; };
@@ -143,13 +139,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BA1979432B742A0D00C0EDF6 /* VPN */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = VPN;
-			sourceTree = "<group>";
-		};
 		BA1B19B42B86A75D0044E434 /* AuthenticatorUITests */ = {
 			isa = PBXGroup;
 			children = (
@@ -192,13 +181,13 @@
 		BA8641FA2B73E9BC00285F4D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				BA86422A2B73EA3000285F4D /* Model */,
-				BA86422B2B73EA3800285F4D /* View */,
 				BA86422C2B73EA3E00285F4D /* Controller */,
 				BA8642592B73EE7800285F4D /* Extensions */,
+				BA86422A2B73EA3000285F4D /* Model */,
 				BA86422D2B73EADB00285F4D /* Persistence */,
-				BA86422E2B73EAF200285F4D /* SupportFiles */,
 				BA8642012B73E9BE00285F4D /* Preview Content */,
+				BA86422E2B73EAF200285F4D /* SupportFiles */,
+				BA86422B2B73EA3800285F4D /* View */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -214,6 +203,7 @@
 		BA86422A2B73EA3000285F4D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BA7B04F92D862F0E00F882BE /* BiometricManager.swift */,
 				BA8642352B73EDC700285F4D /* OTPGenerator.swift */,
 				BA8642382B73EDC700285F4D /* Token.swift */,
 				BA8642372B73EDC700285F4D /* Credential.swift */,
@@ -225,12 +215,10 @@
 		BA86422B2B73EA3800285F4D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
-				BA8642472B73EDF800285F4D /* LockScreen */,
 				BA8642482B73EE0600285F4D /* Authenticator */,
-				BA8642492B73EE0F00285F4D /* Passwords */,
-				BA1979432B742A0D00C0EDF6 /* VPN */,
+				BA8642472B73EDF800285F4D /* LockScreen */,
 				BA86424A2B73EE1C00285F4D /* Settings */,
+				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -272,6 +260,7 @@
 				BA8642302B73EDBA00285F4D /* LockScreenView.swift */,
 				BA8642312B73EDBA00285F4D /* SetPasscodeView.swift */,
 				BA86422F2B73EDBA00285F4D /* InputPasscodeView.swift */,
+				BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */,
 			);
 			path = LockScreen;
 			sourceTree = "<group>";
@@ -287,20 +276,10 @@
 			path = Authenticator;
 			sourceTree = "<group>";
 		};
-		BA8642492B73EE0F00285F4D /* Passwords */ = {
-			isa = PBXGroup;
-			children = (
-				BA86424E2B73EE4600285F4D /* PasswordsView.swift */,
-				BA86424D2B73EE4600285F4D /* PasswordCardView.swift */,
-				BA86424C2B73EE4600285F4D /* PasswordAddView.swift */,
-				BA1979442B742FAF00C0EDF6 /* PasswordEditView.swift */,
-			);
-			path = Passwords;
-			sourceTree = "<group>";
-		};
 		BA86424A2B73EE1C00285F4D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */,
 				BA8642542B73EE5300285F4D /* SettingsView.swift */,
 				BA8642572B73EE6700285F4D /* ImportView.swift */,
 				BA8642532B73EE5300285F4D /* ExportView.swift */,
@@ -314,7 +293,6 @@
 				BA86425B2B73EE8600285F4D /* DateExtensions.swift */,
 				BA86425A2B73EE8600285F4D /* StringExtensions.swift */,
 				BA86425C2B73EE8600285F4D /* URLExtensions.swift */,
-				BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -392,7 +370,7 @@
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
-				ORGANIZATIONNAME = "Studio757 LLC";
+				ORGANIZATIONNAME = "OneVR LLC";
 				TargetAttributes = {
 					BA1B19B22B86A75D0044E434 = {
 						CreatedOnToolsVersion = 15.2;
@@ -408,7 +386,6 @@
 				};
 			};
 			buildConfigurationList = BA8641F32B73E9BC00285F4D /* Build configuration list for PBXProject "Authenticator" */;
-			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -423,6 +400,7 @@
 				351841BAB2E14EFDBDFF76CE /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
 				BAF612A12B75EAAF00B73140 /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = BA8641F92B73E9BC00285F4D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -514,23 +492,21 @@
 				BA8642322B73EDBA00285F4D /* InputPasscodeView.swift in Sources */,
 				BAEB64F22B76C7EA0072FB1F /* LockScreenOverlay.swift in Sources */,
 				BA86425E2B73EE8600285F4D /* DateExtensions.swift in Sources */,
-				BA8642512B73EE4600285F4D /* PasswordCardView.swift in Sources */,
 				BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */,
 				BA8642452B73EDE300285F4D /* ActivityView.swift in Sources */,
-				BA8642502B73EE4600285F4D /* PasswordAddView.swift in Sources */,
 				BA86423C2B73EDC700285F4D /* Token.swift in Sources */,
 				BA86425F2B73EE8600285F4D /* URLExtensions.swift in Sources */,
 				BA8642442B73EDE300285F4D /* BiometricAuth.swift in Sources */,
 				BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */,
+				BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */,
 				BA8641FC2B73E9BC00285F4D /* AuthApp.swift in Sources */,
+				BA7B04FC2D8631CB00F882BE /* BiometricVerificationSheet.swift in Sources */,
 				BA8642632B73EECE00285F4D /* AuthCodeView.swift in Sources */,
 				BA1979422B741F7F00C0EDF6 /* AuthCodeEditView.swift in Sources */,
 				BA8642582B73EE6700285F4D /* ImportView.swift in Sources */,
 				BA8642082B73E9BE00285F4D /* Auth.xcdatamodeld in Sources */,
-				BA1979452B742FAF00C0EDF6 /* PasswordEditView.swift in Sources */,
 				BA8642392B73EDC700285F4D /* OTPGenerator.swift in Sources */,
 				BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */,
-				BA8642522B73EE4600285F4D /* PasswordsView.swift in Sources */,
 				BA8642552B73EE5300285F4D /* ExportView.swift in Sources */,
 				BA8642562B73EE5300285F4D /* SettingsView.swift in Sources */,
 			);
@@ -751,13 +727,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 47;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WC92Z884R6;
+				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Authenticator-Info.plist";
@@ -771,16 +745,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.Authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OneVR.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Authenticator Development";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Authenticator Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -797,13 +770,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 47;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = WC92Z884R6;
+				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Authenticator-Info.plist";
@@ -817,16 +788,15 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Studio757.Authenticator;
+				PRODUCT_BUNDLE_IDENTIFIER = com.OneVR.Authenticator;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Authenticator Development";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Authenticator Development";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

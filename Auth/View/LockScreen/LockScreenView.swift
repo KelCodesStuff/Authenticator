@@ -15,6 +15,7 @@ struct LockScreenView: View {
     @AppStorage("isPasscodeSet") private var isPasscodeSet = false
     @AppStorage("storedPasscode") private var storedPasscode: String = ""
     
+    @StateObject private var biometricManager = BiometricManager()
     @State private var passcode: String = ""
     @State private var isUnlocked = false
     @State private var showAlert = false
@@ -25,9 +26,28 @@ struct LockScreenView: View {
             ContentView()
         } else {
             if isPasscodeSet {
-                InputPasscodeView(passcode: $passcode, isUnlocked: $isUnlocked, showAlert: $showAlert, errorMessage: $errorMessage, storedPasscode: storedPasscode)
+                InputPasscodeView(
+                    passcode: $passcode,
+                    isUnlocked: $isUnlocked,
+                    showAlert: $showAlert,
+                    errorMessage: $errorMessage,
+                    biometricManager: biometricManager,
+                    storedPasscode: storedPasscode
+                )
+                .task {
+                    if biometricManager.isEnabled {
+                        let success = await biometricManager.authenticate()
+                        if success {
+                            isUnlocked = true
+                        }
+                    }
+                }
             } else {
-                SetPasscodeView(passcode: $passcode, isPasscodeSet: $isPasscodeSet)
+                SetPasscodeView(
+                    passcode: $passcode,
+                    isPasscodeSet: $isPasscodeSet,
+                    biometricManager: biometricManager
+                )
             }
         }
     }

@@ -11,10 +11,10 @@ import CoreData
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) private var viewContext
-
+    
     @FetchRequest(sortDescriptors: [NSSortDescriptor(keyPath: \TokenData.indexNumber, ascending: true)], animation: .default)
     private var fetchedTokens: FetchedResults<TokenData>
-
+    
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeRemaining: Int = 30 - (Int(Date().timeIntervalSince1970) % 30)
     @State private var codes: [String] = Array(repeating: String.zeros, count: 50)
@@ -32,77 +32,52 @@ struct ContentView: View {
     @State private var errorMessage = ""
     
     var body: some View {
-        TabView {
-            // MARK: - Authenticator Tab
-            NavigationView {
-                VStack {
-                    List(selection: $selectedTokens) {
-                        ForEach(0..<fetchedTokens.count, id: \.self) { index in
-                            let item = fetchedTokens[index]
-                            Section {
-                                AuthCodeView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining, onDelete: {
-                                    // Implement the deletion logic here.
-                                    // For example, deleting the item from Core Data and refreshing the list.
-                                    deleteToken(item)
-                                })
-                            }
+        NavigationView {
+            VStack {
+                List(selection: $selectedTokens) {
+                    ForEach(0..<fetchedTokens.count, id: \.self) { index in
+                        let item = fetchedTokens[index]
+                        Section {
+                            AuthCodeView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining, onDelete: {
+                                deleteToken(item)
+                            })
                         }
                     }
-
                 }
-                .animation(.default, value: animationTrigger)
-                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                
+            }
+            .animation(.default, value: animationTrigger)
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                generateCodes()
+                clearTemporaryDirectory()
+            }
+            .onReceive(timer) { _ in
+                timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
+                if timeRemaining == 30 || codes.first == String.zeros {
                     generateCodes()
-                    clearTemporaryDirectory()
-                }
-                .onReceive(timer) { _ in
-                    timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
-                    if timeRemaining == 30 || codes.first == String.zeros {
-                        generateCodes()
-                    }
-                }
-
-                
-                // MARK: - Nav Bar
-                .navigationBarTitle("Authenticator", displayMode: .inline)
-                .navigationBarItems(leading: settingsButton, trailing: scanButton)
-                .toolbarBackground(.visible, for: .navigationBar)
-                
-                .sheet(isPresented: $isSheetPresented) {
-                    switch presentingSheet {
-                    case .showSettings:
-                        SettingsView(isPresented: $isSheetPresented)
-                    case .addByScanning:
-                        Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
-//                    case .cardDetailView:
-//                        TokenDetailView(isPresented: $isSheetPresented, token: token(of: fetchedTokens[tokenIndex]))
-                    }
                 }
             }
             
-            .tabItem {
-                Image(systemName: "lock")
-                Text("Authenticator")
-            }
+            // MARK: - Nav Bar
+            .navigationBarTitle("Authenticator", displayMode: .inline)
+            .navigationBarItems(leading: settingsButton, trailing: scanButton)
+            .toolbarBackground(.visible, for: .navigationBar)
             
-            // Navigates to Passwords tab
-            NavigationView {
-                PasswordsView()
-    
+            .sheet(isPresented: $isSheetPresented) {
+                switch presentingSheet {
+                case .showSettings:
+                    SettingsView(isPresented: $isSheetPresented)
+                case .addByScanning:
+                    Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
+                }
             }
-            .tabItem {
-                Image(systemName: "key")
-                Text("Passwords")
-            }
-            
         }
-        .accentColor(.green) // set the accent color for the navigation links
+        .accentColor(.green)
         
         // Error alert
         .alert(isPresented: $showErrorAlert) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
-        
     }
     
     // MARK: - Functions
@@ -129,33 +104,33 @@ struct ContentView: View {
     // Add code
     private func addItem(_ token: Token) {
         let newTokenData = TokenData(context: viewContext)
-            newTokenData.id = token.id
-            newTokenData.uri = token.uri
-            newTokenData.displayIssuer = token.displayIssuer
-            newTokenData.displayAccountName = token.displayAccountName
-            
+        newTokenData.id = token.id
+        newTokenData.uri = token.uri
+        newTokenData.displayIssuer = token.displayIssuer
+        newTokenData.displayAccountName = token.displayAccountName
+        
         let lastIndexNumber: Int64 = fetchedTokens.last?.indexNumber ?? Int64(fetchedTokens.count)
-            newTokenData.indexNumber = lastIndexNumber + 1
-            do {
-                    try viewContext.save()
-            } catch {
-                showError(error: error)
-            }
-            generateCodes()
+        newTokenData.indexNumber = lastIndexNumber + 1
+        do {
+            try viewContext.save()
+        } catch {
+            showError(error: error)
+        }
+        generateCodes()
     }
     
     // Scan function
     private func handleScanning(result: Result<String, AuthCodeScannerView.ScanError>) {
-            isSheetPresented = false
-            switch result {
-            case .success(let code):
-                    let uri: String = code.trimmed()
-                    guard !uri.isEmpty else { return }
-                    guard let newToken: Token = Token(uri: uri) else { return }
-                    addItem(newToken)
-            case .failure(_): break
-//                    logger.debug("\(error.localizedDescription)")
-            }
+        isSheetPresented = false
+        switch result {
+        case .success(let code):
+            let uri: String = code.trimmed()
+            guard !uri.isEmpty else { return }
+            guard let newToken: Token = Token(uri: uri) else { return }
+            addItem(newToken)
+        case .failure(_): break
+            //                    logger.debug("\(error.localizedDescription)")
+        }
     }
     
     // Delete function
@@ -169,15 +144,15 @@ struct ContentView: View {
             print("Error deleting token: \(error), \(error.userInfo)")
         }
     }
-
-
+    
+    
     
     private func token(of tokenData: TokenData) -> Token {
         guard let id: String = tokenData.id,
               let uri: String = tokenData.uri,
               let displayIssuer: String = tokenData.displayIssuer,
               let displayAccountName: String = tokenData.displayAccountName
-        
+                
         else { return Token() }
         guard let token = Token(id: id, uri: uri, displayIssuer: displayIssuer, displayAccountName: displayAccountName)
         else { return Token() }
@@ -188,7 +163,7 @@ struct ContentView: View {
     private func generateCodes() {
         let placeholder: [String] = Array(repeating: String.zeros, count: 30)
         guard !fetchedTokens.isEmpty
-        
+                
         else {
             codes = placeholder
             return
@@ -226,9 +201,9 @@ private var presentingSheet: SheetSet = .showSettings
 private var tokenIndex: Int = 0
 
 private enum SheetSet {
-        case showSettings
-        case addByScanning
-//        case cardDetailView
+    case showSettings
+    case addByScanning
+    //        case cardDetailView
 }
 
 struct ContentView_Previews: PreviewProvider {

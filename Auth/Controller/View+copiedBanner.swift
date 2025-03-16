@@ -13,14 +13,14 @@ struct CopiedBannerModifier: ViewModifier {
     func body(content: Content) -> some View {
         ZStack {
             content
-                if isPresented {
-                    Text("Copied")
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 40)
-                        .background(.thinMaterial)
-                        .clipShape(Capsule())
-                        .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
-                }
+            if isPresented {
+                Text("Copied")
+                    .padding(.vertical, 8)
+                    .padding(.horizontal, 40)
+                    .background(.thinMaterial)
+                    .clipShape(Capsule())
+                    .transition(AnyTransition.move(edge: .top).combined(with: .opacity))
+            }
         }
     }
 }
