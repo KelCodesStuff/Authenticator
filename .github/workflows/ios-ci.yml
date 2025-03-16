@@ -24,7 +24,7 @@ jobs:
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'  # Adjust as needed
+          xcode-version: '16.1.0'  # Adjust as needed
 
       # --- Swift Package Manager Cache (Optional, but recommended for speed) ---
       - name: Cache SPM Packages
