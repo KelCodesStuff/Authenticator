@@ -9,16 +9,18 @@
 import SwiftUI
 import Combine
 import KeychainSwift
+import LocalAuthentication
 
 struct InputPasscodeView: View {
     @Binding var passcode: String
     @Binding var isUnlocked: Bool
     @Binding var showAlert: Bool
     @Binding var errorMessage: String
+    @ObservedObject var biometricManager: BiometricManager
+    let storedPasscode: String
     
     @State private var isOverlayVisible = false
-        
-    let storedPasscode: String
+    @State private var showBiometricButton = false
     
     var body: some View {
         NavigationView {
@@ -45,6 +47,28 @@ struct InputPasscodeView: View {
                             passcode = String(passcode.prefix(8))
                         }
                     }
+                
+                if biometricManager.isEnabled {
+                    Button(action: {
+                        Task {
+                            let success = await biometricManager.authenticate()
+                            if success {
+                                isUnlocked = true
+                            }
+                        }
+                    }) {
+                        HStack {
+                            Image(systemName: biometricManager.getBiometricType() == "Face ID" ? "faceid" : "touchid")
+                                .font(.title)
+                            Text("Use \(biometricManager.getBiometricType())")
+                        }
+                        .foregroundColor(.green)
+                        .padding()
+                        .frame(maxWidth: .infinity)
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.green, lineWidth: 1))
+                    }
+                    .padding(.top)
+                }
                 
                 Spacer()
             }
