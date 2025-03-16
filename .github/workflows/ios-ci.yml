@@ -11,6 +11,7 @@ env:
   PROJECT_NAME: Authenticator.xcodeproj  # Project name
   SCHEME_NAME: Authenticator          # Scheme name (likely the same)
   DESTINATION: 'platform=iOS Simulator,name=iPhone 14,OS=latest'
+  TEST_PLAN_NAME: "Smoke Tests"
 
 jobs:
   build-and-test:
@@ -44,7 +45,7 @@ jobs:
 
       - name: Run Tests
         run: |
-          xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -only-testing:AuthenticatorTests # Assuming your test target is named AuthenticatorTests
+          xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME }}"  # Use the Test Plan!
 
       - name: Upload Code Coverage Reports (Optional)
         uses: codecov/codecov-action@v3
