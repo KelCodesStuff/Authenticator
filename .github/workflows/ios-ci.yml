@@ -10,9 +10,8 @@ on:
 env:
   PROJECT_NAME: Authenticator.xcodeproj  # Project name
   SCHEME_NAME: Authenticator          # Scheme name (likely the same)
-  DESTINATION: 'platform=iOS Simulator,name=iPhone 14,OS=latest'
-  # Add Test Plan as an environment variable
-  TEST_PLAN_NAME: "Smoke Tests"
+  DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
+  TEST_PLAN_NAME: "Smoke Tests"  # Add Test Plan as an environment variable
 
 jobs:
   build-and-test:
