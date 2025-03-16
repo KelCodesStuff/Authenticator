@@ -32,19 +32,42 @@ class DocumentPickerDelegate: NSObject, ObservableObject, UIDocumentPickerDelega
 struct SettingsView: View {
     @Binding var isPresented: Bool
     @StateObject private var documentPickerDelegate = DocumentPickerDelegate()
+    @StateObject private var biometricManager = BiometricManager()
     @State private var isICloudBackupEnabled = false
-
+    @State private var showBiometricAlert = false
+    @State private var showPasscodeVerification = false
+    @State private var verificationPasscode = ""
+    @State private var showError = false
+    @State private var errorMessage = ""
+    @AppStorage("storedPasscode") private var storedPasscode: String = ""
 
     var body: some View {
         NavigationView {
             Form {
+                Section(header: Text("Security"), footer: Text("Use \(biometricManager.getBiometricType()) to quickly unlock the app")) {
+                    if biometricManager.isBiometricsAvailable() {
+                        Toggle("\(biometricManager.getBiometricType())", isOn: Binding(
+                            get: { biometricManager.isEnabled },
+                            set: { newValue in
+                                if newValue {
+                                    showPasscodeVerification = true
+                                } else {
+                                    biometricManager.isEnabled = false
+                                }
+                            }
+                        ))
+                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
+                    }
+                }
+                
                 Section(header: Text("Backup"), footer: Text("")) {
                     Toggle("iCloud Backup", isOn: $isICloudBackupEnabled)
-                            .toggleStyle(SwitchToggleStyle(tint: Color.green))
-                            .onChange(of: isICloudBackupEnabled) { newValue, _ in
-                                self.handleICloudBackupToggle(newValue)
-                            }
+                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
+                        .onChange(of: isICloudBackupEnabled) { newValue, _ in
+                            self.handleICloudBackupToggle(newValue)
+                        }
                 }
+                
                 Section(header: Text("Information"), footer: Text("")) {
                     if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
                        let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
@@ -77,6 +100,53 @@ struct SettingsView: View {
         }
         .onAppear {
             self.checkICloudBackupStatus()
+        }
+        .alert("Biometric Authentication", isPresented: $showBiometricAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("Biometric authentication is not available on this device.")
+        }
+        .alert("Error", isPresented: $showError) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(errorMessage)
+        }
+        .sheet(isPresented: $showPasscodeVerification) {
+            BiometricVerificationSheet(
+                isPresented: $showPasscodeVerification,
+                verificationPasscode: $verificationPasscode,
+                biometricEnabled: $biometricManager.isEnabled,
+                biometricType: biometricManager.getBiometricType(),
+                onCancel: {
+                    showPasscodeVerification = false
+                    biometricManager.isEnabled = false
+                    verificationPasscode = ""
+                }
+            )
+        }
+    }
+
+    private func verifyPasscodeAndEnableBiometrics() {
+        KeychainManager.shared.retrievePasscode(verificationPasscode) { isSuccess in
+            DispatchQueue.main.async {
+                if isSuccess {
+                    Task {
+                        if await biometricManager.authenticate() {
+                            biometricManager.isEnabled = true
+                            showPasscodeVerification = false
+                            verificationPasscode = ""
+                        } else {
+                            errorMessage = "Failed to enable \(biometricManager.getBiometricType()). Please try again."
+                            showError = true
+                            biometricManager.isEnabled = false
+                        }
+                    }
+                } else {
+                    errorMessage = "Incorrect passcode. Please try again."
+                    showError = true
+                    biometricManager.isEnabled = false
+                }
+            }
         }
     }
 
