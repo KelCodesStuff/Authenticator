@@ -2,8 +2,8 @@
 //  AuthenticatorUITestsLaunchTests.swift
 //  AuthenticatorUITests
 //
-//  Created by Kelvin Reid on 2/21/24.
-//  Copyright © 2024 Studio757 LLC. All rights reserved.
+//  Created by Kelvin Reid on 3/15/25.
+//  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
 import XCTest
@@ -18,6 +18,7 @@ final class AuthenticatorUITestsLaunchTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    @MainActor
     func testLaunch() throws {
         let app = XCUIApplication()
         app.launch()
