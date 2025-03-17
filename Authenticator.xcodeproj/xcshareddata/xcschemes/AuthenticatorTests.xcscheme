@@ -21,8 +21,13 @@
       buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      shouldAutocreateTestPlan = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:Smoke Tests.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
          <TestableReference
             skipped = "NO"
@@ -40,9 +45,20 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA7B05202D86650800F882BE"
+               BlueprintIdentifier = "BA7B05312D866E2600F882BE"
                BuildableName = "AuthenticatorUnitTests.xctest"
                BlueprintName = "AuthenticatorUnitTests"
+               ReferencedContainer = "container:Authenticator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BAE62D1B2D88755D00202D5A"
+               BuildableName = "AuthenticatorPerformanceTests.xctest"
+               BlueprintName = "AuthenticatorPerformanceTests"
                ReferencedContainer = "container:Authenticator.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -75,6 +91,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "BA8641F72B73E9BC00285F4D"
+            BuildableName = "Authenticator.app"
+            BlueprintName = "Authenticator"
+            ReferencedContainer = "container:Authenticator.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

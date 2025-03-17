@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>classNames</key>
+	<dict>
+		<key>PerformanceTests</key>
+		<dict>
+			<key>testComprehensivePerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_CPU.cycles</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>10432.673800</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.instructions_retired</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>35654.423400</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.time</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.001984</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_Clock.time.monotonic</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.001746</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000000</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical_peak</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>18242.713600</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTOTPGenerationCPUPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_CPU.cycles</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>1653.062600</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.instructions_retired</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>6706.345400</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.time</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000837</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTOTPGenerationClockPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_Clock.time.monotonic</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000551</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTOTPGenerationMemoryPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000000</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical_peak</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>31195.904000</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTOTPGenerationPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000751</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTOTPWithSHA512Performance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.001365</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTokenCreationCPUPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_CPU.cycles</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>4349.091600</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.instructions_retired</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>17045.910200</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_CPU.time</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.001164</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTokenCreationClockPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_Clock.time.monotonic</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.001156</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTokenCreationMemoryPerformance()</key>
+			<dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.000000</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+				<key>com.apple.dt.XCTMetric_Memory.physical_peak</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>31195.904000</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+			<key>testTokenCreationPerformance()</key>
+			<dict>
+				<key>com.apple.XCTPerformanceMetric_WallClockTime</key>
+				<dict>
+					<key>baselineAverage</key>
+					<real>0.002394</real>
+					<key>baselineIntegrationDisplayName</key>
+					<string>Local Baseline</string>
+				</dict>
+			</dict>
+		</dict>
+	</dict>
+</dict>
+</plist>

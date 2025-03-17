@@ -48,7 +48,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA7B05112D8664EC00F882BE"
+               BlueprintIdentifier = "BA7B053E2D867CB200F882BE"
                BuildableName = "AuthenticatorUITests.xctest"
                BlueprintName = "AuthenticatorUITests"
                ReferencedContainer = "container:Authenticator.xcodeproj">
@@ -59,9 +59,20 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BA7B05202D86650800F882BE"
+               BlueprintIdentifier = "BA7B05312D866E2600F882BE"
                BuildableName = "AuthenticatorUnitTests.xctest"
                BlueprintName = "AuthenticatorUnitTests"
+               ReferencedContainer = "container:Authenticator.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BAE62D1B2D88755D00202D5A"
+               BuildableName = "AuthenticatorPerformanceTests.xctest"
+               BlueprintName = "AuthenticatorPerformanceTests"
                ReferencedContainer = "container:Authenticator.xcodeproj">
             </BuildableReference>
          </TestableReference>
