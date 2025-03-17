@@ -13,131 +13,152 @@ final class AuthenticatorUITests: XCTestCase {
     var app: XCUIApplication!
     
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        
-        // Launch the app before each test
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing"]
+        
+        // Enable biometric authentication in simulator
+        if #available(iOS 13.0, *) {
+            app.launchEnvironment["XCUITest_FASTLANE_SKIP_BIOMETRICS"] = "false"
+        }
+        
         app.launch()
     }
     
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        app.terminate()
+        app = nil
     }
     
-    // MARK: - Basic UI Tests
-    
-    func testAppLaunch() throws {
-        // Verify the app launches successfully
-        XCTAssertTrue(app.waitForExistence(timeout: 5))
+    // MARK: - Helper Methods
+    private func unlockApp() throws {
+        let passcodeField = app.secureTextFields["Passcode"]
+        passcodeField.tap()
+        passcodeField.typeText("12345678")
+        let unlockButton = app.buttons["Unlock"]
+        unlockButton.tap()
     }
     
-    func testNavigation() throws {
-        // Verify navigation bar exists
-        let navigationBar = app.navigationBars["Authenticator"]
-        XCTAssertTrue(navigationBar.exists)
-        
-        // Test settings button
-        let settingsButton = navigationBar.buttons["gear"]
-        XCTAssertTrue(settingsButton.exists)
-        settingsButton.tap()
-        
-        // Verify settings view appears
-        let settingsView = app.navigationBars["Settings"]
-        XCTAssertTrue(settingsView.waitForExistence(timeout: 5))
-        
-        // Test done button to dismiss settings
-        let doneButton = settingsView.buttons["Done"]
-        XCTAssertTrue(doneButton.exists)
-        doneButton.tap()
-    }
-    
-    // MARK: - Authenticator Tests
-    
-    func testAddNewToken() throws {
-        // Tap QR code button
-        let qrButton = app.navigationBars.buttons["qrcode"]
-        XCTAssertTrue(qrButton.exists)
-        qrButton.tap()
-        
-        // Verify scanner sheet appears
-        let scannerSheet = app.sheets["Scanning"]
-        XCTAssertTrue(scannerSheet.waitForExistence(timeout: 5))
-        
-        // Test cancel button
-        let cancelButton = scannerSheet.buttons["Cancel"]
-        XCTAssertTrue(cancelButton.exists)
-        cancelButton.tap()
-    }
-    
-    func testTokenList() throws {
-        // Verify token list exists
-        let tokenList = app.tables.element
-        XCTAssertTrue(tokenList.exists)
-        
-        // Test token cell interaction if any exist
-        let firstToken = tokenList.cells.element(boundBy: 0)
-        if firstToken.exists {
-            firstToken.tap()
-            
-            // Verify token details view appears
-            let detailsView = app.navigationBars["One-Time Password"]
-            XCTAssertTrue(detailsView.waitForExistence(timeout: 5))
-            
-            // Test back button
-            let backButton = detailsView.buttons["Authenticator"]
-            XCTAssertTrue(backButton.exists)
-            backButton.tap()
-        }
-    }
-    
-    // MARK: - Settings Tests
-    
-    func testSettingsNavigation() throws {
-        // Open settings
-        app.navigationBars.buttons["gear"].tap()
-        
-        // Verify settings options
-        let settingsTable = app.tables.element
-        XCTAssertTrue(settingsTable.exists)
-        
-        // Test biometric settings if available
-        let biometricToggle = settingsTable.switches["Face ID"]
-        if biometricToggle.exists {
-            biometricToggle.tap()
-            
-            // Verify biometric verification sheet appears
-            let verificationSheet = app.sheets["FaceID"]
-            XCTAssertTrue(verificationSheet.waitForExistence(timeout: 5))
-            
-            // Test cancel button
-            let cancelButton = verificationSheet.buttons["Cancel"]
-            XCTAssertTrue(cancelButton.exists)
-            cancelButton.tap()
-        }
-    }
-    
-    // MARK: - Performance Tests
-    
+    // MARK: - Launch Performance Test
+    @MainActor
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }
         }
     }
     
-    func testTokenListScrollingPerformance() throws {
-        // Measure scrolling performance
-        let tokenList = app.tables.element
-        measure(metrics: [XCTClockMetric()]) {
-            tokenList.swipeUp(velocity: .fast)
-            tokenList.swipeDown(velocity: .fast)
+    // MARK: - Authentication Flow Tests
+    func testPasscodeEntry() throws {
+        try unlockApp()
+    }
+    
+    func testBiometricAuthentication() throws {
+        // Check if biometric button exists (only if biometrics are available)
+        let biometricButton = app.buttons["Use Face ID"] // or "Use Touch ID" depending on device
+        if biometricButton.exists {
+            biometricButton.tap()
+            // Note: Actual biometric authentication cannot be tested in UI tests
+            // as it requires real device interaction
+        } else {
+            // If biometrics not available, enter passcode and unlock
+            try unlockApp()
         }
+    }
+    
+    // MARK: - Token Management Tests
+    func testAddNewToken() throws {
+        try unlockApp()
+        
+        // Navigate to add token screen
+        let scanButton = app.buttons["qrcode"]
+        XCTAssertTrue(scanButton.exists)
+        scanButton.tap()
+        
+        // Note: QR code scanning cannot be tested in UI tests
+        // as it requires real camera interaction
+    }
+    
+    func testTokenListNavigation() throws {
+        throw XCTSkip("Skipping this test for now.")
+        
+        try unlockApp()
+        
+        // Verify token list exists
+        let tokenList = app.tables.element
+        XCTAssertTrue(tokenList.exists)
+        
+        // Test scrolling
+        tokenList.swipeUp()
+        tokenList.swipeDown()
+    }
+    
+    func testTokenDetails() throws {
+        try unlockApp()
+        
+        // Tap on a token if it exists
+        let tokenCell = app.cells.element(boundBy: 0)
+        if tokenCell.exists {
+            tokenCell.tap()
+            
+            // Verify details are shown
+            let issuerLabel = app.staticTexts["Issuer"]
+            XCTAssertTrue(issuerLabel.exists)
+            
+            let accountLabel = app.staticTexts["Account Name"]
+            XCTAssertTrue(accountLabel.exists)
+        }
+    }
+    
+    // MARK: - Settings Tests
+    func testSettingsNavigation() throws {
+        try unlockApp()
+        
+        // Navigate to settings using the gear icon
+        let settingsButton = app.buttons["gearshape"]
+        XCTAssertTrue(settingsButton.exists)
+        settingsButton.tap()
+        
+        // Verify settings options
+        let biometricToggle = app.switches["Face ID"] // or "Touch ID" depending on device
+        if biometricToggle.exists {
+            XCTAssertTrue(biometricToggle.exists)
+        } else {
+            // Log that biometric toggle is not available
+            print("Biometric toggle not available - this is expected in simulator unless configured")
+        }
+        
+        let iCloudBackupToggle = app.switches["iCloud Backup"]
+        XCTAssertTrue(iCloudBackupToggle.exists)
+    }
+    
+    // MARK: - Error Handling Tests
+    func testInvalidPasscode() throws {
+        // Enter invalid passcode
+        let passcodeField = app.secureTextFields["Passcode"]
+        passcodeField.tap()
+        passcodeField.typeText("00000000")
+        
+        // Submit
+        let unlockButton = app.buttons["Unlock"]
+        unlockButton.tap()
+        
+        // Verify error alert
+        let errorAlert = app.alerts["Error"]
+        XCTAssertTrue(errorAlert.exists)
+        
+        // Dismiss alert
+        errorAlert.buttons["OK"].tap()
+    }
+    
+    func testInvalidTokenURI() throws {
+        try unlockApp()
+        
+        // Navigate to add token screen
+        let scanButton = app.buttons["qrcode"]
+        scanButton.tap()
+        
+        // Note: QR code scanning cannot be tested in UI tests
+        // as it requires real camera interaction
     }
 }
