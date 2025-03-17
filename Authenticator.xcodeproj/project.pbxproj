@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		463AE8618D044ABCB7A3E4F4 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 7DB9EFCB5E6F49A484878F9E /* Sentry */; };
 		BA1979422B741F7F00C0EDF6 /* AuthCodeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */; };
+		BA4EF7A92D88AB6300D2D50D /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */; };
 		BA5F7B4C2B8592B500C343E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */; };
 		BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04F92D862F0E00F882BE /* BiometricManager.swift */; };
 		BA7B04FC2D8631CB00F882BE /* BiometricVerificationSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */; };
@@ -79,6 +80,8 @@
 		BA4EF7732D8876EB00D2D50D /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7742D8876EB00D2D50D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7752D8876EB00D2D50D /* AuthenticatorPerformanceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorPerformanceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA4EF7A72D88A52F00D2D50D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailView.swift; sourceTree = "<group>"; };
 		BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BA7B04F92D862F0E00F882BE /* BiometricManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricManager.swift; sourceTree = "<group>"; };
 		BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricVerificationSheet.swift; sourceTree = "<group>"; };
@@ -168,9 +171,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BA4EF7A62D88939D00D2D50D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BA86427A2B73FACD00285F4D /* ContentView.swift */,
+				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
+				BA4EF7A72D88A52F00D2D50D /* README.md */,
 				BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */,
 				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
@@ -224,8 +237,8 @@
 			children = (
 				BA8642482B73EE0600285F4D /* Authenticator */,
 				BA8642472B73EDF800285F4D /* LockScreen */,
+				BA4EF7A62D88939D00D2D50D /* Main */,
 				BA86424A2B73EE1C00285F4D /* Settings */,
-				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -275,7 +288,7 @@
 		BA8642482B73EE0600285F4D /* Authenticator */ = {
 			isa = PBXGroup;
 			children = (
-				BA86427A2B73FACD00285F4D /* ContentView.swift */,
+				BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */,
 				BA8642602B73EECD00285F4D /* AuthCodeView.swift */,
 				BA8642612B73EECD00285F4D /* AuthCodeScannerView.swift */,
 				BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */,
@@ -545,6 +558,7 @@
 				BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */,
 				BA8642452B73EDE300285F4D /* ActivityView.swift in Sources */,
 				BA86423C2B73EDC700285F4D /* Token.swift in Sources */,
+				BA4EF7A92D88AB6300D2D50D /* TokenDetailView.swift in Sources */,
 				BA86425F2B73EE8600285F4D /* URLExtensions.swift in Sources */,
 				BA8642442B73EDE300285F4D /* BiometricAuth.swift in Sources */,
 				BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */,

@@ -87,7 +87,7 @@ struct ContentView: View {
             presentingSheet = .showSettings
             isSheetPresented = true
         }) {
-            Image(systemName: "gear")
+            Image(systemName: "gearshape")
         }
     }
     
