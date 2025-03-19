@@ -34,23 +34,35 @@ final class AuthenticatorUITests: XCTestCase {
         let passcodeField = app.secureTextFields["Passcode"]
         passcodeField.tap()
         passcodeField.typeText("12345678")
-       
+
+        print(app.debugDescription) // Print UI hierarchy
+
         let unlockButton = app.buttons["Unlock"]
-        
+
         // Extended wait with polling
         let startTime = Date()
-        
-        // Increase timeout to 20 seconds
         let timeout: TimeInterval = 20
         while !unlockButton.exists {
             if Date().timeIntervalSince(startTime) > timeout {
+                // Take screenshot and UI hierarchy snapshot
+                let screenshot = XCUIScreen.main.screenshot()
+                let attachment = XCTAttachment(screenshot: screenshot)
+                attachment.name = "UnlockButtonFailureScreenshot"
+                attachment.lifetime = .keepAlways
+                add(attachment)
+
+                let hierarchyData = app.debugDescription.data(using: .utf8)!
+                let hierarchyAttachment = XCTAttachment(data: hierarchyData, uniformTypeIdentifier: "public.plain-text")
+                hierarchyAttachment.name = "UnlockButtonFailureHierarchy"
+                hierarchyAttachment.lifetime = .keepAlways
+                add(hierarchyAttachment)
+
                 XCTFail("Unlock button did not appear after \(timeout) seconds")
                 return
             }
-            // Poll every 1 second
             sleep(1)
         }
-        
+
         unlockButton.tap()
     }
     
