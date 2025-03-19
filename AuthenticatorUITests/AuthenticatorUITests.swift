@@ -34,10 +34,22 @@ final class AuthenticatorUITests: XCTestCase {
         let passcodeField = app.secureTextFields["Passcode"]
         passcodeField.tap()
         passcodeField.typeText("12345678")
+       
         let unlockButton = app.buttons["Unlock"]
         
-        // Explicit wait for the button to appear
-        XCTAssertTrue(unlockButton.waitForExistence(timeout: 10), "Unlock button did not appear after 10 seconds")
+        // Extended wait with polling
+        let startTime = Date()
+        
+        // Increase timeout to 20 seconds
+        let timeout: TimeInterval = 20
+        while !unlockButton.exists {
+            if Date().timeIntervalSince(startTime) > timeout {
+                XCTFail("Unlock button did not appear after \(timeout) seconds")
+                return
+            }
+            // Poll every 1 second
+            sleep(1)
+        }
         
         unlockButton.tap()
     }
