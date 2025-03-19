@@ -31,14 +31,31 @@ final class AuthenticatorUITests: XCTestCase {
     
     // MARK: - Helper Methods
     private func unlockApp() throws {
+        let app = XCUIApplication()
+        
+        // Check if SetPasscodeView is present
+        if app.navigationBars["Set Passcode"].exists {
+            // Set a passcode
+            let passcodeField1 = app.secureTextFields["Passcode"]
+            passcodeField1.tap()
+            passcodeField1.typeText("12345678")
+            
+            let passcodeField2 = app.secureTextFields["Confirm passcode"]
+            passcodeField2.tap()
+            passcodeField2.typeText("12345678")
+            
+            app.buttons["Start"].tap()
+        }
+        
+        // Input Passcode View
         let passcodeField = app.secureTextFields["Passcode"]
         passcodeField.tap()
         passcodeField.typeText("12345678")
-
+        
         print(app.debugDescription) // Print UI hierarchy
-
+        
         let unlockButton = app.buttons["Unlock"]
-
+        
         // Extended wait with polling
         let startTime = Date()
         let timeout: TimeInterval = 20
@@ -50,19 +67,19 @@ final class AuthenticatorUITests: XCTestCase {
                 attachment.name = "UnlockButtonFailureScreenshot"
                 attachment.lifetime = .keepAlways
                 add(attachment)
-
+                
                 let hierarchyData = app.debugDescription.data(using: .utf8)!
                 let hierarchyAttachment = XCTAttachment(data: hierarchyData, uniformTypeIdentifier: "public.plain-text")
                 hierarchyAttachment.name = "UnlockButtonFailureHierarchy"
                 hierarchyAttachment.lifetime = .keepAlways
                 add(hierarchyAttachment)
-
+                
                 XCTFail("Unlock button did not appear after \(timeout) seconds")
                 return
             }
             sleep(1)
         }
-
+        
         unlockButton.tap()
     }
     
