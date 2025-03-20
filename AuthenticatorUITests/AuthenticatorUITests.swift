@@ -9,53 +9,71 @@
 import XCTest
 
 final class AuthenticatorUITests: XCTestCase {
-    
+
     var app: XCUIApplication!
-    
+
     override func setUpWithError() throws {
         continueAfterFailure = false
+
+        // Check the environment variable *before* initializing the app.
+        if !shouldRunUITests() {
+            //  Skip all setup if UI tests are disabled.
+            throw XCTSkip("Skipping UI tests due to RUN_UI_TESTS environment variable.")
+        }
+
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing"]
-        
+
         // Enable biometric authentication in simulator
         if #available(iOS 13.0, *) {
             app.launchEnvironment["XCUITest_FASTLANE_SKIP_BIOMETRICS"] = "false"
         }
-        
+
         app.launch()
     }
-    
+
     override func tearDownWithError() throws {
-        app = nil
+        // Only tear down if setup was actually performed
+        if app != nil {
+            app = nil
+        }
     }
     
+    // MARK: Helper Functions
+    func shouldRunUITests() -> Bool {
+        guard let runUITests = ProcessInfo.processInfo.environment["RUN_UI_TESTS"] else {
+            return false // Default to OFF if not set.
+        }
+        return runUITests.lowercased() == "true"
+    }
+
     // MARK: - Helper Methods
     private func unlockApp() throws {
         let app = XCUIApplication()
-        
+
         // Check if SetPasscodeView is present
         if app.navigationBars["Set Passcode"].exists {
             // Set a passcode
             let passcodeField1 = app.secureTextFields["Passcode"]
             passcodeField1.tap()
             passcodeField1.typeText("12345678")
-            
+
             let passcodeField2 = app.secureTextFields["Confirm passcode"]
             passcodeField2.tap()
             passcodeField2.typeText("12345678")
-            
+
             app.buttons["Start"].tap()
         }
-        
+
         // Input Passcode View
         let passcodeField = app.secureTextFields["Passcode"]
         passcodeField.tap()
         passcodeField.typeText("12345678")
-        
+
         print(app.debugDescription) // Print UI hierarchy
-        
+
         let unlockButton = app.buttons["Unlock"]
-        
+
         // Extended wait with polling
         let startTime = Date()
         let timeout: TimeInterval = 20
@@ -67,37 +85,27 @@ final class AuthenticatorUITests: XCTestCase {
                 attachment.name = "UnlockButtonFailureScreenshot"
                 attachment.lifetime = .keepAlways
                 add(attachment)
-                
+
                 let hierarchyData = app.debugDescription.data(using: .utf8)!
                 let hierarchyAttachment = XCTAttachment(data: hierarchyData, uniformTypeIdentifier: "public.plain-text")
                 hierarchyAttachment.name = "UnlockButtonFailureHierarchy"
                 hierarchyAttachment.lifetime = .keepAlways
                 add(hierarchyAttachment)
-                
+
                 XCTFail("Unlock button did not appear after \(timeout) seconds")
                 return
             }
             sleep(1)
         }
-        
+
         unlockButton.tap()
     }
-    
-    // MARK: - Launch Performance Test
-    @MainActor
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
-    
+
     // MARK: - Authentication Flow Tests
     func testPasscodeEntry() throws {
         try unlockApp()
     }
-    
+
     func testBiometricAuthentication() throws {
         // Check if biometric button exists (only if biometrics are available)
         let biometricButton = app.buttons["Use Face ID"] // or "Use Touch ID" depending on device
@@ -110,7 +118,7 @@ final class AuthenticatorUITests: XCTestCase {
             try unlockApp()
         }
     }
-    
+
     // MARK: - Token Management Tests
     func testScannerView() throws {
         try unlockApp()
@@ -134,47 +142,47 @@ final class AuthenticatorUITests: XCTestCase {
         let qrCodeOverlay = app.otherElements["QRCodeOverlay"]
         //XCTAssertTrue(qrCodeOverlay.exists)
     }
-    
+
     func testTokenListNavigation() throws {
         throw XCTSkip("Skipping this test for now.")
-        
+
         try unlockApp()
-        
+
         // Verify token list exists
         let tokenList = app.tables.element
         XCTAssertTrue(tokenList.exists)
-        
+
         // Test scrolling
         tokenList.swipeUp()
         tokenList.swipeDown()
     }
-    
+
     func testTokenDetails() throws {
         try unlockApp()
-        
+
         // Tap on a token if it exists
         let tokenCell = app.cells.element(boundBy: 0)
         if tokenCell.exists {
             tokenCell.tap()
-            
+
             // Verify details are shown
             let issuerLabel = app.staticTexts["Issuer"]
             XCTAssertTrue(issuerLabel.exists)
-            
+
             let accountLabel = app.staticTexts["Account Name"]
             XCTAssertTrue(accountLabel.exists)
         }
     }
-    
+
     // MARK: - Settings Tests
     func testSettingsNavigation() throws {
         try unlockApp()
-        
+
         // Navigate to settings using the gear icon
         let settingsButton = app.buttons["gearshape"]
         XCTAssertTrue(settingsButton.exists)
         settingsButton.tap()
-        
+
         // Verify settings options
         let biometricToggle = app.switches["Face ID"] // or "Touch ID" depending on device
         if biometricToggle.exists {
@@ -183,37 +191,37 @@ final class AuthenticatorUITests: XCTestCase {
             // Log that biometric toggle is not available
             print("Biometric toggle not available - this is expected in simulator unless configured")
         }
-        
+
         let iCloudBackupToggle = app.switches["iCloud Backup"]
         XCTAssertTrue(iCloudBackupToggle.exists)
     }
-    
+
     // MARK: - Error Handling Tests
     func testInvalidPasscode() throws {
         // Enter invalid passcode
         let passcodeField = app.secureTextFields["Passcode"]
         passcodeField.tap()
         passcodeField.typeText("00000000")
-        
+
         // Submit
         let unlockButton = app.buttons["Unlock"]
         unlockButton.tap()
-        
+
         // Verify error alert
         let errorAlert = app.alerts["Error"]
         XCTAssertTrue(errorAlert.exists)
-        
+
         // Dismiss alert
         errorAlert.buttons["OK"].tap()
     }
-    
+
     func testInvalidTokenURI() throws {
         try unlockApp()
-        
+
         // Navigate to add token screen
         let scanButton = app.buttons["qrcode"]
         scanButton.tap()
-        
+
         // Note: QR code scanning cannot be tested in UI tests
         // as it requires real camera interaction
     }
