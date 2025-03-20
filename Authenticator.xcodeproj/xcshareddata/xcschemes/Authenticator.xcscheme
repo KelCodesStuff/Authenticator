@@ -29,17 +29,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:../Authenticator.xctestplan"
+            reference = "container:Smoke Tests.xctestplan"
             default = "YES">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Smoke Tests.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Regression Tests.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:Smoke Tests.xctestplan">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -79,7 +70,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BAE62CE92D88711F00202D5A"
+               BlueprintIdentifier = "BAE62D1B2D88755D00202D5A"
                BuildableName = "AuthenticatorPerformanceTests.xctest"
                BlueprintName = "AuthenticatorPerformanceTests"
                ReferencedContainer = "container:Authenticator.xcodeproj">
