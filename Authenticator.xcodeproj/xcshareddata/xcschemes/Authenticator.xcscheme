@@ -32,6 +32,15 @@
             reference = "container:Smoke Tests.xctestplan"
             default = "YES">
          </TestPlanReference>
+         <TestPlanReference
+            reference = "container:UI-Smoke-Tests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Unit-Smoke-Tests.xctestplan">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:Performance-Smoke-Tests.xctestplan">
+         </TestPlanReference>
       </TestPlans>
       <Testables>
          <TestableReference
