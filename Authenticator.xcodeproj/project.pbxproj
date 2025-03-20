@@ -43,7 +43,6 @@
 		BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86427A2B73FACD00285F4D /* ContentView.swift */; };
 		BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0432B77058000F57F66 /* BackUpItem.swift */; };
 		BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0462B77097B00F57F66 /* iCloudManager.swift */; };
-		BAE62CE12D886FD500202D5A /* Smoke Tests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */; };
 		BAEB64F22B76C7EA0072FB1F /* LockScreenOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */; };
 		BAF612A32B75EAAF00B73140 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAF612A22B75EAAF00B73140 /* CryptoSwift */; };
 /* End PBXBuildFile section */
@@ -76,6 +75,9 @@
 		BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeEditView.swift; sourceTree = "<group>"; };
 		BA1B19A32B868B840044E434 /* Authenticator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
 		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
+		BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "UI-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
+		BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Unit-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
+		BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Performance-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
 		BA4EF7722D8876EB00D2D50D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7732D8876EB00D2D50D /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7742D8876EB00D2D50D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,7 +114,6 @@
 		BA86427A2B73FACD00285F4D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA86E0432B77058000F57F66 /* BackUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpItem.swift; sourceTree = "<group>"; };
 		BA86E0462B77097B00F57F66 /* iCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudManager.swift; sourceTree = "<group>"; };
-		BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Smoke Tests.xctestplan"; sourceTree = "<group>"; };
 		BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,8 +184,10 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
+				BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */,
+				BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */,
+				BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */,
 				BA4EF7A72D88A52F00D2D50D /* README.md */,
-				BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */,
 				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
 				BA8641FA2B73E9BC00285F4D /* Auth */,
@@ -482,7 +485,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAE62CE12D886FD500202D5A /* Smoke Tests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
