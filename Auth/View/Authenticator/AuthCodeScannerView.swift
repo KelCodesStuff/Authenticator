@@ -76,6 +76,8 @@ struct AuthCodeScannerView: UIViewControllerRepresentable {
             let overlayView = UIView()
             overlayView.frame = view.layer.bounds
             overlayView.backgroundColor = UIColor.clear
+            
+            overlayView.accessibilityIdentifier = "QRCodeOverlay"
 
             // Create a transparent cutout for the QR code area
             let maskLayer = CAShapeLayer()
