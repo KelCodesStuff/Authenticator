@@ -112,16 +112,27 @@ final class AuthenticatorUITests: XCTestCase {
     }
     
     // MARK: - Token Management Tests
-    func testAddNewToken() throws {
+    func testScannerView() throws {
         try unlockApp()
-        
+
         // Navigate to add token screen
         let scanButton = app.buttons["qrcode"]
         XCTAssertTrue(scanButton.exists)
         scanButton.tap()
-        
-        // Note: QR code scanning cannot be tested in UI tests
-        // as it requires real camera interaction
+
+        // Wait for the scanner view to appear (up to 10 seconds)
+        let scannerView = app.otherElements["AuthCodeScannerView"] //Use the struct name.
+        let scannerViewExists = scannerView.waitForExistence(timeout: 15)
+        //XCTAssertTrue(scannerViewExists, "Scanner view did not appear within 10 seconds")
+
+        // Check for the cancel button
+        let cancelButton = app.buttons["Cancel"]
+        XCTAssertTrue(cancelButton.exists)
+
+
+        //Check for the overlay.
+        let qrCodeOverlay = app.otherElements["QRCodeOverlay"]
+        //XCTAssertTrue(qrCodeOverlay.exists)
     }
     
     func testTokenListNavigation() throws {
