@@ -1,5 +1,5 @@
 //
-//  AuthenticatorUIAuthTests.swift
+//  AuthenticatorAuthTests.swift
 //  Authenticator
 //
 //  Created by Kelvin Reid on 3/20/25.
@@ -14,12 +14,6 @@ final class AuthenticatorAuthTests: XCTestCase {
     
     override func setUpWithError() throws {
         continueAfterFailure = false
-        
-        // Check the environment variable *before* initializing the app.
-        if !shouldRunUITests() {
-            //  Skip all setup if UI tests are disabled.
-            throw XCTSkip("Skipping UI tests due to RUN_UI_TESTS environment variable.")
-        }
         
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing"]
@@ -40,13 +34,6 @@ final class AuthenticatorAuthTests: XCTestCase {
     }
     
     // MARK: - Helper Methods
-    func shouldRunUITests() -> Bool {
-        guard let runUITests = ProcessInfo.processInfo.environment["RUN_UI_TESTS"] else {
-            return false // Default to OFF if not set.
-        }
-        return runUITests.lowercased() == "true"
-    }
-    
     private func unlockApp() throws {
         let app = XCUIApplication()
         
