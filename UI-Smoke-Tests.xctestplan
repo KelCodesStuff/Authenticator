@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "4C2F3F1E-AD33-4195-967C-712A3B762C47",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Authenticator.xcodeproj",
+        "identifier" : "BA7B053E2D867CB200F882BE",
+        "name" : "AuthenticatorUITests"
+      }
+    }
+  ],
+  "version" : 1
+}
