@@ -15,12 +15,6 @@ final class AuthenticatorSettingsTests: XCTestCase {
     override func setUpWithError() throws {
         continueAfterFailure = false
         
-        // Check the environment variable *before* initializing the app.
-        if !shouldRunUITests() {
-            //  Skip all setup if UI tests are disabled.
-            throw XCTSkip("Skipping UI tests due to RUN_UI_TESTS environment variable.")
-        }
-        
         app = XCUIApplication()
         app.launchArguments = ["UI-Testing"]
         
@@ -39,14 +33,7 @@ final class AuthenticatorSettingsTests: XCTestCase {
         }
     }
     
-    // MARK: - Helper Methods
-    func shouldRunUITests() -> Bool {
-        guard let runUITests = ProcessInfo.processInfo.environment["RUN_UI_TESTS"] else {
-            return false // Default to OFF if not set.
-        }
-        return runUITests.lowercased() == "true"
-    }
-    
+    // MARK: - Helper Methods    
     private func unlockApp() throws {
         let app = XCUIApplication()
         
@@ -101,30 +88,36 @@ final class AuthenticatorSettingsTests: XCTestCase {
     }
 
     // MARK: - Settings Tests
-    func testSettingsNavigation() throws {
+    func testSettingsOptions() throws {
         try unlockApp()
         
-        // Wait for the main view to load
-        let mainView = app.otherElements.firstMatch
-        let mainViewExists = mainView.waitForExistence(timeout: 15)
-        XCTAssertTrue(mainViewExists, "Main view did not appear in time")
-        
-        // Navigate to settings using the gear icon
-        let settingsButton = app.buttons["gearshape"]
-        XCTAssertTrue(settingsButton.exists)
+        // Wait for the settings button to be available and tap it
+        let settingsButton = app.buttons["settingsButton"]
+        let settingsExists = settingsButton.waitForExistence(timeout: 5)
+        XCTAssertTrue(settingsExists, "Settings button should exist")
         settingsButton.tap()
         
-        // Verify settings options
-        let biometricToggle = app.switches["Face ID"] // or "Touch ID" depending on device
-        if biometricToggle.exists {
-            XCTAssertTrue(biometricToggle.exists)
+        // Verify settings view is shown
+        XCTAssertTrue(app.navigationBars["Settings"].exists)
+        
+        // Wait for and verify biometric toggle if available
+        let biometricToggle = app.switches["Face ID"]
+        if biometricToggle.waitForExistence(timeout: 3) {
+            XCTAssertTrue(biometricToggle.exists, "Biometric toggle should exist")
         } else {
-            // Log that biometric toggle is not available
             print("Biometric toggle not available - this is expected in simulator unless configured")
         }
         
+        // Wait for and verify iCloud backup toggle
         let iCloudBackupToggle = app.switches["iCloud Backup"]
-        XCTAssertTrue(iCloudBackupToggle.exists)
+        let backupToggleExists = iCloudBackupToggle.waitForExistence(timeout: 3)
+        XCTAssertTrue(backupToggleExists, "iCloud Backup toggle should exist")
+        
+        // Close settings
+        app.buttons["Done"].tap()
+        
+        // Verify we're back on the main view
+        XCTAssertTrue(app.navigationBars["Authenticator"].exists)
     }
 
 }
