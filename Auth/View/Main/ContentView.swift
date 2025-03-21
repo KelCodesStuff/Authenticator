@@ -57,10 +57,19 @@ struct ContentView: View {
                     generateCodes()
                 }
             }
+            .onAppear {
+                handleTestTokens()
+            }
             
             // MARK: - Nav Bar
             .navigationBarTitle("Authenticator", displayMode: .inline)
-            .navigationBarItems(leading: settingsButton, trailing: scanButton)
+            .navigationBarItems(
+                leading: settingsButton,
+                trailing: HStack {
+                    qrCodeButton
+                    manualEntryButton
+                }
+            )
             .toolbarBackground(.visible, for: .navigationBar)
             
             .sheet(isPresented: $isSheetPresented) {
@@ -68,7 +77,21 @@ struct ContentView: View {
                 case .showSettings:
                     SettingsView(isPresented: $isSheetPresented)
                 case .addByScanning:
-                    Scanner(isPresented: $isSheetPresented, codeTypes: [.qr], completion: handleScanning(result:))
+                    Scanner(isPresented: $isSheetPresented, codeTypes: [.qr]) { result in
+                        isSheetPresented = false
+                        if case .success = result {
+                            generateCodes()
+                        }
+                    }
+                case .addManually:
+                    ManualTokenEntryView(isPresented: $isSheetPresented) { result in
+                        isSheetPresented = false
+                        if case .success(let uri) = result {
+                            if let token = Token(uri: uri) {
+                                addItem(token)
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -80,8 +103,7 @@ struct ContentView: View {
         }
     }
     
-    // MARK: - Functions
-    // Settings button
+    // MARK: - Settings button
     private var settingsButton: some View {
         Button(action: {
             presentingSheet = .showSettings
@@ -89,19 +111,35 @@ struct ContentView: View {
         }) {
             Image(systemName: "gearshape")
         }
+        .accessibilityIdentifier("settingsButton")
+        .accessibilityLabel("Settings")
     }
     
-    // Settings button
-    private var scanButton: some View {
+    // MARK: - QR Code button
+    private var qrCodeButton: some View {
         Button(action: {
             presentingSheet = .addByScanning
             isSheetPresented = true
         }) {
             Image(systemName: "qrcode")
         }
+        .accessibilityIdentifier("qrCodeButton")
+        .accessibilityLabel("Scan QR Code")
     }
     
-    // Add code
+    // MARK: - Manual Entry button
+    private var manualEntryButton: some View {
+        Button(action: {
+            presentingSheet = .addManually
+            isSheetPresented = true
+        }) {
+            Image(systemName: "keyboard")
+        }
+        .accessibilityIdentifier("manualEntryButton")
+        .accessibilityLabel("Manual Entry")
+    }
+    
+    // MARK: - Add function
     private func addItem(_ token: Token) {
         let newTokenData = TokenData(context: viewContext)
         newTokenData.id = token.id
@@ -119,33 +157,36 @@ struct ContentView: View {
         generateCodes()
     }
     
-    // Scan function
-    private func handleScanning(result: Result<String, AuthCodeScannerView.ScanError>) {
-        isSheetPresented = false
-        switch result {
-        case .success(let code):
-            let uri: String = code.trimmed()
-            guard !uri.isEmpty else { return }
-            guard let newToken: Token = Token(uri: uri) else { return }
-            addItem(newToken)
-        case .failure(_): break
-            //                    logger.debug("\(error.localizedDescription)")
+    // MARK: - Handle test tokens for UI testing
+    private func handleTestTokens() {
+        #if DEBUG
+        if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+            if let testTokenUri = ProcessInfo.processInfo.environment["TEST_TOKEN_URI"] {
+                if let token = Token(uri: testTokenUri) {
+                    addItem(token)
+                }
+            }
         }
+        #endif
     }
     
-    // Delete function
+    // MARK: - Delete function
     func deleteToken(_ tokenData: TokenData) {
         viewContext.delete(tokenData)
         do {
             try viewContext.save()
-            // Optionally, trigger any additional UI updates or state changes needed after deletion.
+            // Update UI after successful deletion
+            generateCodes()
+            // Reset any selection state
+            selectedTokens.removeAll()
+            // Update animation trigger to refresh UI
+            animationTrigger.toggle()
         } catch let error as NSError {
             // Handle the error, e.g., showing an alert to the user.
             print("Error deleting token: \(error), \(error.userInfo)")
+            showError(error: error)
         }
     }
-    
-    
     
     private func token(of tokenData: TokenData) -> Token {
         guard let id: String = tokenData.id,
@@ -181,7 +222,7 @@ struct ContentView: View {
         return code
     }
     
-    // Function to handle error alerts
+    // MARK: - Error alerts
     private func showError(error: Error) {
         errorMessage = error.localizedDescription
         showErrorAlert = true
@@ -203,6 +244,7 @@ private var tokenIndex: Int = 0
 private enum SheetSet {
     case showSettings
     case addByScanning
+    case addManually
     //        case cardDetailView
 }
 
