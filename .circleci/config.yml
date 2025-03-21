@@ -1,31 +1,80 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/configuration-reference
 version: 2.1
 
-# Define a job to be invoked later in a workflow.
-# See: https://circleci.com/docs/jobs-steps/#jobs-overview & https://circleci.com/docs/configuration-reference/#jobs
 jobs:
-  say-hello:
-    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/executor-intro/ & https://circleci.com/docs/configuration-reference/#executor-job
-    docker:
-      # Specify the version you desire here
-      # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
-
-    # Add steps to the job
-    # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
+  build-and-test:
+    macos:  # Use the macOS executor.
+      xcode: "16.1.0"  # Specify the Xcode version *here*
+    environment:
+      PROJECT_NAME: Authenticator.xcodeproj
+      SCHEME_NAME: Authenticator
+      DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
+      TEST_PLAN_NAME1: "UI-Smoke-Tests"
+      TEST_PLAN_NAME2: "Unit-Smoke-Tests"
+      TEST_PLAN_NAME3: "Performance-Smoke-Tests"
     steps:
-      # Checkout the code as the first step.
       - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
 
-# Orchestrate jobs using workflows
-# See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
+      # Cache SPM Packages (Adapted for CircleCI)
+      - restore_cache:
+          keys:
+            - v1-spm-{{ arch }}-{{ checksum "Package.resolved" }}
+            - v1-spm-{{ arch }}-
+      - run:
+          name: "Build"
+          command: |
+            xcodebuild clean build -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      - run:
+          name: "Run UI Smoke Tests"
+          command: |
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME1"
+      - run:
+          name: "Run Unit Smoke Tests"
+          command: |
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME2"
+      - run:
+          name: "Run Performance Smoke Tests"
+          command: |
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME3"
+
+      - save_cache:
+          paths:
+            - ~/Library/Caches/org.swift.swiftpm
+            - .build  # Cache the .build directory (if present)
+          key: v1-spm-{{ arch }}-{{ checksum "Package.resolved" }}
+
+      # Optional: Upload Code Coverage Reports (CircleCI way)
+      - store_test_results: # Built-in step to store test results
+          path: build/reports  # Adjust the path as needed
+      - store_artifacts: # Built-in step to store artifacts (including coverage reports)
+          path: build/reports  # Adjust if your reports are elsewhere
+          destination: coverage-reports
+
+      # --- Optional: Fastlane Integration (Illustrative, adapt to your Fastfile) ---
+      # - run:
+      #     name: Run Fastlane
+      #     command: bundle exec fastlane your_lane
+      #     environment:  # Pass secrets as needed
+      #       FASTLANE_PASSWORD: ${{ secrets.FASTLANE_PASSWORD }}
+      #       MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}
+
+
+      # --- Optional: Upload Artifacts (e.g., .app file) ---
+      # - run:
+      #   name: Archive Application for artifact
+      #   command: |
+      #      xcodebuild archive -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -archivePath build/MyApp.xcarchive
+      # - store_artifacts:
+      #     path: build/MyApp.xcarchive
+      #     destination: app-archive
+
 workflows:
-  say-hello-workflow: # This is the name of the workflow, feel free to change it to better match your workflow.
-    # Inside the workflow, you define the jobs you want to run.
+  build-and-test-workflow:
     jobs:
-      - say-hello
+      - build-and-test:
+          filters: # This is how you control triggers in CircleCI
+            branches:
+              only:
+                - main
+                - develop  # Run on pushes to main and develop
+          context: #Use context for accessing secrets
+            - org-global # Example context, good practice to use a context.
