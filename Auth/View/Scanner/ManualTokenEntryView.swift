@@ -8,30 +8,60 @@
 import SwiftUI
 import SwiftOTP
 
+/// A view that allows manual entry of TOTP token details
 struct ManualTokenEntryView: View {
+    // MARK: - Properties
+    
+    /// Binding to control presentation of this view
     @Binding var isPresented: Bool
+    
+    /// Completion handler called when token is added successfully or fails
     let completion: (Result<String, CodeScannerView.ScanError>) -> Void
     
+    // MARK: - State Properties
+    
+    /// Token issuer name (e.g. "Google", "Microsoft")
     @State private var issuer = ""
+    
+    /// Account name/identifier (e.g. "user@example.com") 
     @State private var accountName = ""
+    
+    /// Secret key in base32 format
     @State private var secret = ""
+    
+    /// Controls visibility of error alert
     @State private var showErrorAlert = false
+    
+    /// Error message to display in alert
     @State private var errorMessage = ""
+    
+    /// Selected hash algorithm for token generation
     @State private var selectedAlgorithm: OTPAlgorithm = .sha256
+    
+    /// Number of digits in generated token
     @State private var selectedDigits: Int = 6
+    
+    /// Controls visibility of algorithm help alert
     @State private var showAlgorithmHelp = false
     
-    // Focus states for keyboard management
+    // MARK: - Focus Management
+    
+    /// Tracks which text field is currently focused
     @FocusState private var focusedField: Field?
     
+    /// Enum defining focusable fields
     private enum Field {
         case issuer, accountName, secret
     }
     
+    // MARK: - Computed Properties
+    
+    /// Returns true if all required fields have values
     private var allFieldsFilled: Bool {
         !issuer.isEmpty && !accountName.isEmpty && !secret.isEmpty
     }
     
+    /// Converts selected algorithm enum to string representation
     private var algorithmString: String {
         switch selectedAlgorithm {
         case .sha256:
@@ -43,9 +73,11 @@ struct ManualTokenEntryView: View {
         }
     }
     
+    // MARK: - View Body
     var body: some View {
         NavigationView {
             Form {
+                // Token details section
                 Section(header: Text("Token Details")) {
                     TextField("Issuer", text: $issuer)
                         .textContentType(.organizationName)
@@ -72,6 +104,7 @@ struct ManualTokenEntryView: View {
                         }
                 }
                 
+                // Advanced options section
                 Section(header: 
                     HStack {
                         Text("Advanced Options")
@@ -133,6 +166,10 @@ struct ManualTokenEntryView: View {
         }
     }
     
+    // MARK: - Validation Methods
+    
+    /// Validates the issuer name
+    /// - Returns: True if valid, false otherwise
     private func validateIssuer() -> Bool {
         if issuer.isEmpty || issuer.count > 50 {
             errorMessage = "Issuer must be between 1 and 50 characters"
@@ -142,6 +179,8 @@ struct ManualTokenEntryView: View {
         return true
     }
     
+    /// Validates the account name
+    /// - Returns: True if valid, false otherwise
     private func validateAccountName() -> Bool {
         if accountName.isEmpty || accountName.count > 50 {
             errorMessage = "Account name must be between 1 and 50 characters"
@@ -151,6 +190,8 @@ struct ManualTokenEntryView: View {
         return true
     }
     
+    /// Validates the secret key
+    /// - Returns: True if valid, false otherwise
     private func validateSecret() -> Bool {
         // Remove any spaces from the secret
         secret = secret.replacingOccurrences(of: " ", with: "")
@@ -173,6 +214,9 @@ struct ManualTokenEntryView: View {
         return true
     }
     
+    // MARK: - Token Creation
+    
+    /// Validates input and creates a new token
     private func addToken() {
         // Validate all fields
         guard validateIssuer() && validateAccountName() && validateSecret() else {
@@ -194,4 +238,3 @@ struct ManualTokenEntryView: View {
         isPresented = false
     }
 } 
-
