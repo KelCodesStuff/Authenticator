@@ -35,7 +35,7 @@
 		BA86425E2B73EE8600285F4D /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86425B2B73EE8600285F4D /* DateExtensions.swift */; };
 		BA86425F2B73EE8600285F4D /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86425C2B73EE8600285F4D /* URLExtensions.swift */; };
 		BA8642632B73EECE00285F4D /* AuthCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642602B73EECD00285F4D /* AuthCodeView.swift */; };
-		BA8642642B73EECE00285F4D /* AuthCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642612B73EECD00285F4D /* AuthCodeScannerView.swift */; };
+		BA8642642B73EECE00285F4D /* CodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642612B73EECD00285F4D /* CodeScannerView.swift */; };
 		BA8642682B73EF1600285F4D /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BA8642672B73EF1600285F4D /* KeychainSwift */; };
 		BA86426E2B73EF4900285F4D /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = BA86426D2B73EF4800285F4D /* SwiftOTP */; };
 		BA8642712B73EF5A00285F4D /* Crypto in Frameworks */ = {isa = PBXBuildFile; productRef = BA8642702B73EF5A00285F4D /* Crypto */; };
@@ -43,8 +43,8 @@
 		BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86427A2B73FACD00285F4D /* ContentView.swift */; };
 		BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0432B77058000F57F66 /* BackUpItem.swift */; };
 		BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0462B77097B00F57F66 /* iCloudManager.swift */; };
-		BAE62CE12D886FD500202D5A /* Smoke Tests.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */; };
 		BAEB64F22B76C7EA0072FB1F /* LockScreenOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */; };
+		BAEDE38C2D8DD2660096CB8E /* ManualTokenEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */; };
 		BAF612A32B75EAAF00B73140 /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAF612A22B75EAAF00B73140 /* CryptoSwift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +76,9 @@
 		BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeEditView.swift; sourceTree = "<group>"; };
 		BA1B19A32B868B840044E434 /* Authenticator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
 		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
+		BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "UI-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
+		BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Unit-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
+		BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Performance-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
 		BA4EF7722D8876EB00D2D50D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7732D8876EB00D2D50D /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7742D8876EB00D2D50D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,13 +110,13 @@
 		BA86425B2B73EE8600285F4D /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		BA86425C2B73EE8600285F4D /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
 		BA8642602B73EECD00285F4D /* AuthCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeView.swift; sourceTree = "<group>"; };
-		BA8642612B73EECD00285F4D /* AuthCodeScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeScannerView.swift; sourceTree = "<group>"; };
+		BA8642612B73EECD00285F4D /* CodeScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeScannerView.swift; sourceTree = "<group>"; };
 		BA8642762B73F33000285F4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BA86427A2B73FACD00285F4D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA86E0432B77058000F57F66 /* BackUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpItem.swift; sourceTree = "<group>"; };
 		BA86E0462B77097B00F57F66 /* iCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudManager.swift; sourceTree = "<group>"; };
-		BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Smoke Tests.xctestplan"; sourceTree = "<group>"; };
 		BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
+		BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualTokenEntryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -183,8 +186,10 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
+				BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */,
+				BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */,
+				BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */,
 				BA4EF7A72D88A52F00D2D50D /* README.md */,
-				BAE62CE02D886FD500202D5A /* Smoke Tests.xctestplan */,
 				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
 				BA8641FA2B73E9BC00285F4D /* Auth */,
@@ -235,6 +240,7 @@
 		BA86422B2B73EA3800285F4D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE3862D8DA94B0096CB8E /* Scanner */,
 				BA8642482B73EE0600285F4D /* Authenticator */,
 				BA8642472B73EDF800285F4D /* LockScreen */,
 				BA4EF7A62D88939D00D2D50D /* Main */,
@@ -290,7 +296,6 @@
 			children = (
 				BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */,
 				BA8642602B73EECD00285F4D /* AuthCodeView.swift */,
-				BA8642612B73EECD00285F4D /* AuthCodeScannerView.swift */,
 				BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */,
 			);
 			path = Authenticator;
@@ -315,6 +320,15 @@
 				BA86425C2B73EE8600285F4D /* URLExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BAEDE3862D8DA94B0096CB8E /* Scanner */ = {
+			isa = PBXGroup;
+			children = (
+				BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */,
+				BA8642612B73EECD00285F4D /* CodeScannerView.swift */,
+			);
+			path = Scanner;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -482,7 +496,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAE62CE12D886FD500202D5A /* Smoke Tests.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,7 +561,7 @@
 				BA8642432B73EDE300285F4D /* KeychainManager.swift in Sources */,
 				BA8642052B73E9BE00285F4D /* Persistence.swift in Sources */,
 				BA8642462B73EDE300285F4D /* View+copiedBanner.swift in Sources */,
-				BA8642642B73EECE00285F4D /* AuthCodeScannerView.swift in Sources */,
+				BA8642642B73EECE00285F4D /* CodeScannerView.swift in Sources */,
 				BA8642332B73EDBA00285F4D /* LockScreenView.swift in Sources */,
 				BA86423B2B73EDC700285F4D /* Credential.swift in Sources */,
 				BA8642342B73EDBA00285F4D /* SetPasscodeView.swift in Sources */,
@@ -571,6 +584,7 @@
 				BA8642082B73E9BE00285F4D /* Auth.xcdatamodeld in Sources */,
 				BA8642392B73EDC700285F4D /* OTPGenerator.swift in Sources */,
 				BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */,
+				BAEDE38C2D8DD2660096CB8E /* ManualTokenEntryView.swift in Sources */,
 				BA8642552B73EE5300285F4D /* ExportView.swift in Sources */,
 				BA8642562B73EE5300285F4D /* SettingsView.swift in Sources */,
 			);
