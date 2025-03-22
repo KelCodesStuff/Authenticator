@@ -26,74 +26,57 @@ struct ContentView: View {
     @State private var indexSetOnDelete: IndexSet = IndexSet()
     @State private var isDeletionAlertPresented: Bool = false
     @State private var isUnlocked = false
+    @State private var searchText = ""
     
     // State variables for error handling
     @State private var showErrorAlert = false
     @State private var errorMessage = ""
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List(selection: $selectedTokens) {
-                    ForEach(0..<fetchedTokens.count, id: \.self) { index in
-                        let item = fetchedTokens[index]
-                        Section {
-                            AuthCodeView(token: token(of: item), totp: $codes[index], timeRemaining: $timeRemaining, onDelete: {
-                                deleteToken(item)
-                            })
-                        }
+        TabView {
+            NavigationView {
+                VStack {
+                    TokenSearchView(
+                        searchText: $searchText,
+                        tokens: fetchedTokens,
+                        codes: $codes,
+                        timeRemaining: $timeRemaining,
+                        onDelete: deleteToken
+                    )
+                    .animation(.default, value: animationTrigger)
+                }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    generateCodes()
+                    clearTemporaryDirectory()
+                }
+                .onReceive(timer) { _ in
+                    timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
+                    if timeRemaining == 30 || codes.first == String.zeros {
+                        generateCodes()
                     }
+                }
+                .onAppear {
+                    handleTestTokens()
                 }
                 
+                // MARK: - Nav Bar
+                .navigationBarTitle("Authenticator", displayMode: .inline)
+                .navigationBarItems(
+                    trailing: HStack {
+                        qrCodeButton
+                        manualEntryButton
+                    }
+                )
+                .toolbarBackground(.visible, for: .navigationBar)
             }
-            .animation(.default, value: animationTrigger)
-            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                generateCodes()
-                clearTemporaryDirectory()
-            }
-            .onReceive(timer) { _ in
-                timeRemaining = 30 - (Int(Date().timeIntervalSince1970) % 30)
-                if timeRemaining == 30 || codes.first == String.zeros {
-                    generateCodes()
-                }
-            }
-            .onAppear {
-                handleTestTokens()
+            .tabItem {
+                Label("Tokens", systemImage: "lock.fill")
             }
             
-            // MARK: - Nav Bar
-            .navigationBarTitle("Authenticator", displayMode: .inline)
-            .navigationBarItems(
-                leading: settingsButton,
-                trailing: HStack {
-                    qrCodeButton
-                    manualEntryButton
+            SettingsView(isPresented: .constant(false))
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape.fill")
                 }
-            )
-            .toolbarBackground(.visible, for: .navigationBar)
-            
-            .sheet(isPresented: $isSheetPresented) {
-                switch presentingSheet {
-                case .showSettings:
-                    SettingsView(isPresented: $isSheetPresented)
-                case .addByScanning:
-                    Scanner(isPresented: $isSheetPresented, codeTypes: [.qr]) { result in
-                        isSheetPresented = false
-                        if case .success = result {
-                            generateCodes()
-                        }
-                    }
-                case .addManually:
-                    ManualTokenEntryView(isPresented: $isSheetPresented) { result in
-                        isSheetPresented = false
-                        if case .success(let uri) = result {
-                            if let token = Token(uri: uri) {
-                                addItem(token)
-                            }
-                        }
-                    }
-                }
-            }
         }
         .accentColor(.green)
         
@@ -101,18 +84,27 @@ struct ContentView: View {
         .alert(isPresented: $showErrorAlert) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
-    }
-    
-    // MARK: - Settings button
-    private var settingsButton: some View {
-        Button(action: {
-            presentingSheet = .showSettings
-            isSheetPresented = true
-        }) {
-            Image(systemName: "gearshape")
+        
+        .sheet(isPresented: $isSheetPresented) {
+            switch presentingSheet {
+            case .addByScanning:
+                Scanner(isPresented: $isSheetPresented, codeTypes: [.qr]) { result in
+                    isSheetPresented = false
+                    if case .success = result {
+                        generateCodes()
+                    }
+                }
+            case .addManually:
+                ManualTokenEntryView(isPresented: $isSheetPresented) { result in
+                    isSheetPresented = false
+                    if case .success(let uri) = result {
+                        if let token = Token(uri: uri) {
+                            addItem(token)
+                        }
+                    }
+                }
+            }
         }
-        .accessibilityIdentifier("settingsButton")
-        .accessibilityLabel("Settings")
     }
     
     // MARK: - QR Code button
@@ -238,14 +230,12 @@ struct ContentView: View {
     }
 }
 
-private var presentingSheet: SheetSet = .showSettings
+private var presentingSheet: SheetSet = .addManually
 private var tokenIndex: Int = 0
 
 private enum SheetSet {
-    case showSettings
     case addByScanning
     case addManually
-    //        case cardDetailView
 }
 
 struct ContentView_Previews: PreviewProvider {
