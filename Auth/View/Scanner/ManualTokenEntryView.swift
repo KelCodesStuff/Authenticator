@@ -155,9 +155,7 @@ struct ManualTokenEntryView: View {
                 Text("""
                     SHA256: Most commonly used algorithm. Provides good security and is widely supported.
                     
-                    SHA512: More secure but less commonly supported. Use only if your service specifically requires it.
-                    
-                    Note: Most services use SHA256 by default.
+                    SHA512: More secure but less supported. Use only if your service specifically requires it.
                     """)
             }
             .onAppear {
