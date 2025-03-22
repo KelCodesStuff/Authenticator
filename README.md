@@ -2,7 +2,7 @@
 
 [![Build and Test](https://github.com/KelCodesStuff/Authenticator/actions/workflows/ios-ci.yml/badge.svg)](https://github.com/KelCodesStuff/Authenticator/actions/workflows/ios-ci.yml)
 
-<img src="https://img.shields.io/badge/Swift-5.9-orange.svg"/>
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/KelCodesStuff/Authenticator/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/KelCodesStuff/Authenticator/tree/main)
 
 [![TestFlight](https://img.shields.io/badge/Join%20The%20TestFlight-blue)](https://testflight.apple.com/join/PDUIq4bp)
 
