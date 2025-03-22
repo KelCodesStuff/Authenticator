@@ -17,7 +17,7 @@ env:
 
 jobs:
   build-and-test:
-    name: Build and Test # Job name
+    name: Build # Job name
     runs-on: macos-latest # Run on the latest macOS runner
 
     steps:
