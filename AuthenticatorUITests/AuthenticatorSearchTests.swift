@@ -21,18 +21,7 @@ final class AuthenticatorSearchTests: XCTestCase {
         // Enable biometric authentication in simulator
         if #available(iOS 13.0, *) {
             app.launchEnvironment["XCUITest_FASTLANE_SKIP_BIOMETRICS"] = "false"
-        }
-        
-        // Add test tokens before launching the app
-        let secret1 = "JBSWY3DPEHPK3PXP"
-        let uri1 = "otpauth://totp/Test%20Service:test@example.com?secret=\(secret1)&issuer=Test%20Service"
-        
-        let secret2 = "JBSWY3DPEHPK3PXP"
-        let uri2 = "otpauth://totp/Another%20Service:user@example.com?secret=\(secret2)&issuer=Another%20Service"
-        
-        app.launchEnvironment["TEST_TOKEN_URI"] = uri1
-        app.launchEnvironment["TEST_TOKEN_URI_2"] = uri2
-        
+        }        
         app.launch()
     }
     
