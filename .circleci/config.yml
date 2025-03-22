@@ -8,6 +8,7 @@ jobs:
       PROJECT_NAME: Authenticator.xcodeproj
       SCHEME_NAME: Authenticator
       DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
+      BUILD_DIR: build # Set the build directory explicitly
     steps:
       - checkout # Correct order: checkout first
       - restore_cache:
@@ -17,16 +18,15 @@ jobs:
       - run:
           name: "Build"
           command: |
-            xcodebuild clean build -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+            xcodebuild clean build -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO BUILD_DIR="$BUILD_DIR" # The crucial change
       - save_cache:
           paths:
             - ~/Library/Caches/org.swift.swiftpm
-            # Remove .build from here, as it's likely in DerivedData
           key: v1-spm-{{ arch }}-{{ checksum "Package.resolved" }} # Correct path
-      - persist_to_workspace:  # Persist build artifacts
+      - persist_to_workspace: # Persist build artifacts
           root: .
           paths:
-            - build  # Persist whatever is in the 'build' directory
+            - build  # Now this WILL find files
 
   test-ui:
     macos:
@@ -36,6 +36,7 @@ jobs:
       SCHEME_NAME: Authenticator
       DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
       TEST_PLAN_NAME: "UI-Smoke-Tests"
+      BUILD_DIR: build
     steps:
       - checkout
       - attach_workspace: # Attach the workspace from the build job
@@ -43,9 +44,9 @@ jobs:
       - run:
           name: "Run UI Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" BUILD_DIR="$BUILD_DIR"
       - store_test_results:
-          path: build/reports #  Correct path
+          path: build/reports # Correct path
       - store_artifacts:
           path: build/reports # Correct path
           destination: ui-coverage-reports
@@ -58,6 +59,7 @@ jobs:
       SCHEME_NAME: Authenticator
       DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
       TEST_PLAN_NAME: "Unit-Smoke-Tests"
+      BUILD_DIR: build
     steps:
       - checkout
       - attach_workspace:
@@ -65,7 +67,7 @@ jobs:
       - run:
           name: "Run Unit Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" BUILD_DIR="$BUILD_DIR"
       - store_test_results:
           path: build/reports # Correct Path
       - store_artifacts:
@@ -80,6 +82,7 @@ jobs:
       SCHEME_NAME: Authenticator
       DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
       TEST_PLAN_NAME: "Performance-Smoke-Tests"
+      BUILD_DIR: build
     steps:
       - checkout
       - attach_workspace:
@@ -87,7 +90,7 @@ jobs:
       - run:
           name: "Run Performance Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" BUILD_DIR="$BUILD_DIR"
       - store_test_results:
           path: build/reports #Correct Path
       - store_artifacts:
