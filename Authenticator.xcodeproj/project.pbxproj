@@ -245,7 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				BAEDE3862D8DA94B0096CB8E /* Scanner */,
-				BA8642482B73EE0600285F4D /* Authenticator */,
+				BA8642482B73EE0600285F4D /* Codes */,
 				BA8642472B73EDF800285F4D /* LockScreen */,
 				BA4EF7A62D88939D00D2D50D /* Main */,
 				BA86424A2B73EE1C00285F4D /* Settings */,
@@ -295,14 +295,14 @@
 			path = LockScreen;
 			sourceTree = "<group>";
 		};
-		BA8642482B73EE0600285F4D /* Authenticator */ = {
+		BA8642482B73EE0600285F4D /* Codes */ = {
 			isa = PBXGroup;
 			children = (
 				BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */,
 				BA8642602B73EECD00285F4D /* AuthCodeView.swift */,
 				BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */,
 			);
-			path = Authenticator;
+			path = Codes;
 			sourceTree = "<group>";
 		};
 		BA86424A2B73EE1C00285F4D /* Settings */ = {
