@@ -28,6 +28,8 @@ struct AuthCodeView: View {
     @State private var isBannerPresented: Bool = false
     /// Controls visibility of the edit view
     @State private var isEditViewPresented: Bool = false
+    /// Controls visibility of the delete confirmation alert
+    @State private var showingDeleteAlert: Bool = false
 
     /// Diameter used for circular UI elements
     private let diameter: CGFloat = 32
@@ -103,9 +105,45 @@ struct AuthCodeView: View {
                     isBannerPresented = false
                 }
             }
+            // Context menu for long press
+            .contextMenu {
+                Button(action: {
+                    UIPasteboard.general.string = totp
+                    guard !isBannerPresented else { return }
+                    isBannerPresented = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        isBannerPresented = false
+                    }
+                }) {
+                    Label("Copy", systemImage: "doc.on.doc")
+                }
+                
+                Button(action: {
+                    isEditViewPresented = true
+                }) {
+                    Label("View", systemImage: "eye")
+                }
+                
+                Button(role: .destructive, action: {
+                    showingDeleteAlert = true
+                }) {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
         }
         .copiedBanner(isPresented: $isBannerPresented)
         .animation(.default, value: isBannerPresented)
+        // Delete alert
+        .alert(isPresented: $showingDeleteAlert) {
+            Alert(
+                title: Text("Delete Account"),
+                message: Text("Are you sure you want to delete this account? You will not be able to use this device to verify your identity."),
+                primaryButton: .destructive(Text("Delete")) {
+                    onDelete()
+                },
+                secondaryButton: .cancel()
+            )
+        }
     }
 
     // MARK: - Private Methods
