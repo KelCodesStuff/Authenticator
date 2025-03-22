@@ -1,5 +1,5 @@
 //
-//  AuthenticatorUITestsLaunchTests.swift
+//  AuthenticatorLaunchTests.swift
 //  AuthenticatorUITests
 //
 //  Created by Kelvin Reid on 3/15/25.
