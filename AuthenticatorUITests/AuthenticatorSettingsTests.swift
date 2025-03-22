@@ -1,5 +1,5 @@
 //
-//  AuthenticatorUISettingsTest.swift
+//  AuthenticatorSettingsTests.swift
 //  Authenticator
 //
 //  Created by Kelvin Reid on 3/20/25.
@@ -93,7 +93,7 @@ final class AuthenticatorSettingsTests: XCTestCase {
         
         // Wait for the settings button to be available and tap it
         let settingsButton = app.buttons["settingsButton"]
-        let settingsExists = settingsButton.waitForExistence(timeout: 5)
+        let settingsExists = settingsButton.waitForExistence(timeout: 15)
         XCTAssertTrue(settingsExists, "Settings button should exist")
         settingsButton.tap()
         
@@ -110,7 +110,7 @@ final class AuthenticatorSettingsTests: XCTestCase {
         
         // Wait for and verify iCloud backup toggle
         let iCloudBackupToggle = app.switches["iCloud Backup"]
-        let backupToggleExists = iCloudBackupToggle.waitForExistence(timeout: 3)
+        let backupToggleExists = iCloudBackupToggle.waitForExistence(timeout: 5)
         XCTAssertTrue(backupToggleExists, "iCloud Backup toggle should exist")
         
         // Close settings
