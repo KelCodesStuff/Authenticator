@@ -46,6 +46,7 @@
 		BAEDE40C2D8E4B5B0096CB8E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE40B2D8E4B5B0096CB8E /* KeychainSwift */; };
 		BAEDE4112D8E4C730096CB8E /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4102D8E4C730096CB8E /* Sentry */; };
 		BAEDE4152D8E4C730096CB8E /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4142D8E4C730096CB8E /* SentrySwiftUI */; };
+		BAEDE4172D8F06560096CB8E /* TokenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +118,7 @@
 		BA86E0462B77097B00F57F66 /* iCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudManager.swift; sourceTree = "<group>"; };
 		BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
 		BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualTokenEntryView.swift; sourceTree = "<group>"; };
+		BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -177,6 +179,7 @@
 		BA4EF7A62D88939D00D2D50D /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */,
 				BA86427A2B73FACD00285F4D /* ContentView.swift */,
 				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
 			);
@@ -593,6 +596,7 @@
 				BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */,
 				BAEDE38C2D8DD2660096CB8E /* ManualTokenEntryView.swift in Sources */,
 				BA8642552B73EE5300285F4D /* ExportView.swift in Sources */,
+				BAEDE4172D8F06560096CB8E /* TokenSearchView.swift in Sources */,
 				BA8642562B73EE5300285F4D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
