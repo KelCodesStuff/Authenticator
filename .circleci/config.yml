@@ -102,7 +102,7 @@ workflows:
             - run-unit-tests
             - run-performance-tests
             - run-ui-tests
-            always: true
+          always: true
           filters:
             branches:
               only:
