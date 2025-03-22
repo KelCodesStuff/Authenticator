@@ -48,19 +48,19 @@ struct AuthCodeEditView: View {
                 }
                 
                 Section {
-                    Button("Delete One-Time Password") {
+                    Button("Delete 2FA Token") {
                         showingDeleteAlert = true
                     }
                     .foregroundColor(.red)
                 }
             }
             // Nav bar
-            .navigationBarTitle("One-Time Password", displayMode: .inline)
+            .navigationBarTitle("2FA Token", displayMode: .inline)
             
             // Delete alert
             .alert(isPresented: $showingDeleteAlert) {
                 Alert(
-                    title: Text("Delete One-Time Password"),
+                    title: Text("Delete Account"),
                     message: Text("Are you sure you want to delete this account? You will not be able to use this device to verify your identity."),
                     primaryButton: .destructive(Text("Delete")) {
                         onDelete()
