@@ -44,8 +44,11 @@ struct TokenSearchView: View {
                         onDelete: { onDelete(token) }
                     )
                 }
+                .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                .listRowBackground(Color.clear)
             }
         }
+        .listStyle(PlainListStyle())
         .searchable(text: $searchText, prompt: "Search")
     }
 }
