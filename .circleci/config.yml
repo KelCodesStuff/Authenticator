@@ -122,5 +122,3 @@ workflows:
                 - develop
           context:
             - org-global
-          when:
-            always: true
