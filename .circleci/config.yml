@@ -38,6 +38,9 @@ jobs:
           name: "Run Unit Smoke Tests"
           command: |
             xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+      - store_artifacts:
+          path: build/Logs/Test
+          destination: unit-test-results
 
   run-performance-tests:
     macos:
@@ -53,6 +56,9 @@ jobs:
           name: "Run Performance Smoke Tests"
           command: |
             xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+      - store_artifacts:
+          path: build/Logs/Test
+          destination: performance-test-results
 
   run-ui-tests:
     macos:
@@ -68,19 +74,15 @@ jobs:
           name: "Run UI Smoke Tests"
           command: |
             xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
-
-  trigger-upload-coverage: # New job
-    macos:
-      xcode: "16.1.0"
-    steps:
-      - run:
-          name: "Trigger Upload Coverage"
-          command: echo "Triggering upload coverage"
+      - store_artifacts:
+          path: build/Logs/Test
+          destination: ui-test-results
 
   upload-coverage:
     macos:
       xcode: "16.1.0"
     steps:
+      - checkout
       - run:
           name: "Generate Code Coverage Report"
           command: |
@@ -91,6 +93,9 @@ jobs:
             curl -Os https://uploader.codecov.io/latest/macos/codecov
             chmod +x codecov
             ./codecov -f codecov.json
+      - store_artifacts:
+          path: codecov.json
+          destination: coverage-report
 
 workflows:
   build-and-test-workflow:
@@ -105,14 +110,11 @@ workflows:
       - run-ui-tests:
           requires:
             - build
-      - trigger-upload-coverage: # New job added
+      - upload-coverage:
           requires:
             - run-unit-tests
             - run-performance-tests
             - run-ui-tests
-      - upload-coverage:
-          requires:
-            - trigger-upload-coverage
           filters:
             branches:
               only:
@@ -120,3 +122,5 @@ workflows:
                 - develop
           context:
             - org-global
+          when:
+            always: true
