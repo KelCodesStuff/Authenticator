@@ -3,8 +3,7 @@ version: 2.1
 jobs:
   build-and-test:
     macos:
-      xcode: "16.0.0"
-    resource_class: macos.x86.medium
+      xcode: "16.1.0"
     steps:
       - checkout
       - run:
