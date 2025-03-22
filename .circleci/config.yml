@@ -1,15 +1,15 @@
 version: 2.1
 
-orbs:
-  macos: circleci/macos@2.7.0
-
 jobs:
   build-and-test:
     macos:
-      xcode: "16.1.0"
+      xcode: "16.0.0"
     resource_class: macos.x86.medium
     steps:
       - checkout
+      - run:
+          name: Select Xcode Version
+          command: sudo xcode-select -s /Applications/Xcode_16.1.0.app/Contents/Developer
       - run:
           name: Build
           command: |
