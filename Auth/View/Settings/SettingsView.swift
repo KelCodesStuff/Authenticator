@@ -91,6 +91,10 @@ struct SettingsView: View {
                             .foregroundColor(Color.green)
                     }
                 }
+                
+                Button("Crash Test") {
+                  fatalError("Crash was triggered")
+                }
             }
             .navigationBarTitle("Settings", displayMode: .inline)
             .navigationBarItems(trailing: Button("Done") {
