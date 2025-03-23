@@ -91,7 +91,7 @@ struct SettingsView: View {
                             .foregroundColor(Color.green)
                     }
                 }
-                
+                // MARK: - Test Button, Remove Before Release
                 Button("Crash Test") {
                   fatalError("Crash was triggered")
                 }
