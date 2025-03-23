@@ -115,19 +115,19 @@ struct AuthCodeView: View {
                         isBannerPresented = false
                     }
                 }) {
-                    Label("Copy", systemImage: "doc.on.doc")
+                    Label("Copy Code", systemImage: "doc.on.doc")
                 }
                 
                 Button(action: {
                     isEditViewPresented = true
                 }) {
-                    Label("View", systemImage: "eye")
+                    Label("Edit Token", systemImage: "pencil")
                 }
                 
                 Button(role: .destructive, action: {
                     showingDeleteAlert = true
                 }) {
-                    Label("Delete", systemImage: "trash")
+                    Label("Delete Token", systemImage: "trash")
                 }
             }
         }
