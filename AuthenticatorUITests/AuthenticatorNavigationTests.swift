@@ -2,7 +2,7 @@
 //  AuthenticatorNavigationTests.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 3/22/25.
+//  Created by Kel Reid on 3/22/25.
 //  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
@@ -87,7 +87,7 @@ final class AuthenticatorNavigationTests: XCTestCase {
         try unlockApp()
         
         // Verify we're on the Tokens tab
-        XCTAssertTrue(app.tabBars.buttons["Authenticator"].isSelected)
+        XCTAssertTrue(app.tabBars.buttons["Tokens"].isSelected)
         
         // Tap the Settings tab
         app.tabBars.buttons["Settings"].tap()
