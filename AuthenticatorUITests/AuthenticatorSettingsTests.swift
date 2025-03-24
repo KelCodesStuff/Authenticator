@@ -2,7 +2,7 @@
 //  AuthenticatorSettingsTests.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 3/20/25.
+//  Created by Kel Reid on 3/20/25.
 //  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
