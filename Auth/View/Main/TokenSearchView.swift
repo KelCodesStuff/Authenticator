@@ -2,7 +2,7 @@
 //  TokenSearchView.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 3/21/25.
+//  Created by Kel Reid on 3/21/25.
 //  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
@@ -15,6 +15,7 @@ struct TokenSearchView: View {
     @Binding var codes: [String]
     @Binding var timeRemaining: Int
     let onDelete: (TokenData) -> Void
+    let onEdit: (TokenData, String, String) -> Void
     
     var filteredTokens: [TokenData] {
         if searchText.isEmpty {
@@ -32,7 +33,7 @@ struct TokenSearchView: View {
         List {
             ForEach(Array(filteredTokens.enumerated()), id: \.element.id) { index, token in
                 Section {
-                    AuthCodeView(
+                    TokenView(
                         token: Token(
                             id: token.id ?? "",
                             uri: token.uri ?? "",
@@ -41,7 +42,10 @@ struct TokenSearchView: View {
                         ) ?? Token(),
                         totp: $codes[index],
                         timeRemaining: $timeRemaining,
-                        onDelete: { onDelete(token) }
+                        onDelete: { onDelete(token) },
+                        onEdit: { issuer, accountName in
+                            onEdit(token, issuer, accountName)
+                        }
                     )
                 }
                 .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
