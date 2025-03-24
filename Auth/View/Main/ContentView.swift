@@ -41,7 +41,8 @@ struct ContentView: View {
                         tokens: fetchedTokens,
                         codes: $codes,
                         timeRemaining: $timeRemaining,
-                        onDelete: deleteToken
+                        onDelete: deleteToken,
+                        onEdit: editToken
                     )
                     .animation(.default, value: animationTrigger)
                 }
@@ -176,6 +177,23 @@ struct ContentView: View {
         } catch let error as NSError {
             // Handle the error, e.g., showing an alert to the user.
             print("Error deleting token: \(error), \(error.userInfo)")
+            showError(error: error)
+        }
+    }
+    
+    // MARK: - Edit function
+    func editToken(_ tokenData: TokenData, issuer: String, accountName: String) {
+        tokenData.displayIssuer = issuer
+        tokenData.displayAccountName = accountName
+        
+        do {
+            try viewContext.save()
+            // Update UI after successful edit
+            generateCodes()
+            // Update animation trigger to refresh UI
+            animationTrigger.toggle()
+        } catch let error as NSError {
+            print("Error editing token: \(error), \(error.userInfo)")
             showError(error: error)
         }
     }
