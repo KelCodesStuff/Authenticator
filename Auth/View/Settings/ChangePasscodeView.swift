@@ -16,6 +16,7 @@ struct ChangePasscodeView: View {
     @State private var showSuccess = false
     @State private var isOverlayVisible = false
     @State private var showPasscodeMismatchError = false
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
@@ -70,7 +71,7 @@ struct ChangePasscodeView: View {
                 
                 Spacer()
             }
-            .overlayViewLock(isVisible: $isOverlayVisible)
+            .overlayViewChangePasscode(isVisible: $isOverlayVisible, showAlert: $showAlert)
             .padding()
             .navigationBarTitle("Change Passcode", displayMode: .large)
             .navigationBarItems(trailing: Button(action: {
