@@ -19,15 +19,15 @@ struct SetPasscodeView: View {
     @State private var showPasscodeMismatchError = false
     
     @State private var isOverlayVisible = false
+    @State private var showAlert = false
     
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                // Instructions for setting passcode
                 Text("Choose an eight digit passcode that will be used to encrypt and decrypt your data.")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding([.leading, .bottom], 20)
+                    .padding(.bottom, 20)
                 
                 // Input field for passcode
                 SecureField("Passcode", text: $passcode)
@@ -67,11 +67,10 @@ struct SetPasscodeView: View {
                     .font(.subheadline)
                     .foregroundColor(.red)
                     .fontWeight(.bold)
-                    .padding([.leading, .top], 20)
+                    .padding(.top, 20)
                 Text("You must remember this passcode. We do not have access to your data and will not be able to restore your account.")
                     .font(.subheadline)
                     .foregroundColor(.gray)
-                    .padding(.leading)
 
                 
                 // Display passcode mismatch error message if necessary
@@ -79,12 +78,12 @@ struct SetPasscodeView: View {
                     Text("The passcodes you entered do not match.")
                         .font(.subheadline)
                         .foregroundColor(.red)
-                        .padding([.leading, .top], 20)
+                        .padding(.top, 20)
                 }
                 
                 Spacer()
             }
-            .overlayViewLock(isVisible: $isOverlayVisible)
+            .overlayViewLock(isVisible: $isOverlayVisible, showAlert: $showAlert)
             .padding()
             .navigationBarTitle("Set Passcode", displayMode: .large)
             .navigationBarItems(trailing: Button(action: {
@@ -114,5 +113,3 @@ struct SetPasscodeView: View {
         showPasscodeMismatchError = !passcode.isEmpty && !confirmationPasscode.isEmpty && passcode != confirmationPasscode
     }
 }
-
-
