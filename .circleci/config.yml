@@ -15,6 +15,10 @@ jobs:
             - v1-spm-{{ arch }}-{{ checksum "Package.resolved" }}
             - v1-spm-{{ arch }}-
       - run:
+          name: Decode GoogleService-Info.plist
+          command: |
+            echo $GOOGLE_SERVICE_INFO_PLIST | base64 --decode > GoogleService-Info.plist
+      - run:
           name: "Build"
           command: |
             xcodebuild clean build -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
