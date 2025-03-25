@@ -63,8 +63,8 @@ jobs:
           { name: 'Performance-Smoke-Tests', output: 'PerformanceTests' } # Performance Test suite
         ]
         device: [
-          'iPhone 16 Pro Max',
-          'iPhone 16'
+          'iPhone-16-Pro-Max',
+          'iPhone-16'
         ]
     
     steps:
@@ -91,29 +91,30 @@ jobs:
       # Execute test plan and generate test results
       - name: Run ${{ matrix.test-plan.name }} on ${{ matrix.device }}
         run: |
+          DEVICE_NAME=$(echo "${{ matrix.device }}" | tr '-' ' ')
           xcodebuild test \
             -project "${{ env.PROJECT_NAME }}" \
             -scheme "${{ env.SCHEME_NAME }}" \
-            -destination "platform=iOS Simulator,name=${{ matrix.device }},OS=latest" \
+            -destination "platform=iOS Simulator,name=${DEVICE_NAME},OS=latest" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -testPlan "${{ matrix.test-plan.name }}" \
-            -resultBundlePath ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult
+            -resultBundlePath "${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult"
 
       # Generate code coverage report in JSON format
       - name: Generate Coverage Report
         run: |
-          xcrun xccov view --report --json ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult > ${{ matrix.test-plan.output }}-${{ matrix.device }}-coverage.json
+          xcrun xccov view --report --json "${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult" > "${{ matrix.test-plan.output }}_${{ matrix.device }}_coverage.json"
 
       # Store test results and coverage reports as artifacts
       - name: Store Test Results and Coverage
         uses: actions/upload-artifact@v4
         if: always()  # Upload artifacts even if tests fail
         with:
-          name: ${{ matrix.test-plan.output }}-${{ matrix.device }}-results
+          name: ${{ matrix.test-plan.output }}_${{ matrix.device }}_results
           path: |
-            ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult
-            ${{ matrix.test-plan.output }}-${{ matrix.device }}-coverage.json
+            ${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult
+            ${{ matrix.test-plan.output }}_${{ matrix.device }}_coverage.json
 
       # --- Optional: Fastlane Integration (for more advanced build/release automation) ---
       # - name: Run Fastlane
