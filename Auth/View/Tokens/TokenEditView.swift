@@ -1,5 +1,5 @@
 //
-//  AuthCodeEditView.swift
+//  TokenEditView.swift
 //  Auth
 //
 //  Created by Kel Reid on 2/7/24.
@@ -97,10 +97,11 @@ struct TokenEditView: View {
                 // Actions Section
                 Section {
                     // Delete button
-                    Button("Delete 2FA Token") {
+                    Button(role: .destructive) {
                         showingDeleteAlert = true
+                    } label: {
+                        Text("Delete 2FA Token")
                     }
-                    .foregroundColor(.red)
                 }
             }
             .navigationBarTitle("Edit 2FA Token: \(token.displayIssuer)", displayMode: .inline)
@@ -121,20 +122,15 @@ struct TokenEditView: View {
                 .foregroundColor(.green)
                 .fontWeight(.bold)
             )
-            
-            // Delete confirmation alert
-            .alert(isPresented: $showingDeleteAlert) {
-                Alert(
-                    title: Text("Delete Account"),
-                    message: Text("Are you sure you want to delete this account? You will not be able to use this device to verify your identity."),
-                    primaryButton: .destructive(Text("Delete")) {
-                        onDelete()
-                        dismissView()
-                    },
-                    secondaryButton: .cancel()
-                )
+            .alert("Delete Account", isPresented: $showingDeleteAlert) {
+                Button("Delete", role: .destructive) {
+                    onDelete()
+                    dismissView()
+                }
+                Button("Cancel", role: .cancel) {}
+            } message: {
+                Text("Are you sure you want to delete this account? You will not be able to use this device to verify your identity.")
             }
-            // Discard changes confirmation alert
             .alert("Discard Changes?", isPresented: $showingDiscardAlert) {
                 Button("Discard", role: .destructive) {
                     dismiss()
@@ -145,13 +141,10 @@ struct TokenEditView: View {
             } message: {
                 Text("Are you sure you want to discard your changes?")
             }
-            // Validation alert
-            .alert(isPresented: $showingValidationAlert) {
-                Alert(
-                    title: Text("Save Error"),
-                    message: Text("Issuer and Account Name cannot be empty."),
-                    dismissButton: .default(Text("OK"))
-                )
+            .alert("Save Error", isPresented: $showingValidationAlert) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text("Issuer and Account Name cannot be empty.")
             }
         }
     }
