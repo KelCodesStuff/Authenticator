@@ -24,7 +24,7 @@ jobs:
             pwd
       # Run the main build and test process
       - run:
-          name: Build and Test
+          name: Build
           command: |
             # Make sure we're in the right directory and file exists
             pwd
@@ -35,6 +35,7 @@ jobs:
               -scheme "$SCHEME_NAME" \
               -destination "$DESTINATION" \
               -derivedDataPath DerivedData \
+              ENABLE_CRASHLYTICS_UPLOAD=NO \
               CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
   # Job for running unit tests
@@ -52,7 +53,7 @@ jobs:
       - run:
           name: "Run Unit Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" ENABLE_CRASHLYTICS_UPLOAD=NO
       # Store test results as artifacts
       - store_artifacts:
           path: build/Logs/Test
@@ -73,7 +74,7 @@ jobs:
       - run:
           name: "Run Performance Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" ENABLE_CRASHLYTICS_UPLOAD=NO
       # Store test results as artifacts
       - store_artifacts:
           path: build/Logs/Test
@@ -94,7 +95,7 @@ jobs:
       - run:
           name: "Run UI Smoke Tests"
           command: |
-            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME"
+            xcodebuild test -project "$PROJECT_NAME" -scheme "$SCHEME_NAME" -destination "$DESTINATION" -configuration Debug -enableCodeCoverage YES -testPlan "$TEST_PLAN_NAME" ENABLE_CRASHLYTICS_UPLOAD=NO
       # Store test results as artifacts
       - store_artifacts:
           path: build/Logs/Test
