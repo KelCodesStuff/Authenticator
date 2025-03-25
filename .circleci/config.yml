@@ -24,7 +24,7 @@ jobs:
             pwd
       # Run the main build and test process
       - run:
-          name: Build
+          name: Build and Test
           command: |
             # Make sure we're in the right directory and file exists
             pwd
@@ -49,6 +49,18 @@ jobs:
       TEST_PLAN_NAME: "Unit-Smoke-Tests"
     steps:
       - checkout
+      # Decode Firebase configuration
+      - run:
+          name: Decode GoogleService-Info.plist
+          command: |
+            echo $GOOGLE_SERVICE_INFO_PLIST | base64 --decode > GoogleService-Info.plist
+            ls -la GoogleService-Info.plist
+      # Debug Crashlytics script
+      - run:
+          name: Debug Crashlytics
+          command: |
+            ls -la DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/
+            chmod +x DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run || true
       # Execute unit test suite
       - run:
           name: "Run Unit Smoke Tests"
@@ -70,6 +82,18 @@ jobs:
       TEST_PLAN_NAME: "Performance-Smoke-Tests"
     steps:
       - checkout
+      # Decode Firebase configuration
+      - run:
+          name: Decode GoogleService-Info.plist
+          command: |
+            echo $GOOGLE_SERVICE_INFO_PLIST | base64 --decode > GoogleService-Info.plist
+            ls -la GoogleService-Info.plist
+      # Debug Crashlytics script
+      - run:
+          name: Debug Crashlytics
+          command: |
+            ls -la DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/
+            chmod +x DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run || true
       # Execute performance test suite
       - run:
           name: "Run Performance Smoke Tests"
@@ -91,6 +115,18 @@ jobs:
       TEST_PLAN_NAME: "UI-Smoke-Tests"
     steps:
       - checkout
+      # Decode Firebase configuration
+      - run:
+          name: Decode GoogleService-Info.plist
+          command: |
+            echo $GOOGLE_SERVICE_INFO_PLIST | base64 --decode > GoogleService-Info.plist
+            ls -la GoogleService-Info.plist
+      # Debug Crashlytics script
+      - run:
+          name: Debug Crashlytics
+          command: |
+            ls -la DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/
+            chmod +x DerivedData/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run || true
       # Execute UI test suite
       - run:
           name: "Run UI Smoke Tests"
