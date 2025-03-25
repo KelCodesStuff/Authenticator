@@ -70,7 +70,7 @@ jobs:
           verbose: true # Optional: print detailed upload information
 
       - name: Upload Test Results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always() # This ensures the results are uploaded even if tests fail
         with:
           name: test-results
@@ -80,7 +80,7 @@ jobs:
             PerfTests.xcresult
             
       - name: Upload Coverage Reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: coverage-reports
@@ -98,7 +98,7 @@ jobs:
 
       # --- Optional: Upload Artifacts ---
       # - name: Upload IPA
-      #   uses: actions/upload-artifact@v3
+      #   uses: actions/upload-artifact@v4
       #   with:
       #     name: Authenticator.ipa
       #     path: path/to/your/ipa/file.ipa
