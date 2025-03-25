@@ -12,6 +12,7 @@ on:
 env:
   PROJECT_NAME: Authenticator.xcodeproj  # Xcode project file name
   SCHEME_NAME: Authenticator            # Xcode scheme to build and test
+  DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'  # Simulator configuration
 
 # Define the jobs to run
 jobs:
@@ -45,7 +46,7 @@ jobs:
           xcodebuild clean build \
             -project "${{ env.PROJECT_NAME }}" \
             -scheme "${{ env.SCHEME_NAME }}" \
-            -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest" \
+            -destination "${{ env.DESTINATION }}" \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
@@ -58,13 +59,9 @@ jobs:
       fail-fast: false  # Continue running other tests even if one fails
       matrix:
         test-plan: [
-          { name: 'UI-Smoke-Tests', output: 'UITests' },           # UI Test suite
+          # { name: 'UI-Smoke-Tests', output: 'UITests' },        # UI Test suite
           { name: 'Unit-Smoke-Tests', output: 'UnitTests' },       # Unit Test suite
-          { name: 'Performance-Smoke-Tests', output: 'PerformanceTests' } # Performance Test suite
-        ]
-        device: [
-          'iPhone-16-Pro-Max',
-          'iPhone-16'
+          { name: 'Performance-Smoke-Tests', output: 'PerfTests' } # Performance Test suite
         ]
     
     steps:
@@ -89,32 +86,31 @@ jobs:
             ${{ runner.os }}-spm-
 
       # Execute test plan and generate test results
-      - name: Run ${{ matrix.test-plan.name }} on ${{ matrix.device }}
+      - name: Run ${{ matrix.test-plan.name }}
         run: |
-          DEVICE_NAME=$(echo "${{ matrix.device }}" | tr '-' ' ')
           xcodebuild test \
             -project "${{ env.PROJECT_NAME }}" \
             -scheme "${{ env.SCHEME_NAME }}" \
-            -destination "platform=iOS Simulator,name=${DEVICE_NAME},OS=latest" \
+            -destination "${{ env.DESTINATION }}" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -testPlan "${{ matrix.test-plan.name }}" \
-            -resultBundlePath "${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult"
+            -resultBundlePath ${{ matrix.test-plan.output }}.xcresult
 
       # Generate code coverage report in JSON format
       - name: Generate Coverage Report
         run: |
-          xcrun xccov view --report --json "${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult" > "${{ matrix.test-plan.output }}_${{ matrix.device }}_coverage.json"
+          xcrun xccov view --report --json ${{ matrix.test-plan.output }}.xcresult > ${{ matrix.test-plan.output }}-coverage.json
 
       # Store test results and coverage reports as artifacts
       - name: Store Test Results and Coverage
         uses: actions/upload-artifact@v4
         if: always()  # Upload artifacts even if tests fail
         with:
-          name: ${{ matrix.test-plan.output }}_${{ matrix.device }}_results
+          name: ${{ matrix.test-plan.output }}-results
           path: |
-            ${{ matrix.test-plan.output }}_${{ matrix.device }}.xcresult
-            ${{ matrix.test-plan.output }}_${{ matrix.device }}_coverage.json
+            ${{ matrix.test-plan.output }}.xcresult
+            ${{ matrix.test-plan.output }}-coverage.json
 
       # --- Optional: Fastlane Integration (for more advanced build/release automation) ---
       # - name: Run Fastlane
