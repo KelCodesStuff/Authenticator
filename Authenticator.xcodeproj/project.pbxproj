@@ -868,6 +868,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Authenticator-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Auth 2FA+";
@@ -911,6 +912,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Authenticator-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Auth 2FA+";
