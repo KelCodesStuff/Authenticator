@@ -1,28 +1,33 @@
+# Workflow name that appears in GitHub Actions UI
 name: Build and Test
 
+# Define when this workflow should be triggered
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop ]  # Run on pushes to main and develop branches
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop ]  # Run on PRs targeting main and develop branches
 
+# Global environment variables used throughout the workflow
 env:
-  PROJECT_NAME: Authenticator.xcodeproj
-  SCHEME_NAME: Authenticator
-  DESTINATION: 'platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest'
+  PROJECT_NAME: Authenticator.xcodeproj  # Xcode project file name
+  SCHEME_NAME: Authenticator            # Xcode scheme to build and test
 
+# Define the jobs to run
 jobs:
+  # Build job: Compiles the project
   build:
-    runs-on: macos-latest
+    runs-on: macos-latest  # Use latest macOS runner
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4  # Fetch repository content
 
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.1.0'
+          xcode-version: '16.1.0'  # Specify Xcode version for consistency
 
+      # Cache Swift Package Manager dependencies to speed up builds
       - name: Cache SPM Packages
         id: cache-spm
         uses: actions/cache@v3
@@ -34,37 +39,44 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
 
+      # Build the project without code signing for CI purposes
       - name: Build
         run: |
           xcodebuild clean build \
             -project "${{ env.PROJECT_NAME }}" \
             -scheme "${{ env.SCHEME_NAME }}" \
-            -destination "${{ env.DESTINATION }}" \
+            -destination "platform=iOS Simulator,name=iPhone 16 Pro Max,OS=latest" \
             -configuration Debug \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO
 
+  # Test job: Runs different test suites in parallel
   test:
-    needs: build
+    needs: build  # Only run tests after successful build
     runs-on: macos-latest
     strategy:
-      fail-fast: false
+      fail-fast: false  # Continue running other tests even if one fails
       matrix:
         test-plan: [
-          { name: 'UI-Smoke-Tests', output: 'UITests' },
-          { name: 'Unit-Smoke-Tests', output: 'UnitTests' },
-          { name: 'Performance-Smoke-Tests', output: 'PerfTests' }
+          { name: 'UI-Smoke-Tests', output: 'UITests' },           # UI Test suite
+          { name: 'Unit-Smoke-Tests', output: 'UnitTests' },       # Unit Test suite
+          { name: 'Performance-Smoke-Tests', output: 'PerformanceTests' } # Performance Test suite
+        ]
+        device: [
+          'iPhone 16 Pro Max',
+          'iPhone 16'
         ]
     
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: '16.1.0'
 
+      # Reuse cached dependencies from build job
       - name: Cache SPM Packages
         id: cache-spm
         uses: actions/cache@v3
@@ -76,29 +88,32 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
 
-      - name: Run ${{ matrix.test-plan.name }}
+      # Execute test plan and generate test results
+      - name: Run ${{ matrix.test-plan.name }} on ${{ matrix.device }}
         run: |
           xcodebuild test \
             -project "${{ env.PROJECT_NAME }}" \
             -scheme "${{ env.SCHEME_NAME }}" \
-            -destination "${{ env.DESTINATION }}" \
+            -destination "platform=iOS Simulator,name=${{ matrix.device }},OS=latest" \
             -configuration Debug \
             -enableCodeCoverage YES \
             -testPlan "${{ matrix.test-plan.name }}" \
-            -resultBundlePath ${{ matrix.test-plan.output }}.xcresult
+            -resultBundlePath ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult
 
+      # Generate code coverage report in JSON format
       - name: Generate Coverage Report
         run: |
-          xcrun xccov view --report --json ${{ matrix.test-plan.output }}.xcresult > ${{ matrix.test-plan.output }}-coverage.json
+          xcrun xccov view --report --json ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult > ${{ matrix.test-plan.output }}-${{ matrix.device }}-coverage.json
 
+      # Store test results and coverage reports as artifacts
       - name: Store Test Results and Coverage
         uses: actions/upload-artifact@v4
-        if: always()
+        if: always()  # Upload artifacts even if tests fail
         with:
-          name: ${{ matrix.test-plan.output }}-results
+          name: ${{ matrix.test-plan.output }}-${{ matrix.device }}-results
           path: |
-            ${{ matrix.test-plan.output }}.xcresult
-            ${{ matrix.test-plan.output }}-coverage.json
+            ${{ matrix.test-plan.output }}-${{ matrix.device }}.xcresult
+            ${{ matrix.test-plan.output }}-${{ matrix.device }}-coverage.json
 
       # --- Optional: Fastlane Integration (for more advanced build/release automation) ---
       # - name: Run Fastlane
@@ -114,4 +129,3 @@ jobs:
       #     name: Authenticator.ipa
       #     path: path/to/your/ipa/file.ipa
 
-     
