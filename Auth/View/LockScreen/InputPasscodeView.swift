@@ -72,7 +72,7 @@ struct InputPasscodeView: View {
                 
                 Spacer()
             }
-            .overlayViewUnlock(isVisible: $isOverlayVisible)
+            .overlayViewUnlock(isVisible: $isOverlayVisible, showAlert: $showAlert)
             .padding()
             .navigationBarTitle("Authenticator 2FA+", displayMode: .large)
             .navigationBarItems(trailing: Button(action: {
