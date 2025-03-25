@@ -56,35 +56,21 @@ jobs:
         run: |
           xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME3 }}" -resultBundlePath PerfTests.xcresult # Xcode test command for performance smoke tests
 
-      - name: Convert Coverage Reports # Convert XCResult to Codecov format
+      - name: Generate Coverage Reports
         run: |
           xcrun xccov view --report --json UITests.xcresult > ui-coverage.json
           xcrun xccov view --report --json UnitTests.xcresult > unit-coverage.json
           xcrun xccov view --report --json PerfTests.xcresult > perf-coverage.json
 
-      - name: Upload Code Coverage Reports
-        uses: codecov/codecov-action@v3
-        with:
-          files: ui-coverage.json,unit-coverage.json,perf-coverage.json
-          fail_ci_if_error: true
-          verbose: true # Optional: print detailed upload information
-
-      - name: Upload Test Results
+      - name: Store Test Results and Coverage
         uses: actions/upload-artifact@v4
         if: always() # This ensures the results are uploaded even if tests fail
         with:
-          name: test-results
+          name: test-results-and-coverage
           path: |
             UITests.xcresult
             UnitTests.xcresult
             PerfTests.xcresult
-            
-      - name: Upload Coverage Reports
-        uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: coverage-reports
-          path: |
             ui-coverage.json
             unit-coverage.json
             perf-coverage.json
