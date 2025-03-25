@@ -44,23 +44,50 @@ jobs:
         run: |
           xcodebuild clean build -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO # Xcode build command
 
-    #  - name: Run UI Smoke Tests # Run UI smoke tests
-    #   run: |
-    #      xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME1 }}" # Xcode test command for UI smoke tests
+      - name: Run UI Smoke Tests # Run UI smoke tests
+        run: |
+          xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME1 }}" -resultBundlePath UITests.xcresult # Xcode test command for UI smoke tests
 
-    #  - name: Run Unit Smoke Tests # Run unit smoke tests
-    #    run: |
-    #      xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME2 }}" # Xcode test command for unit smoke tests
+      - name: Run Unit Smoke Tests # Run unit smoke tests
+        run: |
+          xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME2 }}" -resultBundlePath UnitTests.xcresult # Xcode test command for unit smoke tests
 
-    #  - name: Run Performance Smoke Tests # Run performance smoke tests
-    #    run: |
-    #      xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME3 }}" # Xcode test command for performance smoke tests
+      - name: Run Performance Smoke Tests # Run performance smoke tests
+        run: |
+          xcodebuild test -project "${{ env.PROJECT_NAME }}" -scheme "${{ env.SCHEME_NAME }}" -destination "${{ env.DESTINATION }}" -configuration Debug -enableCodeCoverage YES -testPlan "${{ env.TEST_PLAN_NAME3 }}" -resultBundlePath PerfTests.xcresult # Xcode test command for performance smoke tests
 
-    #  - name: Upload Code Coverage Reports (Optional) # Upload code coverage reports
-    #    uses: codecov/codecov-action@v3
-    #    with:
-    #      files: ${{ github.workspace }}/your_report.xml # Path to code coverage report
-    #      fail_ci_if_error: true # Fail CI if code coverage upload fails
+      - name: Convert Coverage Reports # Convert XCResult to Codecov format
+        run: |
+          xcrun xccov view --report --json UITests.xcresult > ui-coverage.json
+          xcrun xccov view --report --json UnitTests.xcresult > unit-coverage.json
+          xcrun xccov view --report --json PerfTests.xcresult > perf-coverage.json
+
+      - name: Upload Code Coverage Reports
+        uses: codecov/codecov-action@v3
+        with:
+          files: ui-coverage.json,unit-coverage.json,perf-coverage.json
+          fail_ci_if_error: true
+          verbose: true # Optional: print detailed upload information
+
+      - name: Upload Test Results
+        uses: actions/upload-artifact@v3
+        if: always() # This ensures the results are uploaded even if tests fail
+        with:
+          name: test-results
+          path: |
+            UITests.xcresult
+            UnitTests.xcresult
+            PerfTests.xcresult
+            
+      - name: Upload Coverage Reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: coverage-reports
+          path: |
+            ui-coverage.json
+            unit-coverage.json
+            perf-coverage.json
 
       # --- Optional: Fastlane Integration (for more advanced build/release automation) ---
       # - name: Run Fastlane
