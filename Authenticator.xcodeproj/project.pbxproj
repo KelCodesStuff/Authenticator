@@ -84,9 +84,6 @@
 		BA1979412B741F7F00C0EDF6 /* TokenEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEditView.swift; sourceTree = "<group>"; };
 		BA1B19A32B868B840044E434 /* Authenticator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
 		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
-		BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "UI-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
-		BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Unit-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
-		BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Performance-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
 		BA4EF7722D8876EB00D2D50D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7732D8876EB00D2D50D /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7742D8876EB00D2D50D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -147,6 +144,11 @@
 			path = AuthenticatorPerformanceTests;
 			sourceTree = "<group>";
 		};
+		BAEDE53B2D9347650096CB8E /* TestPlans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TestPlans;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,9 +202,7 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
-				BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */,
-				BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */,
-				BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */,
+				BAEDE53B2D9347650096CB8E /* TestPlans */,
 				BA4EF7A72D88A52F00D2D50D /* README.md */,
 				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */,
@@ -565,8 +565,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
 			);
 			outputFileListPaths = (
 			);
