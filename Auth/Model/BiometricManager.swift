@@ -1,3 +1,11 @@
+//
+//  BiometricManager.swift
+//  Authenticator
+//
+//  Created by Kel Reid on 03/22/25
+//
+
+
 import LocalAuthentication
 import SwiftUI
 
