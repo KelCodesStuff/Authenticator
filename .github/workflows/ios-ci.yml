@@ -91,6 +91,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-spm-
 
+      # Create GoogleService-Info.plist from secret
+      - name: Create GoogleService-Info.plist
+        run: |
+          mkdir -p Config
+          echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" > Config/GoogleService-Info.plist
+
       # Execute test plan and generate test results
       - name: Run ${{ matrix.test-plan.name }}
         run: |
