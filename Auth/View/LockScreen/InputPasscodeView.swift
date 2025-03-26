@@ -2,8 +2,8 @@
 //  InputPasscodeView.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 2/6/24.
-//  Copyright © 2024 Studio757 LLC. All rights reserved.
+//  Created by Kel Reid on 2/6/24.
+//  Copyright © 2024 OneVR LLC. All rights reserved.
 //
 
 import SwiftUI
@@ -72,7 +72,7 @@ struct InputPasscodeView: View {
                 
                 Spacer()
             }
-            .overlayViewUnlock(isVisible: $isOverlayVisible)
+            .overlayViewUnlock(isVisible: $isOverlayVisible, showAlert: $showAlert)
             .padding()
             .navigationBarTitle("Authenticator 2FA+", displayMode: .large)
             .navigationBarItems(trailing: Button(action: {

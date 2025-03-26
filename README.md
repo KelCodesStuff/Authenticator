@@ -2,8 +2,6 @@
 
 [![Build and Test](https://github.com/KelCodesStuff/Authenticator/actions/workflows/ios-ci.yml/badge.svg)](https://github.com/KelCodesStuff/Authenticator/actions/workflows/ios-ci.yml)
 
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/KelCodesStuff/Authenticator/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/KelCodesStuff/Authenticator/tree/main)
-
 [![TestFlight](https://img.shields.io/badge/Join%20The%20TestFlight-blue)](https://testflight.apple.com/join/PDUIq4bp)
 
 ![Platforms](https://img.shields.io/badge/Platform%20Compatibility-iOS%2016+%20|%20iPadOS%2016+-red?logo=apple&?color=red)

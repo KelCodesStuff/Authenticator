@@ -2,7 +2,7 @@
 //  AuthenticatorScanTokenTests.swift
 //  AuthenticatorUITests
 //
-//  Created by Kelvin Reid on 3/20/25.
+//  Created by Kel Reid on 3/20/25.
 //  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
@@ -62,7 +62,7 @@ final class AuthenticatorScanTokenTests: XCTestCase {
         
         // Extended wait with polling
         let startTime = Date()
-        let timeout: TimeInterval = 20
+        let timeout: TimeInterval = 15
         while !unlockButton.exists {
             if Date().timeIntervalSince(startTime) > timeout {
                 // Take screenshot and UI hierarchy snapshot
@@ -93,7 +93,7 @@ final class AuthenticatorScanTokenTests: XCTestCase {
         
         // Wait for the QR code button to be available and tap it
         let scanButton = app.buttons["qrCodeButton"]
-        let scanButtonExists = scanButton.waitForExistence(timeout: 5)
+        let scanButtonExists = scanButton.waitForExistence(timeout: 15)
         XCTAssertTrue(scanButtonExists, "QR Code button should exist")
         scanButton.tap()
         

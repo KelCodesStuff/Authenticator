@@ -2,7 +2,7 @@
 //  Persistence.swift
 //  Auth
 //
-//  Created by Kelvin Reid on 2/7/24.
+//  Created by Kel Reid on 2/7/24.
 //
 
 import CoreData

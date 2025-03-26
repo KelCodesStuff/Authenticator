@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
-	<false/>
+	<true/>
 	<key>NSFaceIDUsageDescription</key>
 	<string>We use Face ID to securely unlock your authenticator app.</string>
 </dict>
