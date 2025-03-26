@@ -43,7 +43,8 @@ jobs:
       # Create GoogleService-Info.plist from secret
       - name: Create GoogleService-Info.plist
         run: |
-          echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" > Authenticator/GoogleService-Info.plist
+          mkdir -p Config
+          echo "${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}" > Config/GoogleService-Info.plist
 
       # Build the project without code signing for CI purposes
       - name: Build
