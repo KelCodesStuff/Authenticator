@@ -41,6 +41,16 @@ Authenticator 2FA+ generates a new 6-digit code every 30 seconds, ensuring that 
   - iCloud backup and sync
   - Secure data storage
 
+## Images
+
+Here are some screenshots of Authenticator 2FA+ in action:
+
+<div align="center">
+  <img src="Images/codes-view.png" alt="codes-view.png" width="300">
+  <img src="Images/codes-add-view.png" alt="codes-add-view.png" width="300">
+  <img src="Images/settings-view.png" alt="settings-view" width="300">
+</div>
+
 ## Getting Started
 
 1. Download Authenticator 2FA+ from the App Store
