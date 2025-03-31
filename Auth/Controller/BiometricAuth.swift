@@ -2,8 +2,8 @@
 //  BiometricAuth.swift
 //  Authenticator
 //
-//  Created by Kelvin Reid on 1/28/24.
-//  Copyright © 2024 Studio757 LLC. All rights reserved.
+//  Created by Kel Reid on 1/28/24.
+//  Copyright © 2024 OneVR LLC. All rights reserved.
 //
 
 import LocalAuthentication

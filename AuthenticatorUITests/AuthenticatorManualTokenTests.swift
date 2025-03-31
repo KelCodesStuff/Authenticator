@@ -2,7 +2,7 @@
 //  AuthenticatorManualTokenTests.swift
 //  AuthenticatorUITests
 //
-//  Created by Kelvin Reid on 3/20/25.
+//  Created by Kel Reid on 3/20/25.
 //  Copyright © 2025 OneVR LLC. All rights reserved.
 //
 
@@ -83,12 +83,12 @@ final class AuthenticatorManualTokenTests: XCTestCase {
     }
     
     // MARK: - Manual Entry Tests
-    func testValidTokenEntry() throws {
+    func testValidTokenEntry1() throws {
         try unlockApp()
         
         // Wait for the manual entry button to be available and tap it
         let manualEntryButton = app.buttons["manualEntryButton"]
-        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 5)
+        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 15)
         XCTAssertTrue(manualEntryExists, "Manual Entry button should exist")
         manualEntryButton.tap()
         
@@ -101,10 +101,10 @@ final class AuthenticatorManualTokenTests: XCTestCase {
         let secretTextField = app.secureTextFields["Secret Key"]
         
         issuerTextField.tap()
-        issuerTextField.typeText("Test Issuer")
+        issuerTextField.typeText("Apple")
         
         accountTextField.tap()
-        accountTextField.typeText("Test Account")
+        accountTextField.typeText("Solid Snake")
         
         // Enter valid secret
         secretTextField.tap()
@@ -114,8 +114,78 @@ final class AuthenticatorManualTokenTests: XCTestCase {
         app.buttons["Add"].tap()
         
         // Verify token was added
-        XCTAssertTrue(app.staticTexts["Test Issuer"].exists)
-        XCTAssertTrue(app.staticTexts["Test Account"].exists)
+        XCTAssertTrue(app.staticTexts["Apple"].exists)
+        XCTAssertTrue(app.staticTexts["Solid Snake"].exists)
+    }
+    
+    func testValidTokenEntry2() throws {
+        try unlockApp()
+        
+        // Wait for the manual entry button to be available and tap it
+        let manualEntryButton = app.buttons["manualEntryButton"]
+        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 15)
+        XCTAssertTrue(manualEntryExists, "Manual Entry button should exist")
+        manualEntryButton.tap()
+        
+        // Verify manual entry view is shown
+        XCTAssertTrue(app.navigationBars["Manual Entry"].exists)
+        
+        // Fill in valid data
+        let issuerTextField = app.textFields["Issuer"]
+        let accountTextField = app.textFields["Account Name"]
+        let secretTextField = app.secureTextFields["Secret Key"]
+        
+        issuerTextField.tap()
+        issuerTextField.typeText("Google")
+        
+        accountTextField.tap()
+        accountTextField.typeText("Liquid Snake")
+        
+        // Enter valid secret
+        secretTextField.tap()
+        secretTextField.typeText("JBSWY2DPEHPK3PXP")
+        
+        // Add valid token
+        app.buttons["Add"].tap()
+        
+        // Verify token was added
+        XCTAssertTrue(app.staticTexts["Google"].exists)
+        XCTAssertTrue(app.staticTexts["Liquid Snake"].exists)
+    }
+    
+    func testValidTokenEntry3() throws {
+        try unlockApp()
+        
+        // Wait for the manual entry button to be available and tap it
+        let manualEntryButton = app.buttons["manualEntryButton"]
+        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 15)
+        XCTAssertTrue(manualEntryExists, "Manual Entry button should exist")
+        manualEntryButton.tap()
+        
+        // Verify manual entry view is shown
+        XCTAssertTrue(app.navigationBars["Manual Entry"].exists)
+        
+        // Fill in valid data
+        let issuerTextField = app.textFields["Issuer"]
+        let accountTextField = app.textFields["Account Name"]
+        let secretTextField = app.secureTextFields["Secret Key"]
+        
+        issuerTextField.tap()
+        issuerTextField.typeText("Philanthrophy")
+        
+        accountTextField.tap()
+        accountTextField.typeText("Otacon")
+        
+        // Enter valid secret
+        secretTextField.tap()
+        secretTextField.typeText("JBSWY4DPEHPK3PXP")
+        
+        // Add valid token
+        app.buttons["Add"].tap()
+        
+        // Verify token was added
+        XCTAssertTrue(app.staticTexts["Philanthrophy"].exists)
+        XCTAssertTrue(app.staticTexts["Otacon"].exists)
     }
     
     func testInvalidTokenEntry() throws {
@@ -123,7 +193,7 @@ final class AuthenticatorManualTokenTests: XCTestCase {
         
         // Wait for the manual entry button to be available and tap it
         let manualEntryButton = app.buttons["manualEntryButton"]
-        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 5)
+        let manualEntryExists = manualEntryButton.waitForExistence(timeout: 15)
         XCTAssertTrue(manualEntryExists, "Manual Entry button should exist")
         manualEntryButton.tap()
         

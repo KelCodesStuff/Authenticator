@@ -8,103 +8,119 @@
 import SwiftUI
 import MobileCoreServices
 import UniformTypeIdentifiers
-import CloudKit
+import CoreData
 
-let container = CKContainer.default()
-let privateDatabase = container.privateCloudDatabase
-
+/// Delegate class to handle document picker functionality
 class DocumentPickerDelegate: NSObject, ObservableObject, UIDocumentPickerDelegate {
-    @State private var isICloudBackupEnabled = false
-    
     @Published var selectedURL: URL?
 
+    /// Called when user selects documents in picker
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         guard let selectedURL = urls.first else { return }
         self.selectedURL = selectedURL
         controller.dismiss(animated: true, completion: nil)
     }
 
+    /// Called when document picker is cancelled
     func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
         controller.dismiss(animated: true, completion: nil)
     }
 }
 
+/// Main settings view containing app configuration options
 struct SettingsView: View {
+    // MARK: - Properties
+    
     @Binding var isPresented: Bool
     @StateObject private var documentPickerDelegate = DocumentPickerDelegate()
     @StateObject private var biometricManager = BiometricManager()
-    @State private var isICloudBackupEnabled = false
+    
+    // State variables for various settings and UI controls
     @State private var showBiometricAlert = false
     @State private var showPasscodeVerification = false
     @State private var verificationPasscode = ""
     @State private var showError = false
     @State private var errorMessage = ""
+    @State private var showDisableConfirmation = false
+    @State private var showChangePasscode = false
     @AppStorage("storedPasscode") private var storedPasscode: String = ""
 
+    // MARK: - View Body
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Security"), footer: Text("Use \(biometricManager.getBiometricType()) to quickly unlock the app")) {
+                // Security & Privacy Section
+                Section(header: Text("Security & Privacy")) {
                     if biometricManager.isBiometricsAvailable() {
-                        Toggle("\(biometricManager.getBiometricType())", isOn: Binding(
+                        Toggle(isOn: Binding(
                             get: { biometricManager.isEnabled },
                             set: { newValue in
                                 if newValue {
                                     showPasscodeVerification = true
+                                    AnalyticsService.shared.logEvent(.biometricEnabled)
                                 } else {
-                                    biometricManager.isEnabled = false
+                                    showDisableConfirmation = true
                                 }
                             }
-                        ))
-                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
-                    }
-                }
-                
-                Section(header: Text("Backup"), footer: Text("")) {
-                    Toggle("iCloud Backup", isOn: $isICloudBackupEnabled)
-                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
-                        .onChange(of: isICloudBackupEnabled) { newValue, _ in
-                            self.handleICloudBackupToggle(newValue)
+                        )) {
+                            Label("Face ID / Touch ID", systemImage: "faceid")
                         }
-                }
-                
-                Section(header: Text("Information"), footer: Text("")) {
-                    if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
-                       let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
-                        KeyValueRow("Version", value: "\(version) (\(build))")
-                    } else {
-                        KeyValueRow("Version", value: "")
+                        .toggleStyle(SwitchToggleStyle(tint: Color.green))
                     }
                     
+                    Button(action: { showChangePasscode = true }) {
+                        Label("Change Passcode", systemImage: "lock")
+                    }
+                }
+                
+                // About Section
+                Section(header: Text("About")) {
+                    if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String,
+                       let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+                        KeyValueRow("Version", value: "\(version) (\(build))", icon: "info.circle")
+                    }
+                    
+                    Link(destination: URL(string: "itms-apps://itunes.apple.com/app/idYOUR_APP_ID")!) {
+                        Label("Rate App", systemImage: "star")
+                    }
+                }
+                
+                // Legal Section
+                Section(header: Text("Legal")) {
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/privacy-policy")!) {
                         Label("Privacy Policy", systemImage: "hand.raised")
-                            .foregroundColor(Color.green)
                     }
                     
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/terms-of-service")!) {
                         Label("Terms of Service", systemImage: "note.text")
-                            .foregroundColor(Color.green)
                     }
                     
                     Link(destination: URL(string: "https://sites.google.com/view/onevrtech/end-user-license-agreement")!) {
                         Label("EULA", systemImage: "hand.thumbsup")
-                            .foregroundColor(Color.green)
                     }
                 }
             }
             .navigationBarTitle("Settings", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Done") {
-                isPresented.toggle()
-            }
-            .accentColor(Color.green))
         }
+        // View modifiers for handling various states and alerts
         .onAppear {
-            self.checkICloudBackupStatus()
+            AnalyticsService.shared.logEvent(.settingsOpened)
         }
         .alert("Biometric Authentication", isPresented: $showBiometricAlert) {
             Button("OK", role: .cancel) { }
         } message: {
             Text("Biometric authentication is not available on this device.")
+        }
+        .alert("Disable \(biometricManager.getBiometricType())?", isPresented: $showDisableConfirmation) {
+            Button("Cancel", role: .cancel) {
+                biometricManager.isEnabled = true
+            }
+            Button("Disable", role: .destructive) {
+                biometricManager.isEnabled = false
+                AnalyticsService.shared.logEvent(.biometricDisabled)
+            }
+        } message: {
+            Text("Are you sure you want to disable \(biometricManager.getBiometricType())? You'll need to use your passcode to unlock the app.")
         }
         .alert("Error", isPresented: $showError) {
             Button("OK", role: .cancel) { }
@@ -121,11 +137,18 @@ struct SettingsView: View {
                     showPasscodeVerification = false
                     biometricManager.isEnabled = false
                     verificationPasscode = ""
+                    AnalyticsService.shared.logEvent(.biometricSetupCancelled)
                 }
             )
         }
+        .sheet(isPresented: $showChangePasscode) {
+            ChangePasscodeView()
+        }
     }
 
+    // MARK: - Private Methods
+    
+    /// Verifies passcode and enables biometric authentication if successful
     private func verifyPasscodeAndEnableBiometrics() {
         KeychainManager.shared.retrievePasscode(verificationPasscode) { isSuccess in
             DispatchQueue.main.async {
@@ -135,65 +158,40 @@ struct SettingsView: View {
                             biometricManager.isEnabled = true
                             showPasscodeVerification = false
                             verificationPasscode = ""
+                            AnalyticsService.shared.logEvent(.biometricSetupCompleted)
                         } else {
                             errorMessage = "Failed to enable \(biometricManager.getBiometricType()). Please try again."
                             showError = true
                             biometricManager.isEnabled = false
+                            AnalyticsService.shared.logEvent(.biometricSetupFailed)
                         }
                     }
                 } else {
                     errorMessage = "Incorrect passcode. Please try again."
                     showError = true
                     biometricManager.isEnabled = false
+                    AnalyticsService.shared.logEvent(.biometricSetupFailed)
                 }
             }
         }
     }
 
-    // Helper view for key-value pairs
-    private func KeyValueRow(_ key: String, value: String) -> some View {
+    /// Helper view for displaying key-value pairs in settings
+    private func KeyValueRow(_ key: String, value: String, icon: String? = nil) -> some View {
         HStack {
-            Text(key)
-            Spacer()
-            Text(value )
-        }
-    }
-    
-    // New function to handle iCloud backup toggle
-    private func handleICloudBackupToggle(_ isEnabled: Bool) {
-        if isEnabled {
-            // Check iCloud availability and prompt if necessary
-            CKContainer.default().accountStatus { (status, error) in
-                DispatchQueue.main.async {
-                    switch status {
-                    case .available:
-                        print("iCloud is available, proceed with enabling backup.")
-                        // Proceed to enable backup functionality
-                    default:
-                        self.promptForICloudSettings()
-                    }
-                }
+            if let icon = icon {
+                Label(key, systemImage: icon)
+            } else {
+                Text(key)
             }
-        } else {
-            // Handle disabling iCloud backup
-            print("User has disabled iCloud backup.")
+            Spacer()
+            Text(value)
+                .foregroundColor(.gray)
         }
-    }
-        
-    private func checkICloudBackupStatus() {
-        // Similar check as in handleICloudBackupToggle to initially set the toggle state
-    }
-
-    // Function to prompt user to enable iCloud in Settings
-    private func promptForICloudSettings() {
-//        guard let url = URL(string: UIApplication.openSettingsURLString) else { return }
-//        if UIApplication.shared.canOpenURL(url) {
-//            UIApplication.shared.open(url, options: [:], completion: (() -> Void)? = nil)
-//        }
     }
 }
 
-
+/// Preview provider for SettingsView
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsView(isPresented: .constant(false))

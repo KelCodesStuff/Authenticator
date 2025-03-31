@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BA1979422B741F7F00C0EDF6 /* AuthCodeEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */; };
+		BA1979422B741F7F00C0EDF6 /* TokenEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1979412B741F7F00C0EDF6 /* TokenEditView.swift */; };
 		BA4EF7A92D88AB6300D2D50D /* TokenDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */; };
 		BA5F7B4C2B8592B500C343E8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BA5F7B4B2B8592B500C343E8 /* LaunchScreen.storyboard */; };
 		BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA7B04F92D862F0E00F882BE /* BiometricManager.swift */; };
@@ -33,19 +33,27 @@
 		BA86425D2B73EE8600285F4D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86425A2B73EE8600285F4D /* StringExtensions.swift */; };
 		BA86425E2B73EE8600285F4D /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86425B2B73EE8600285F4D /* DateExtensions.swift */; };
 		BA86425F2B73EE8600285F4D /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86425C2B73EE8600285F4D /* URLExtensions.swift */; };
-		BA8642632B73EECE00285F4D /* AuthCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642602B73EECD00285F4D /* AuthCodeView.swift */; };
+		BA8642632B73EECE00285F4D /* TokenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642602B73EECD00285F4D /* TokenView.swift */; };
 		BA8642642B73EECE00285F4D /* CodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8642612B73EECD00285F4D /* CodeScannerView.swift */; };
 		BA86426E2B73EF4900285F4D /* SwiftOTP in Frameworks */ = {isa = PBXBuildFile; productRef = BA86426D2B73EF4800285F4D /* SwiftOTP */; };
 		BA8642772B73F33000285F4D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BA8642762B73F33000285F4D /* Images.xcassets */; };
 		BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86427A2B73FACD00285F4D /* ContentView.swift */; };
 		BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0432B77058000F57F66 /* BackUpItem.swift */; };
 		BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA86E0462B77097B00F57F66 /* iCloudManager.swift */; };
-		BAEB64F22B76C7EA0072FB1F /* LockScreenOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */; };
 		BAEDE38C2D8DD2660096CB8E /* ManualTokenEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */; };
 		BAEDE4092D8E4ADC0096CB8E /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4082D8E4ADC0096CB8E /* CryptoSwift */; };
 		BAEDE40C2D8E4B5B0096CB8E /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE40B2D8E4B5B0096CB8E /* KeychainSwift */; };
-		BAEDE4112D8E4C730096CB8E /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4102D8E4C730096CB8E /* Sentry */; };
-		BAEDE4152D8E4C730096CB8E /* SentrySwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4142D8E4C730096CB8E /* SentrySwiftUI */; };
+		BAEDE4172D8F06560096CB8E /* TokenSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */; };
+		BAEDE4222D8F660C0096CB8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */; };
+		BAEDE4232D8F660C0096CB8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */; };
+		BAEDE4242D8F660C0096CB8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */; };
+		BAEDE4252D8F660C0096CB8E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */; };
+		BAEDE42F2D8F68EB0096CB8E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE42E2D8F68EB0096CB8E /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		BAEDE4312D8F68EB0096CB8E /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4302D8F68EB0096CB8E /* FirebaseCrashlytics */; };
+		BAEDE4332D8F68EB0096CB8E /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = BAEDE4322D8F68EB0096CB8E /* FirebasePerformance */; };
+		BAEDE4372D8FC79B0096CB8E /* AnalyticsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE4352D8FC79A0096CB8E /* AnalyticsService.swift */; };
+		BAEDE4392D91D9790096CB8E /* ChangePasscodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE4382D91D9790096CB8E /* ChangePasscodeView.swift */; };
+		BAEDE43B2D91EFEF0096CB8E /* LockScreenOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEDE43A2D91EFEF0096CB8E /* LockScreenOverlay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,12 +81,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCodeEditView.swift; sourceTree = "<group>"; };
+		BA1979412B741F7F00C0EDF6 /* TokenEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEditView.swift; sourceTree = "<group>"; };
 		BA1B19A32B868B840044E434 /* Authenticator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Authenticator.entitlements; sourceTree = "<group>"; };
-		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
-		BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "UI-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
-		BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Unit-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
-		BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Performance-Smoke-Tests.xctestplan"; sourceTree = "<group>"; };
+		BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Authenticator-Info.plist"; sourceTree = "<group>"; };
 		BA4EF7722D8876EB00D2D50D /* Authenticator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authenticator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7732D8876EB00D2D50D /* AuthenticatorUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA4EF7742D8876EB00D2D50D /* AuthenticatorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AuthenticatorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,14 +114,18 @@
 		BA86425A2B73EE8600285F4D /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		BA86425B2B73EE8600285F4D /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		BA86425C2B73EE8600285F4D /* URLExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
-		BA8642602B73EECD00285F4D /* AuthCodeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthCodeView.swift; sourceTree = "<group>"; };
+		BA8642602B73EECD00285F4D /* TokenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenView.swift; sourceTree = "<group>"; };
 		BA8642612B73EECD00285F4D /* CodeScannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeScannerView.swift; sourceTree = "<group>"; };
 		BA8642762B73F33000285F4D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BA86427A2B73FACD00285F4D /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		BA86E0432B77058000F57F66 /* BackUpItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackUpItem.swift; sourceTree = "<group>"; };
 		BA86E0462B77097B00F57F66 /* iCloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iCloudManager.swift; sourceTree = "<group>"; };
-		BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
 		BAEDE38B2D8DD2650096CB8E /* ManualTokenEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualTokenEntryView.swift; sourceTree = "<group>"; };
+		BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenSearchView.swift; sourceTree = "<group>"; };
+		BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BAEDE4352D8FC79A0096CB8E /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
+		BAEDE4382D91D9790096CB8E /* ChangePasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeView.swift; sourceTree = "<group>"; };
+		BAEDE43A2D91EFEF0096CB8E /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -133,6 +142,11 @@
 		BAE62D1D2D88755E00202D5A /* AuthenticatorPerformanceTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AuthenticatorPerformanceTests;
+			sourceTree = "<group>";
+		};
+		BAEDE53B2D9347650096CB8E /* TestPlans */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TestPlans;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -156,11 +170,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAEDE4112D8E4C730096CB8E /* Sentry in Frameworks */,
-				BAEDE4152D8E4C730096CB8E /* SentrySwiftUI in Frameworks */,
 				BA86426E2B73EF4900285F4D /* SwiftOTP in Frameworks */,
 				BAEDE40C2D8E4B5B0096CB8E /* KeychainSwift in Frameworks */,
+				BAEDE4332D8F68EB0096CB8E /* FirebasePerformance in Frameworks */,
+				BAEDE4312D8F68EB0096CB8E /* FirebaseCrashlytics in Frameworks */,
 				BAEDE4092D8E4ADC0096CB8E /* CryptoSwift in Frameworks */,
+				BAEDE42F2D8F68EB0096CB8E /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +192,7 @@
 		BA4EF7A62D88939D00D2D50D /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE4162D8F06560096CB8E /* TokenSearchView.swift */,
 				BA86427A2B73FACD00285F4D /* ContentView.swift */,
 				BA8641FB2B73E9BC00285F4D /* AuthApp.swift */,
 			);
@@ -186,11 +202,9 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
-				BA3BED062D8CA30100200C21 /* UI-Smoke-Tests.xctestplan */,
-				BA3BED072D8CA36E00200C21 /* Unit-Smoke-Tests.xctestplan */,
-				BA3BED082D8CA3CC00200C21 /* Performance-Smoke-Tests.xctestplan */,
+				BAEDE53C2D9457E70096CB8E /* Config */,
+				BAEDE53B2D9347650096CB8E /* TestPlans */,
 				BA4EF7A72D88A52F00D2D50D /* README.md */,
-				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
 				BA1B19A32B868B840044E434 /* Authenticator.entitlements */,
 				BA8641FA2B73E9BC00285F4D /* Auth */,
 				BA7B05332D866E2600F882BE /* AuthenticatorUnitTests */,
@@ -207,6 +221,7 @@
 		BA8641FA2B73E9BC00285F4D /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE4362D8FC79A0096CB8E /* Services */,
 				BA86422C2B73EA3E00285F4D /* Controller */,
 				BA8642592B73EE7800285F4D /* Extensions */,
 				BA86422A2B73EA3000285F4D /* Model */,
@@ -242,7 +257,7 @@
 			isa = PBXGroup;
 			children = (
 				BAEDE3862D8DA94B0096CB8E /* Scanner */,
-				BA8642482B73EE0600285F4D /* Authenticator */,
+				BA8642482B73EE0600285F4D /* Tokens */,
 				BA8642472B73EDF800285F4D /* LockScreen */,
 				BA4EF7A62D88939D00D2D50D /* Main */,
 				BA86424A2B73EE1C00285F4D /* Settings */,
@@ -284,27 +299,28 @@
 		BA8642472B73EDF800285F4D /* LockScreen */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE43A2D91EFEF0096CB8E /* LockScreenOverlay.swift */,
 				BA8642302B73EDBA00285F4D /* LockScreenView.swift */,
 				BA8642312B73EDBA00285F4D /* SetPasscodeView.swift */,
 				BA86422F2B73EDBA00285F4D /* InputPasscodeView.swift */,
-				BAEB64F12B76C7EA0072FB1F /* LockScreenOverlay.swift */,
 			);
 			path = LockScreen;
 			sourceTree = "<group>";
 		};
-		BA8642482B73EE0600285F4D /* Authenticator */ = {
+		BA8642482B73EE0600285F4D /* Tokens */ = {
 			isa = PBXGroup;
 			children = (
 				BA4EF7A82D88AB6300D2D50D /* TokenDetailView.swift */,
-				BA8642602B73EECD00285F4D /* AuthCodeView.swift */,
-				BA1979412B741F7F00C0EDF6 /* AuthCodeEditView.swift */,
+				BA8642602B73EECD00285F4D /* TokenView.swift */,
+				BA1979412B741F7F00C0EDF6 /* TokenEditView.swift */,
 			);
-			path = Authenticator;
+			path = Tokens;
 			sourceTree = "<group>";
 		};
 		BA86424A2B73EE1C00285F4D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				BAEDE4382D91D9790096CB8E /* ChangePasscodeView.swift */,
 				BA7B04FB2D8631CB00F882BE /* BiometricVerificationSheet.swift */,
 				BA8642542B73EE5300285F4D /* SettingsView.swift */,
 				BA8642572B73EE6700285F4D /* ImportView.swift */,
@@ -337,6 +353,23 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BAEDE4362D8FC79A0096CB8E /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				BAEDE4352D8FC79A0096CB8E /* AnalyticsService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		BAEDE53C2D9457E70096CB8E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BA1B19CB2B86AB860044E434 /* Authenticator-Info.plist */,
+				BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,7 +428,7 @@
 				BA8641F42B73E9BC00285F4D /* Sources */,
 				BA8641F52B73E9BC00285F4D /* Frameworks */,
 				BA8641F62B73E9BC00285F4D /* Resources */,
-				0B94010E418A4FC4B8921BE0 /* Upload Debug Symbols to Sentry */,
+				BAEDE4342D8F6EAE0096CB8E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -406,8 +439,9 @@
 				BA86426D2B73EF4800285F4D /* SwiftOTP */,
 				BAEDE4082D8E4ADC0096CB8E /* CryptoSwift */,
 				BAEDE40B2D8E4B5B0096CB8E /* KeychainSwift */,
-				BAEDE4102D8E4C730096CB8E /* Sentry */,
-				BAEDE4142D8E4C730096CB8E /* SentrySwiftUI */,
+				BAEDE42E2D8F68EB0096CB8E /* FirebaseAnalyticsWithoutAdIdSupport */,
+				BAEDE4302D8F68EB0096CB8E /* FirebaseCrashlytics */,
+				BAEDE4322D8F68EB0096CB8E /* FirebasePerformance */,
 			);
 			productName = Auth;
 			productReference = BA4EF7722D8876EB00D2D50D /* Authenticator.app */;
@@ -476,7 +510,7 @@
 				BA86426C2B73EF4800285F4D /* XCRemoteSwiftPackageReference "SwiftOTP" */,
 				BAEDE4072D8E4ADC0096CB8E /* XCRemoteSwiftPackageReference "CryptoSwift" */,
 				BAEDE40A2D8E4B5B0096CB8E /* XCRemoteSwiftPackageReference "keychain-swift" */,
-				BAEDE40F2D8E4C730096CB8E /* XCRemoteSwiftPackageReference "sentry-cocoa" */,
+				BAEDE42D2D8F68EB0096CB8E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = BA8641EF2B73E9BC00285F4D;
@@ -496,6 +530,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEDE4232D8F660C0096CB8E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +538,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEDE4222D8F660C0096CB8E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +548,7 @@
 			files = (
 				BA8642772B73F33000285F4D /* Images.xcassets in Resources */,
 				BA5F7B4C2B8592B500C343E8 /* LaunchScreen.storyboard in Resources */,
+				BAEDE4252D8F660C0096CB8E /* GoogleService-Info.plist in Resources */,
 				BA8642032B73E9BE00285F4D /* Preview Assets.xcassets in Resources */,
 				BA8642002B73E9BE00285F4D /* Assets.xcassets in Resources */,
 			);
@@ -521,27 +558,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAEDE4242D8F660C0096CB8E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0B94010E418A4FC4B8921BE0 /* Upload Debug Symbols to Sentry */ = {
+		BAEDE4342D8F6EAE0096CB8E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+			inputFileListPaths = (
 			);
-			name = "Upload Debug Symbols to Sentry";
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
 			outputPaths = (
+				"${DERIVED_FILE_DIR}/com.firebase.crashlytics.upload-marker",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# This script is responsable to upload debug symbols and source context for Sentry.\nif which sentry-cli >/dev/null; then\nexport SENTRY_ORG=studio757\nexport SENTRY_PROJECT=authenticator\nERROR=$(sentry-cli debug-files upload --include-sources \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\nif [ ! $? -eq 0 ]; then\necho \"warning: sentry-cli - $ERROR\"\nfi\nelse\necho \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli/releases\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -573,26 +618,29 @@
 				BA86423B2B73EDC700285F4D /* Credential.swift in Sources */,
 				BA8642342B73EDBA00285F4D /* SetPasscodeView.swift in Sources */,
 				BA8642322B73EDBA00285F4D /* InputPasscodeView.swift in Sources */,
-				BAEB64F22B76C7EA0072FB1F /* LockScreenOverlay.swift in Sources */,
+				BAEDE4372D8FC79B0096CB8E /* AnalyticsService.swift in Sources */,
 				BA86425E2B73EE8600285F4D /* DateExtensions.swift in Sources */,
 				BA86E0472B77097B00F57F66 /* iCloudManager.swift in Sources */,
 				BA8642452B73EDE300285F4D /* ActivityView.swift in Sources */,
 				BA86423C2B73EDC700285F4D /* Token.swift in Sources */,
+				BAEDE4392D91D9790096CB8E /* ChangePasscodeView.swift in Sources */,
 				BA4EF7A92D88AB6300D2D50D /* TokenDetailView.swift in Sources */,
 				BA86425F2B73EE8600285F4D /* URLExtensions.swift in Sources */,
+				BAEDE43B2D91EFEF0096CB8E /* LockScreenOverlay.swift in Sources */,
 				BA8642442B73EDE300285F4D /* BiometricAuth.swift in Sources */,
 				BA86E0442B77058000F57F66 /* BackUpItem.swift in Sources */,
 				BA7B04FA2D862F0E00F882BE /* BiometricManager.swift in Sources */,
 				BA8641FC2B73E9BC00285F4D /* AuthApp.swift in Sources */,
 				BA7B04FC2D8631CB00F882BE /* BiometricVerificationSheet.swift in Sources */,
-				BA8642632B73EECE00285F4D /* AuthCodeView.swift in Sources */,
-				BA1979422B741F7F00C0EDF6 /* AuthCodeEditView.swift in Sources */,
+				BA8642632B73EECE00285F4D /* TokenView.swift in Sources */,
+				BA1979422B741F7F00C0EDF6 /* TokenEditView.swift in Sources */,
 				BA8642582B73EE6700285F4D /* ImportView.swift in Sources */,
 				BA8642082B73E9BE00285F4D /* Auth.xcdatamodeld in Sources */,
 				BA8642392B73EDC700285F4D /* OTPGenerator.swift in Sources */,
 				BA86427B2B73FACD00285F4D /* ContentView.swift in Sources */,
 				BAEDE38C2D8DD2660096CB8E /* ManualTokenEntryView.swift in Sources */,
 				BA8642552B73EE5300285F4D /* ExportView.swift in Sources */,
+				BAEDE4172D8F06560096CB8E /* TokenSearchView.swift in Sources */,
 				BA8642562B73EE5300285F4D /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -826,15 +874,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 00;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Authenticator-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Auth 2FA+";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_FILE = "Config/Authenticator-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app will use your camera to scan a QR code to set up your account.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app will use FaceID for an extra layer of secutity when signing in.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -869,15 +918,16 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 00;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"Auth/Preview Content\"";
 				DEVELOPMENT_TEAM = CT2P7VWHVS;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Authenticator-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Auth 2FA+";
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_FILE = "Config/Authenticator-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app will use your camera to scan a QR code to set up your account.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app will use FaceID for an extra layer of secutity when signing in.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1018,12 +1068,12 @@
 				minimumVersion = 24.0.0;
 			};
 		};
-		BAEDE40F2D8E4C730096CB8E /* XCRemoteSwiftPackageReference "sentry-cocoa" */ = {
+		BAEDE42D2D8F68EB0096CB8E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/getsentry/sentry-cocoa.git";
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.48.0;
+				minimumVersion = 11.10.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -1044,15 +1094,20 @@
 			package = BAEDE40A2D8E4B5B0096CB8E /* XCRemoteSwiftPackageReference "keychain-swift" */;
 			productName = KeychainSwift;
 		};
-		BAEDE4102D8E4C730096CB8E /* Sentry */ = {
+		BAEDE42E2D8F68EB0096CB8E /* FirebaseAnalyticsWithoutAdIdSupport */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BAEDE40F2D8E4C730096CB8E /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = Sentry;
+			package = BAEDE42D2D8F68EB0096CB8E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
 		};
-		BAEDE4142D8E4C730096CB8E /* SentrySwiftUI */ = {
+		BAEDE4302D8F68EB0096CB8E /* FirebaseCrashlytics */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = BAEDE40F2D8E4C730096CB8E /* XCRemoteSwiftPackageReference "sentry-cocoa" */;
-			productName = SentrySwiftUI;
+			package = BAEDE42D2D8F68EB0096CB8E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		BAEDE4322D8F68EB0096CB8E /* FirebasePerformance */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BAEDE42D2D8F68EB0096CB8E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebasePerformance;
 		};
 /* End XCSwiftPackageProductDependency section */
 

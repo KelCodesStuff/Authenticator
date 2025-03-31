@@ -43,6 +43,7 @@ struct BiometricVerificationSheet: View {
                 }) {
                     Text("Verify")
                         .foregroundColor(verificationPasscode.count == 8 ? .green : .gray)
+                        .fontWeight(.bold)
                 }
                 .disabled(verificationPasscode.count != 8)
             )
