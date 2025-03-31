@@ -126,6 +126,9 @@
 		BAEDE4352D8FC79A0096CB8E /* AnalyticsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsService.swift; sourceTree = "<group>"; };
 		BAEDE4382D91D9790096CB8E /* ChangePasscodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasscodeView.swift; sourceTree = "<group>"; };
 		BAEDE43A2D91EFEF0096CB8E /* LockScreenOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenOverlay.swift; sourceTree = "<group>"; };
+		BAEDE53D2D945EBA0096CB8E /* EULA */ = {isa = PBXFileReference; lastKnownFileType = text; path = EULA; sourceTree = "<group>"; };
+		BAEDE53E2D945EBA0096CB8E /* PrivacyPolicy */ = {isa = PBXFileReference; lastKnownFileType = text; path = PrivacyPolicy; sourceTree = "<group>"; };
+		BAEDE53F2D945EBA0096CB8E /* Terms */ = {isa = PBXFileReference; lastKnownFileType = text; path = Terms; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -202,6 +205,8 @@
 		BA8641EF2B73E9BC00285F4D = {
 			isa = PBXGroup;
 			children = (
+				BAEDE5472D945ED00096CB8E /* Images */,
+				BAEDE5402D945EBA0096CB8E /* Docs */,
 				BAEDE53C2D9457E70096CB8E /* Config */,
 				BAEDE53B2D9347650096CB8E /* TestPlans */,
 				BA4EF7A72D88A52F00D2D50D /* README.md */,
@@ -370,6 +375,23 @@
 				BAEDE4212D8F660C0096CB8E /* GoogleService-Info.plist */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		BAEDE5402D945EBA0096CB8E /* Docs */ = {
+			isa = PBXGroup;
+			children = (
+				BAEDE53D2D945EBA0096CB8E /* EULA */,
+				BAEDE53E2D945EBA0096CB8E /* PrivacyPolicy */,
+				BAEDE53F2D945EBA0096CB8E /* Terms */,
+			);
+			path = Docs;
+			sourceTree = "<group>";
+		};
+		BAEDE5472D945ED00096CB8E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -882,7 +904,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Authenticator-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app will use your camera to scan a QR code to set up your account.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app will use FaceID for an extra layer of secutity when signing in.";
@@ -926,7 +948,7 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Config/Authenticator-Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator 2FA+";
+				INFOPLIST_KEY_CFBundleDisplayName = "Authenticator+";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSCameraUsageDescription = "The app will use your camera to scan a QR code to set up your account.";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "This app will use FaceID for an extra layer of secutity when signing in.";
