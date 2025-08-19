@@ -43,7 +43,7 @@ Authenticator+ generates a new 6-digit code every 30 seconds, ensuring that you 
 
 ## Images
 
-Here are some screenshots of Authenticator 2FA+ in action:
+Here are some screenshots of Authenticator+ in action:
 
 <div align="center">
   <img src="Images/codes-view.png" alt="codes-view.png" width="300">
