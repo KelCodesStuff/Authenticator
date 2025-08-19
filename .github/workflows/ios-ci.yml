@@ -65,9 +65,9 @@ jobs:
       fail-fast: false  # Continue running other tests even if one fails
       matrix:
         test-plan: [
-          # { name: 'UI-Smoke-Tests', output: 'UITests' },        # UI Test suite
-          { name: 'Unit-Smoke-Tests', output: 'UnitTests' },       # Unit Test suite
-          { name: 'Performance-Smoke-Tests', output: 'PerfTests' } # Performance Test suite
+          # { name: 'UI-Tests', output: 'UITests' },        # UI Test suite
+          { name: 'Unit-Tests', output: 'UnitTests' },       # Unit Test suite
+          { name: 'Performance-Tests', output: 'PerfTests' } # Performance Test suite
         ]
     
     steps:
